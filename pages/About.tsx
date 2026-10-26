@@ -19,7 +19,7 @@ const About: React.FC = () => {
               About <span className="text-brand-lime">Saky Technologies</span>
             </h1>
             <p className="text-base md:text-lg lg:text-xl text-slate-400 leading-relaxed max-w-3xl mx-auto px-4 md:px-0">
-              Saky Technologies Pvt Ltd is a technology-driven company specializing in Microsoft business solutions and AI-powered SaaS applications. We help organizations streamline operations, improve decision-making, and accelerate digital transformation through intelligent, scalable solutions.
+              Saky Technologies is a technology-driven company specializing in Microsoft business solutions and AI-powered SaaS applications. We help organizations streamline operations, improve decision-making, and accelerate digital transformation through intelligent, scalable solutions.
             </p>
           </div>
 

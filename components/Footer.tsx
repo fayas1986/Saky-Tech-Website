@@ -13,9 +13,14 @@ const Footer: React.FC = () => {
               <Logo className="h-6 w-6 md:h-8 md:w-8" />
               <span className="text-lg md:text-xl font-bold text-white tracking-tight">Saky Technologies</span>
             </div>
-            <p className="text-slate-400 text-sm mb-6 max-w-xs leading-relaxed">
+            <p className="text-slate-400 text-sm mb-4 max-w-xs leading-relaxed">
               Empowering enterprises with intelligent software that drives growth, efficiency, and innovation.
             </p>
+            <div className="text-xs text-slate-400 space-y-1 mb-5">
+              <p className="text-slate-300"><span className="text-brand-lime font-medium">Singapore (HQ):</span> Blk 71, #03-08 Ayer Rajah Crescent, Singapore 139951</p>
+              <p className="text-slate-300"><span className="text-brand-lime font-medium">Oman Office:</span> PO BOX 220, Ruwi, PC112, Muscat, Oman</p>
+              <p>Tel: <a href="tel:+6567767822" className="text-brand-lime hover:underline font-medium">+65 6776 7822</a></p>
+            </div>
             <div className="flex gap-4">
                {/* Social placeholders */}
                <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-slate-400 hover:bg-brand-lime hover:text-brand-dark cursor-pointer transition-colors font-bold">𝕏</div>
