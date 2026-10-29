@@ -1,8 +1,8 @@
 import React from 'react';
 import { Brain, Workflow, LineChart, ShieldCheck, Sparkles, Network } from 'lucide-react';
-import { Product } from '../types';
+import { LegacyProduct } from '../types';
 
-const products: Product[] = [
+const products: LegacyProduct[] = [
   {
     id: '1',
     name: 'Saky Predict',
