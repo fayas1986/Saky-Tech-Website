@@ -125,8 +125,8 @@ export const products: Product[] = [
     ],
     deploymentOptions: [
       {
-        model: 'In-Kingdom Cloud (Saudi Data Residency)',
-        description: 'Hosted in Saudi Arabian cloud availability zones to strictly satisfy national data sovereignty regulations.',
+        model: 'Dedicated Enterprise Cloud',
+        description: 'Tenant-isolated virtual private cloud deployment tailored for Middle East enterprise operations.',
         isPopular: true
       },
       {
@@ -140,7 +140,7 @@ export const products: Product[] = [
     metrics: [
       { label: 'Clearance Latency', value: '< 1.2s', description: 'Average response time for standard B2B invoice' },
       { label: 'Validation Pass Rate', value: '99.98%', description: 'Pre-flight Schematron conformance' },
-      { label: 'Data Residency', value: '100% KSA', description: 'Strict in-kingdom processing' }
+      { label: 'Standard Schema', value: 'UBL 2.1', description: 'Strict ZATCA Phase 2 XML compliance' }
     ]
   },
   {

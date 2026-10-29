@@ -1,82 +1,119 @@
 import React from 'react';
-import { Quote, Command, Aperture, Hexagon, Layers, Box } from 'lucide-react';
-import { Testimonial } from '../types';
-
-const testimonials: Testimonial[] = [
-  {
-    id: '1',
-    quote: "Saky Technologies transformed our forecasting accuracy by 40% in just three months. The ROI was visible almost immediately.",
-    author: "Sarah Chen",
-    role: "CTO",
-    company: "Stratum Financial",
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80"
-  },
-  {
-    id: '2',
-    quote: "The security protocols are unmatched. We deployed to production in a highly regulated environment with zero compliance friction.",
-    author: "Marcus Thorne",
-    role: "VP of Engineering",
-    company: "DataFlow Systems",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80"
-  },
-  {
-    id: '3',
-    quote: "Finally, an AI platform that actually scales with our massive data ingestion needs. The integration was seamless.",
-    author: "Elena Rodriguez",
-    role: "Head of Data Science",
-    company: "Nebula Logistics",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80"
-  }
-];
+import { Link } from 'react-router-dom';
+import { Globe, MapPin, Phone, Mail, Building, ArrowRight } from 'lucide-react';
+import { officeLocations, companyConfig } from '../data/company';
 
 const SocialProof: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 bg-brand-dark border-b border-white/5">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-16 md:py-24 bg-brand-darker border-t border-white/5 relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         
-        {/* Trusted By Strip */}
-        <div className="text-center mb-12 md:mb-20 animate-fade-in-up">
-          <p className="text-[10px] md:text-xs lg:text-sm font-bold text-slate-500 uppercase tracking-widest mb-6 md:mb-8">
-            Trusted by 500+ innovative enterprises
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-12 lg:gap-20 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-             <div className="flex items-center gap-1.5 md:gap-2 text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl"><Command className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8" /> Stratum</div>
-             <div className="flex items-center gap-1.5 md:gap-2 text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl"><Aperture className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8" /> DataFlow</div>
-             <div className="flex items-center gap-1.5 md:gap-2 text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl"><Hexagon className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8" /> Nebula</div>
-             <div className="flex items-center gap-1.5 md:gap-2 text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl"><Layers className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8" /> StackOne</div>
-             <div className="flex items-center gap-1.5 md:gap-2 text-white font-bold text-sm sm:text-base md:text-lg lg:text-xl"><Box className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-8 lg:w-8" /> CubeInc</div>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-brand-lime mb-4">
+            <Globe className="w-3.5 h-3.5" />
+            <span>Regional Presence</span>
           </div>
+
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4">
+            Global Reach. Local Operational Presence.
+          </h2>
+
+          <p className="text-sm md:text-base text-slate-300 leading-relaxed">
+            Headquartered in Singapore with an established branch in the Sultanate of Oman and our core engineering development center in Chennai, India.
+          </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-          {testimonials.map((item, index) => (
-            <div 
-              key={item.id} 
-              style={{ animationDelay: `${index * 150}ms` }}
-              className="bg-white/5 p-5 md:p-6 lg:p-8 rounded-xl md:rounded-2xl border border-white/5 relative group hover:bg-white/10 hover:border-white/10 hover:-translate-y-1 transition-all duration-300 animate-fade-in-up"
-            >
-              <Quote className="h-6 w-6 md:h-8 md:w-8 lg:h-10 lg:w-10 text-brand-lime/20 mb-4 md:mb-6 group-hover:text-brand-lime transition-colors" />
-              
-              <p className="text-slate-200 text-sm md:text-base lg:text-lg leading-relaxed mb-6 md:mb-8 font-medium">
-                "{item.quote}"
-              </p>
-              
-              <div className="flex items-center gap-3 md:gap-4 mt-auto">
-                <img 
-                  src={item.image} 
-                  alt={item.author} 
-                  className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full object-cover border-2 border-brand-dark shadow-sm"
-                />
-                <div>
-                  <h4 className="text-white font-bold text-xs md:text-sm">{item.author}</h4>
-                  <p className="text-slate-500 text-[10px] md:text-xs font-medium">{item.role}, {item.company}</p>
-                </div>
+        {/* Global Locations Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-14">
+          
+          {/* Singapore HQ */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col justify-between hover:bg-white/[0.08] transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-brand-lime">
+                  {officeLocations.singapore.badge}
+                </span>
+                <span className="text-xs text-slate-500 font-mono">SG</span>
               </div>
+
+              <h3 className="text-xl font-bold text-white mb-2">
+                {officeLocations.singapore.title}
+              </h3>
+
+              <p className="text-xs text-slate-300 leading-relaxed mb-6">
+                {officeLocations.singapore.addressLines.join(', ')}
+              </p>
             </div>
-          ))}
+
+            <div className="pt-4 border-t border-white/10 text-xs text-slate-400 space-y-1">
+              <div>Phone: <span className="text-slate-200">{officeLocations.singapore.phone}</span></div>
+              <div>Email: <span className="text-slate-200">{officeLocations.singapore.email}</span></div>
+            </div>
+          </div>
+
+          {/* Oman Office */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col justify-between hover:bg-white/[0.08] transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-400">
+                  {officeLocations.oman.badge}
+                </span>
+                <span className="text-xs text-slate-500 font-mono">OM</span>
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-2">
+                {officeLocations.oman.title}
+              </h3>
+
+              <p className="text-xs text-slate-300 leading-relaxed mb-6">
+                {officeLocations.oman.addressLines.join(', ')}
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-white/10 text-xs text-slate-400 space-y-1">
+              <div>Phone: <span className="text-slate-200">{officeLocations.oman.phone}</span></div>
+              <div>Email: <span className="text-slate-200">{officeLocations.oman.email}</span></div>
+            </div>
+          </div>
+
+          {/* India Development Center */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col justify-between hover:bg-white/[0.08] transition-all">
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+                  {officeLocations.india.badge}
+                </span>
+                <span className="text-xs text-slate-500 font-mono">IN</span>
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-2">
+                {officeLocations.india.title}
+              </h3>
+
+              <p className="text-xs text-slate-300 leading-relaxed mb-6">
+                {officeLocations.india.addressLines.join(', ')}
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-white/10 text-xs text-slate-400 space-y-1">
+              <div>Phone: <span className="text-slate-200">{officeLocations.india.phone}</span></div>
+              <div>Email: <span className="text-slate-200">{officeLocations.india.email}</span></div>
+            </div>
+          </div>
+
         </div>
-        
+
+        {/* Action Link to Contact */}
+        <div className="text-center">
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 text-xs md:text-sm font-bold text-brand-lime hover:underline"
+          >
+            Connect With Our Regional Offices & Schedule a Consultation <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
       </div>
     </section>
   );
