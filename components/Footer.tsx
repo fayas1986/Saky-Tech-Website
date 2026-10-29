@@ -19,6 +19,7 @@ const Footer: React.FC = () => {
             <div className="text-xs text-slate-400 space-y-1 mb-5">
               <p className="text-slate-300"><span className="text-brand-lime font-medium">Singapore (HQ):</span> Blk 71, #03-08 Ayer Rajah Crescent, Singapore 139951</p>
               <p className="text-slate-300"><span className="text-brand-lime font-medium">Oman Office:</span> PO BOX 220, Ruwi, PC112, Muscat, Oman</p>
+              <p className="text-slate-300"><span className="text-brand-lime font-medium">India Office:</span> M P M Street, Sanjay Gandhi Nagar, Perambur, Chennai, Tamil Nadu - 600011, India</p>
               <p>Tel: <a href="tel:+6567767822" className="text-brand-lime hover:underline font-medium">+65 6776 7822</a></p>
             </div>
             <div className="flex gap-4">
