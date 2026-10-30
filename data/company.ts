@@ -7,8 +7,8 @@ export const companyConfig = {
   description: 'Enterprise software and SaaS engineering company delivering specialized business applications, Microsoft Dynamics 365 ERP implementations, and custom software solutions.',
   primaryPhone: '+65 6776 7822',
   primaryPhoneLink: 'tel:+6567767822',
-  primaryEmail: 'contact@sakytechnologies.com',
-  primaryEmailLink: 'mailto:contact@sakytechnologies.com',
+  primaryEmail: 'amd@sakytek.com',
+  primaryEmailLink: 'mailto:amd@sakytek.com',
   coreOfferings: [
     {
       title: 'SaaS Products',
@@ -36,7 +36,7 @@ export const officeLocations: Record<'singapore' | 'oman' | 'india', OfficeLocat
     ],
     phone: '+65 6776 7822',
     phoneLink: 'tel:+6567767822',
-    email: 'contact@sakytechnologies.com',
+    email: 'amd@sakytek.com',
     mapTitle: 'Saky Technologies - Singapore Headquarters (BLOCK71 @ one-north)',
     directionsUrl: 'https://www.google.com/maps/search/?api=1&query=1.296742,103.786664'
   },
@@ -50,7 +50,7 @@ export const officeLocations: Record<'singapore' | 'oman' | 'india', OfficeLocat
     ],
     phone: '+65 6776 7822',
     phoneLink: 'tel:+6567767822',
-    email: 'contact@sakytechnologies.com',
+    email: 'amd@sakytek.com',
     mapTitle: 'Saky Technologies - Oman Branch Office (Ruwi, Muscat)',
     directionsUrl: 'https://www.google.com/maps/search/?api=1&query=23.603056,58.545833'
   },
@@ -64,7 +64,7 @@ export const officeLocations: Record<'singapore' | 'oman' | 'india', OfficeLocat
     ],
     phone: '+65 6776 7822',
     phoneLink: 'tel:+6567767822',
-    email: 'contact@sakytechnologies.com',
+    email: 'amd@sakytek.com',
     mapTitle: 'Saky Technologies - India Development Center (Chennai)',
     directionsUrl: 'https://www.google.com/maps/search/?api=1&query=13.115808,80.242525'
   }

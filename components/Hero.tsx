@@ -1,250 +1,178 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  ShieldCheck, 
-  CheckCircle2, 
-  Building2, 
-  Cpu, 
-  Layers, 
-  ReceiptText, 
-  Users, 
-  Sparkles,
-  ExternalLink
+import {
+  ArrowRight,
+  Layers,
+  ShieldCheck,
+  Building2,
+  Award,
+  Play
 } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  const [activeConsoleTab, setActiveConsoleTab] = useState<'taxflow' | 'zatca' | 'hrms'>('taxflow');
-
   return (
-    <section className="relative pt-24 pb-16 md:pt-36 md:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-brand-dark">
-      {/* Background Subtle Ambience */}
-      <div className="absolute top-0 right-0 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-indigo-500/10 rounded-full blur-[80px] md:blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-brand-lime/5 rounded-full blur-[70px] md:blur-[120px] pointer-events-none" />
+    <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-b from-[#f3f9ff] via-[#f3f9ff]/50 to-white overflow-hidden">
+
+      {/* Decorative Subtle Background Orbs */}
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          
-          {/* Main Hero Copy */}
-          <div className="flex-1 w-full text-center lg:text-left animate-fade-in-up">
-            
-            {/* Positioning Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-brand-lime text-xs font-semibold tracking-wide uppercase mb-6 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-brand-lime animate-pulse"></span>
-              Enterprise B2B Software & ERP Practice
-            </div>
-            
-            {/* Approved Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.2] lg:leading-[1.15]">
-              Business software built around <span className="text-brand-lime">the way you work.</span>
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+          {/* Main Hero Copy - Left 6-7 Columns */}
+          <div className="lg:col-span-7 text-center lg:text-left animate-fade-in-up">
+
+            {/* Approved Headline with Accent Text */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold font-heading tracking-tight text-[#2d465e] mb-6 leading-[1.18]">
+              Business software built around <br className="hidden sm:inline" />
+              <span className="text-[#0d83fd]">the way you work.</span>
             </h1>
-            
+
             {/* Positioning Description */}
-            <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
-              Saky Technologies delivers proprietary B2B SaaS applications, certified Microsoft Dynamics 365 ERP implementations, and custom engineering designed to eliminate operational friction and accelerate growth.
+            <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+              Saky Technologies delivers proprietary B2B SaaS applications, certified Microsoft Dynamics 365 ERP implementations, and custom software engineering designed to eliminate operational friction and accelerate growth.
             </p>
 
-            {/* Three Offerings Quick Summary */}
+            {/* Quick 3 Pillar Badges */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 text-left max-w-xl mx-auto lg:mx-0">
-              <div className="p-3 rounded-xl bg-white/5 border border-white/5">
-                <span className="text-brand-lime font-bold text-xs block mb-1">01. SaaS Products</span>
-                <p className="text-[11px] text-slate-300 leading-snug">7 focused platforms for tax, payroll, hospital, & supply chain.</p>
+              <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm">
+                <span className="text-[#0d83fd] font-bold text-xs block mb-1">01. SaaS Suite</span>
+                <p className="text-xs text-slate-500 leading-snug">TaxFlow, ZATCA Connect, HRMS & healthcare platforms.</p>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/5">
-                <span className="text-blue-400 font-bold text-xs block mb-1">02. Dynamics 365 ERP</span>
-                <p className="text-[11px] text-slate-300 leading-snug">Business Central, F&O implementation & Power BI analytics.</p>
+              <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm">
+                <span className="text-indigo-600 font-bold text-xs block mb-1">02. Dynamics 365 ERP</span>
+                <p className="text-xs text-slate-500 leading-snug">Business Central, F&O implementations & integrations.</p>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/5">
-                <span className="text-purple-400 font-bold text-xs block mb-1">03. Custom Engineering</span>
-                <p className="text-[11px] text-slate-300 leading-snug">Bespoke software and modernization for proprietary workflows.</p>
+              <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-sm">
+                <span className="text-emerald-600 font-bold text-xs block mb-1">03. Custom Engineering</span>
+                <p className="text-xs text-slate-500 leading-snug">Bespoke software and enterprise BI dashboards.</p>
               </div>
             </div>
 
-            {/* Primary & Secondary CTAs */}
+            {/* Primary & Secondary Hero Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <Link
                 to="/contact"
-                className="w-full sm:w-auto px-7 py-3.5 text-sm font-bold text-brand-dark bg-brand-lime rounded-xl shadow-xl shadow-brand-lime/10 hover:bg-[#d9f99d] hover:-translate-y-0.5 transition-all focus-visible:ring-2 focus-visible:ring-brand-lime flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-3.5 text-sm font-bold text-white bg-[#0d83fd] hover:bg-[#0b66c2] rounded-full shadow-md shadow-blue-500/25 hover:shadow-lg transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2"
               >
-                Discuss Your Requirements
+                Get Started
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href="#products"
-                className="w-full sm:w-auto px-7 py-3.5 text-sm font-semibold text-slate-200 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 hover:text-white transition-all text-center focus-visible:ring-2 focus-visible:ring-white"
+                className="w-full sm:w-auto px-6 py-3.5 text-sm font-semibold text-[#2d465e] hover:text-[#0d83fd] rounded-full bg-white hover:bg-slate-50 border border-slate-200 shadow-sm transition-all flex items-center justify-center gap-2"
               >
-                Explore Products
+                <div className="w-6 h-6 rounded-full bg-blue-50 text-[#0d83fd] flex items-center justify-center">
+                  <Play className="w-3 h-3 fill-current ml-0.5" />
+                </div>
+                <span>Explore Products</span>
               </a>
             </div>
 
           </div>
 
-          {/* Labelled Interactive Software Preview Console */}
-          <div className="flex-1 w-full max-w-lg lg:max-w-none animate-fade-in-up">
-            <div className="relative bg-slate-900/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl md:rounded-3xl p-4 md:p-6 ring-1 ring-white/10">
-              
-              {/* Mandatory Illustration Disclaimer Tag */}
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-3 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
-                  <span className="text-[11px] font-mono text-slate-300 font-medium ml-1">Saky Operational Suite Console</span>
-                </div>
-                <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
-                  Interactive Product Preview — illustrative sample data
-                </span>
+          {/* Right Column: iLanding Hero Image & Floating Customers Badge */}
+          <div className="lg:col-span-5 relative animate-fade-in-up">
+            <div className="relative mx-auto max-w-md lg:max-w-none">
+
+              {/* iLanding Hero Illustration */}
+              <div className="relative z-10 overflow-hidden rounded-2xl bg-white/40 p-2 backdrop-blur-sm shadow-xl border border-white/80">
+                <img
+                  src="/assets/img/illustration-1.webp"
+                  alt="Saky Technologies Enterprise Cloud Suite"
+                  className="w-full h-auto rounded-xl object-cover hover:scale-[1.01] transition-transform duration-500"
+                />
               </div>
 
-              {/* Console Tabs */}
-              <div className="flex items-center gap-1.5 p-1 bg-white/5 rounded-xl border border-white/5 mb-4 text-xs">
-                <button
-                  type="button"
-                  onClick={() => setActiveConsoleTab('taxflow')}
-                  className={`flex-1 py-1.5 px-2 rounded-lg font-medium transition-all ${
-                    activeConsoleTab === 'taxflow' 
-                      ? 'bg-brand-lime text-brand-dark shadow-sm' 
-                      : 'text-slate-300 hover:text-white'
-                  }`}
-                >
-                  TaxFlow (GST)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveConsoleTab('zatca')}
-                  className={`flex-1 py-1.5 px-2 rounded-lg font-medium transition-all ${
-                    activeConsoleTab === 'zatca' 
-                      ? 'bg-brand-lime text-brand-dark shadow-sm' 
-                      : 'text-slate-300 hover:text-white'
-                  }`}
-                >
-                  ZATCA Connect
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveConsoleTab('hrms')}
-                  className={`flex-1 py-1.5 px-2 rounded-lg font-medium transition-all ${
-                    activeConsoleTab === 'hrms' 
-                      ? 'bg-brand-lime text-brand-dark shadow-sm' 
-                      : 'text-slate-300 hover:text-white'
-                  }`}
-                >
-                  TalentSense HRMS
-                </button>
-              </div>
-
-              {/* Console Body Content based on Tab */}
-              {activeConsoleTab === 'taxflow' && (
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="grid grid-cols-2 gap-2 text-slate-300">
-                    <div className="bg-brand-darker p-3 rounded-lg border border-white/5">
-                      <div className="text-[10px] text-slate-400">GSTR-2B Inward Matching</div>
-                      <div className="text-base font-bold text-white mt-1">48,210 Invoices</div>
-                      <div className="text-[10px] text-emerald-400">✓ 99.8% Auto-Matched</div>
-                    </div>
-                    <div className="bg-brand-darker p-3 rounded-lg border border-white/5">
-                      <div className="text-[10px] text-slate-400">ITC Recovery Protection</div>
-                      <div className="text-base font-bold text-brand-lime mt-1">100% Eligible</div>
-                      <div className="text-[10px] text-slate-400">0 Ineligible Risk Flags</div>
-                    </div>
-                  </div>
-
-                  <div className="p-3 bg-brand-darker rounded-lg border border-white/5 space-y-1.5 text-[11px]">
-                    <div className="flex justify-between text-slate-400 border-b border-white/5 pb-1">
-                      <span>ERP Purchase Ledger</span>
-                      <span className="text-slate-300 font-semibold">MS Dynamics 365 Connected</span>
-                    </div>
-                    <div className="flex justify-between text-slate-400 border-b border-white/5 pb-1">
-                      <span>Jurisdiction</span>
-                      <span className="text-indigo-400 font-semibold">India Domestic GST</span>
-                    </div>
-                    <div className="flex justify-between text-slate-400">
-                      <span>Reconciliation Status</span>
-                      <span className="text-emerald-400 font-bold">Synchronized</span>
-                    </div>
-                  </div>
+              {/* Floating Customers Badge - Exact iLanding Structure */}
+              <div className="relative sm:absolute -bottom-6 -left-4 sm:left-6 z-20 mt-4 sm:mt-0 bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-[0_10px_35px_rgba(0,0,0,0.1)] max-w-xs animate-float">
+                <div className="flex items-center mb-2">
+                  <img src="/assets/img/avatar-1.webp" alt="Client 1" className="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" />
+                  <img src="/assets/img/avatar-2.webp" alt="Client 2" className="w-8 h-8 rounded-full border-2 border-white object-cover -ml-2 shadow-sm" />
+                  <img src="/assets/img/avatar-3.webp" alt="Client 3" className="w-8 h-8 rounded-full border-2 border-white object-cover -ml-2 shadow-sm" />
+                  <img src="/assets/img/avatar-4.webp" alt="Client 4" className="w-8 h-8 rounded-full border-2 border-white object-cover -ml-2 shadow-sm" />
+                  <img src="/assets/img/avatar-5.webp" alt="Client 5" className="w-8 h-8 rounded-full border-2 border-white object-cover -ml-2 shadow-sm" />
+                  <span className="w-8 h-8 rounded-full border-2 border-white bg-[#0d83fd] text-white text-[11px] font-bold flex items-center justify-center -ml-2 shadow-sm">
+                    12+
+                  </span>
                 </div>
-              )}
-
-              {activeConsoleTab === 'zatca' && (
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="grid grid-cols-2 gap-2 text-slate-300">
-                    <div className="bg-brand-darker p-3 rounded-lg border border-white/5">
-                      <div className="text-[10px] text-slate-400">Phase 2 Clearance API</div>
-                      <div className="text-base font-bold text-white mt-1">Real-Time</div>
-                      <div className="text-[10px] text-emerald-400">Avg Latency &lt; 1.2s</div>
-                    </div>
-                    <div className="bg-brand-darker p-3 rounded-lg border border-white/5">
-                      <div className="text-[10px] text-slate-400">CSID Cryptographic Status</div>
-                      <div className="text-base font-bold text-emerald-400 mt-1">Active & Valid</div>
-                      <div className="text-[10px] text-slate-400">ECDSA secp256k1 Signed</div>
-                    </div>
-                  </div>
-
-                  <div className="p-3 bg-brand-darker rounded-lg border border-white/5 space-y-1.5 text-[11px]">
-                    <div className="flex justify-between text-slate-400 border-b border-white/5 pb-1">
-                      <span>XML Schema Conformance</span>
-                      <span className="text-emerald-400 font-semibold">UBL 2.1 Schematron Validated</span>
-                    </div>
-                    <div className="flex justify-between text-slate-400 border-b border-white/5 pb-1">
-                      <span>Mandate Scope</span>
-                      <span className="text-indigo-400 font-semibold">Saudi Arabia ZATCA Phase 2</span>
-                    </div>
-                    <div className="flex justify-between text-slate-400">
-                      <span>Queue Buffer Status</span>
-                      <span className="text-brand-lime font-bold">0 Pending Failovers</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeConsoleTab === 'hrms' && (
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="grid grid-cols-2 gap-2 text-slate-300">
-                    <div className="bg-brand-darker p-3 rounded-lg border border-white/5">
-                      <div className="text-[10px] text-slate-400">Biometric Sync Terminals</div>
-                      <div className="text-base font-bold text-white mt-1">12 Terminals Live</div>
-                      <div className="text-[10px] text-emerald-400">ZKTeco / IP Push Protocol</div>
-                    </div>
-                    <div className="bg-brand-darker p-3 rounded-lg border border-white/5">
-                      <div className="text-[10px] text-slate-400">Payroll Calculation Run</div>
-                      <div className="text-base font-bold text-brand-lime mt-1">Automated</div>
-                      <div className="text-[10px] text-slate-400">Statutory Deductions Applied</div>
-                    </div>
-                  </div>
-
-                  <div className="p-3 bg-brand-darker rounded-lg border border-white/5 space-y-1.5 text-[11px]">
-                    <div className="flex justify-between text-slate-400 border-b border-white/5 pb-1">
-                      <span>Roster Engine</span>
-                      <span className="text-slate-300 font-semibold">Rotational Multi-Shift Roster</span>
-                    </div>
-                    <div className="flex justify-between text-slate-400 border-b border-white/5 pb-1">
-                      <span>Bank Payout Format</span>
-                      <span className="text-indigo-400 font-semibold">Direct Remittance CSV Ready</span>
-                    </div>
-                    <div className="flex justify-between text-slate-400">
-                      <span>Employee Portal (ESS)</span>
-                      <span className="text-emerald-400 font-bold">Active & Responsive</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Console Footer */}
-              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
-                <span>View full specification</span>
-                <Link
-                  to={`/products/${activeConsoleTab === 'taxflow' ? 'taxflow' : activeConsoleTab === 'zatca' ? 'zatca-connect' : 'talentsense-hrms'}`}
-                  className="text-brand-lime hover:underline inline-flex items-center gap-1 font-semibold"
-                >
-                  Deep Dive <ExternalLink className="w-3 h-3" />
-                </Link>
+                <p className="text-xs font-semibold text-[#2d465e] leading-snug">
+                  100+ Enterprise Deployments across Singapore, Oman & India
+                </p>
               </div>
 
             </div>
           </div>
 
         </div>
+
+        {/* iLanding Bottom Stats Row (4 Stat Items) */}
+        <div className="mt-16 lg:mt-24 bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-[0_5px_30px_rgba(0,0,0,0.06)] border border-slate-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+
+            {/* Stat Item 1 */}
+            <div className="p-4 md:p-6 flex items-center gap-4 group">
+              <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#0d83fd] flex items-center justify-center shrink-0 group-hover:bg-[#0d83fd] group-hover:text-white transition-all shadow-sm">
+                <Layers className="w-7 h-7" />
+              </div>
+              <div>
+                <h4 className="text-2xl font-black font-heading text-[#2d465e] leading-none mb-1">
+                  7+
+                </h4>
+                <p className="text-xs text-slate-500 font-medium">
+                  Proprietary SaaS Platforms
+                </p>
+              </div>
+            </div>
+
+            {/* Stat Item 2 */}
+            <div className="p-4 md:p-6 flex items-center gap-4 group">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-sm">
+                <ShieldCheck className="w-7 h-7" />
+              </div>
+              <div>
+                <h4 className="text-2xl font-black font-heading text-[#2d465e] leading-none mb-1">
+                  100%
+                </h4>
+                <p className="text-xs text-slate-500 font-medium">
+                  ZATCA & GST Statutory Compliance
+                </p>
+              </div>
+            </div>
+
+            {/* Stat Item 3 */}
+            <div className="p-4 md:p-6 flex items-center gap-4 group">
+              <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
+                <Building2 className="w-7 h-7" />
+              </div>
+              <div>
+                <h4 className="text-2xl font-black font-heading text-[#2d465e] leading-none mb-1">
+                  3 Offices
+                </h4>
+                <p className="text-xs text-slate-500 font-medium">
+                  Singapore (HQ), Oman & India
+                </p>
+              </div>
+            </div>
+
+            {/* Stat Item 4 */}
+            <div className="p-4 md:p-6 flex items-center gap-4 group">
+              <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-all shadow-sm">
+                <Award className="w-7 h-7" />
+              </div>
+              <div>
+                <h4 className="text-2xl font-black font-heading text-[#2d465e] leading-none mb-1">
+                  99.9%
+                </h4>
+                <p className="text-xs text-slate-500 font-medium">
+                  Production SLA Guarantee
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
   );

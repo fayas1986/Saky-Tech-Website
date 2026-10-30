@@ -37,7 +37,7 @@ const App: React.FC = () => {
         Skip to main content
       </a>
 
-      <div className="min-h-screen bg-brand-dark font-sans selection:bg-brand-lime selection:text-brand-dark flex flex-col text-slate-100">
+      <div className="min-h-screen bg-white font-sans text-slate-800 selection:bg-blue-100 selection:text-blue-900 flex flex-col">
         <Navbar />
         <div id="main-content" className="flex-grow">
           <Routes>

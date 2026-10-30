@@ -1,8 +1,8 @@
-/* Saky Technologies Design System & Base Utilities */
+/* Saky Technologies - iLanding Design System Utilities */
 
 @layer base {
   :focus-visible {
-    outline: 2px solid #ccf381;
+    outline: 2px solid #0d83fd;
     outline-offset: 2px;
   }
 }
@@ -25,14 +25,14 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #f8fafc;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #94a3b8;
 }
 
 /* Skip to content link for accessibility */
@@ -40,13 +40,43 @@
   position: absolute;
   top: -40px;
   left: 0;
-  background: #ccf381;
-  color: #0b0d17;
+  background: #0d83fd;
+  color: #ffffff;
   padding: 8px 16px;
   font-weight: 700;
   z-index: 100;
+  border-radius: 0 0 8px 0;
   transition: top 0.2s ease;
 }
 .skip-link:focus {
   top: 0;
+}
+
+/* iLanding badge and surface utility styles */
+.ilanding-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background-color: #ebf5ff;
+  border: 1px solid #c3ddfd;
+  color: #0d83fd;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ilanding-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.ilanding-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(13, 131, 253, 0.1);
+  border-color: #d0e3ff;
 }
