@@ -9,12 +9,9 @@ import {
   Truck, 
   TrendingUp, 
   ArrowRight, 
-  CheckCircle2, 
-  Layers, 
-  Sparkles 
+  CheckCircle2
 } from 'lucide-react';
 import { products } from '../data/products';
-import { Product } from '../types';
 
 const productIcons: Record<string, React.ElementType> = {
   taxflow: ReceiptText,
@@ -39,22 +36,19 @@ const Products: React.FC = () => {
   });
 
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-brand-dark relative overflow-hidden" id="products">
-      {/* Background Ambience */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/15 via-brand-dark to-brand-dark pointer-events-none" />
-      
+    <section className="py-20 md:py-28 bg-[#f3f9ff] relative overflow-hidden" id="products">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16 animate-fade-in-up">
-          <span className="text-xs font-bold tracking-wider text-brand-lime uppercase mb-2 block">
+        {/* Section Heading - iLanding Standard */}
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-blue-100 text-[#0d83fd] text-xs font-bold tracking-wide uppercase mb-3 shadow-sm">
             Approved SaaS Portfolio
-          </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-heading text-[#2d465e] tracking-tight mb-4">
             Proprietary Business Software
           </h2>
-          <p className="text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
-            Explore our suite of seven purpose-engineered enterprise applications. Built to automate complex regulatory workflows, clinical journeys, and supply chain operations.
+          <p className="text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            Seven production-grade B2B platforms engineered to automate statutory tax reconciliation, hospital journeys, enterprise procurement, and logistics.
           </p>
         </div>
 
@@ -71,10 +65,10 @@ const Products: React.FC = () => {
               key={tab.id}
               type="button"
               onClick={() => setSelectedFilter(tab.id as any)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                 selectedFilter === tab.id
-                  ? 'bg-brand-lime text-brand-dark shadow-md shadow-brand-lime/10'
-                  : 'bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/5'
+                  ? 'bg-[#0d83fd] text-white shadow-md shadow-blue-500/20'
+                  : 'bg-white text-slate-600 hover:text-[#0d83fd] hover:bg-white/80 border border-slate-200/80 shadow-sm'
               }`}
             >
               {tab.label}
@@ -84,79 +78,87 @@ const Products: React.FC = () => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {filteredProducts.map((p, index) => {
+          {filteredProducts.map((p) => {
             const Icon = productIcons[p.id] || ReceiptText;
             return (
               <div 
                 key={p.id}
-                className={`group relative p-6 md:p-8 rounded-2xl md:rounded-3xl border transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 ${
+                className={`group bg-white rounded-3xl p-6 md:p-8 border transition-all duration-300 flex flex-col justify-between hover:-translate-y-2 ${
                   p.featured 
-                    ? 'bg-gradient-to-b from-[#1b1f3b] to-brand-darker border-brand-lime/50 shadow-xl shadow-brand-lime/5 ring-1 ring-brand-lime/30' 
-                    : 'bg-white/5 border-white/10 hover:bg-white/[0.08] hover:border-white/20'
+                    ? 'border-[#0d83fd]/40 shadow-[0_10px_35px_rgba(13,131,253,0.1)] ring-1 ring-[#0d83fd]/20' 
+                    : 'border-slate-200/80 shadow-[0_5px_25px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_35px_rgba(13,131,253,0.12)] hover:border-blue-200'
                 }`}
               >
                 {/* Card Top: Icon, Name, Badge */}
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-brand-dark border border-white/10 flex items-center justify-center text-brand-lime shadow-md group-hover:scale-105 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0d83fd] group-hover:bg-[#0d83fd] group-hover:text-white transition-all shadow-sm">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
-                      {p.badge}
-                    </span>
+                    {p.featured && (
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-50 text-[#0d83fd] border border-blue-200">
+                        Featured Platform
+                      </span>
+                    )}
                   </div>
 
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-brand-lime transition-colors">
-                    {p.name}
-                  </h3>
+                  <div className="mb-2">
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                      {p.category}
+                    </span>
+                    <h3 className="text-xl font-bold font-heading text-[#2d465e] group-hover:text-[#0d83fd] transition-colors">
+                      {p.name}
+                    </h3>
+                  </div>
 
-                  <p className="text-xs font-medium text-slate-400 mb-4 line-clamp-1">
+                  <p className="text-xs font-semibold text-[#0d83fd] mb-3 leading-snug">
                     {p.tagline}
                   </p>
 
-                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed mb-6">
+                  <p className="text-xs text-slate-600 leading-relaxed mb-5 line-clamp-3">
                     {p.summary}
                   </p>
 
-                  {/* Regulatory Scope Tag if applicable */}
-                  {p.regulatoryScope && (
-                    <div className="mb-5 p-2.5 rounded-lg bg-indigo-950/40 border border-indigo-500/20 text-[11px] text-indigo-300 flex items-center gap-2">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span className="truncate"><strong>Jurisdiction:</strong> {p.regulatoryScope.jurisdiction}</span>
-                    </div>
-                  )}
-
-                  {/* Implemented Capabilities Bullet List */}
-                  <div className="pt-4 border-t border-white/10 mb-6">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
-                      Key Capabilities:
-                    </span>
-                    <ul className="space-y-1.5">
-                      {p.implementedCapabilities.slice(0, 3).map((cap, cIdx) => (
-                        <li key={cIdx} className="text-xs text-slate-300 flex items-start gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-brand-lime shrink-0 mt-0.5" />
-                          <span className="line-clamp-1">{cap.title}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Capabilities Bullet points */}
+                  <div className="space-y-2 mb-6 pt-4 border-t border-slate-100">
+                    {p.implementedCapabilities.slice(0, 2).map((cap, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-xs text-slate-600">
+                        <CheckCircle2 className="w-4 h-4 text-[#0d83fd] shrink-0 mt-0.5" />
+                        <span className="line-clamp-1">{cap.title}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Card Action Link */}
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                  <Link
-                    to={`/products/${p.id}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-lime hover:underline group-hover:translate-x-0.5 transition-transform"
-                  >
-                    Explore Product Details
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                {/* Card Bottom: Metrics + CTA */}
+                <div>
+                  {p.metrics && p.metrics.length > 0 && (
+                    <div className="grid grid-cols-2 gap-2 mb-5 p-3 rounded-2xl bg-[#f3f9ff] border border-blue-100/60 text-center">
+                      <div>
+                        <div className="text-xs font-extrabold font-heading text-[#2d465e]">
+                          {p.metrics[0].value}
+                        </div>
+                        <div className="text-[10px] text-slate-500 leading-tight">
+                          {p.metrics[0].label}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs font-extrabold font-heading text-[#2d465e]">
+                          {p.metrics[1]?.value || 'Verified'}
+                        </div>
+                        <div className="text-[10px] text-slate-500 leading-tight">
+                          {p.metrics[1]?.label || 'Compliance'}
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   <Link
-                    to={`/contact?product=${p.id}`}
-                    className="text-[11px] font-semibold text-slate-400 hover:text-white px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/5 transition-colors"
+                    to={`/products/${p.id}`}
+                    className="w-full py-2.5 px-4 text-xs font-bold text-[#0d83fd] group-hover:text-white bg-blue-50 group-hover:bg-[#0d83fd] rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-sm"
                   >
-                    Request Demo
+                    <span>View Specifications</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
 

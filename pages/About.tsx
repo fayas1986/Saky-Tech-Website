@@ -1,140 +1,159 @@
 import React from 'react';
-import { CheckCircle2, Building2, BrainCircuit, Globe, Target } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { CheckCircle2, Building2, Globe, PhoneCall, ShieldCheck, Award, ArrowRight } from 'lucide-react';
+import { companyConfig, officeLocations } from '../data/company';
 
 const About: React.FC = () => {
   return (
-    <main className="pt-24 md:pt-32 pb-16 md:pb-24 bg-brand-dark min-h-screen relative overflow-hidden">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-gradient-to-r from-indigo-500 via-brand-lime to-indigo-500 opacity-10 rounded-full blur-3xl -z-10 animate-blob"></div>
-
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-16 md:mb-20 animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white/5 border border-white/10 text-xs md:text-sm font-medium text-slate-300 mb-6 md:mb-8 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand-lime animate-pulse"></span>
-              Discover Our Story
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 md:mb-8 tracking-tight">
-              About <span className="text-brand-lime">Saky Technologies</span>
+    <main className="pt-28 pb-20 md:pt-36 md:pb-28 bg-white min-h-screen">
+      <div className="container mx-auto px-4 md:px-6">
+        
+        {/* iLanding About Section Structure */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
+          
+          {/* Left Column: Story, Features, Leadership & Contact Card */}
+          <div className="lg:col-span-6 animate-fade-in-up">
+            <span className="text-xs font-bold text-[#0d83fd] tracking-widest uppercase block mb-3">
+              MORE ABOUT US
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-heading text-[#2d465e] tracking-tight mb-6 leading-tight">
+              Enterprise software engineered around <span className="text-[#0d83fd]">your operations</span>
             </h1>
-            <p className="text-base md:text-lg lg:text-xl text-slate-400 leading-relaxed max-w-3xl mx-auto px-4 md:px-0">
-              Saky Technologies is a technology-driven company specializing in Microsoft business solutions and AI-powered SaaS applications. We help organizations streamline operations, improve decision-making, and accelerate digital transformation through intelligent, scalable solutions.
+            <p className="text-base text-slate-600 leading-relaxed mb-6">
+              Saky Technologies is an enterprise software engineering company delivering proprietary B2B SaaS platforms and certified Microsoft Dynamics 365 ERP implementations. We bridge the gap between core financial ledgers and modern operational agility.
             </p>
-          </div>
 
-          {/* Core Expertise */}
-          <div className="mb-16 md:mb-24">
-            <div className="text-center mb-10 md:mb-12">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white tracking-tight">Our Core Expertise</h2>
-              <div className="w-16 md:w-24 h-1 bg-brand-lime mx-auto mt-4 md:mt-6 rounded-full opacity-50"></div>
+            {/* 2-Column Feature List */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-5 h-5 text-[#0d83fd] shrink-0 mt-0.5" />
+                <span className="text-xs sm:text-sm text-slate-700 font-medium">7 Proprietary SaaS Platforms</span>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-5 h-5 text-[#0d83fd] shrink-0 mt-0.5" />
+                <span className="text-xs sm:text-sm text-slate-700 font-medium">Dynamics 365 BC & F&O Certified</span>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-5 h-5 text-[#0d83fd] shrink-0 mt-0.5" />
+                <span className="text-xs sm:text-sm text-slate-700 font-medium">India GST & KSA ZATCA Engines</span>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-5 h-5 text-[#0d83fd] shrink-0 mt-0.5" />
+                <span className="text-xs sm:text-sm text-slate-700 font-medium">Single-Tenant Cloud Deployments</span>
+              </div>
             </div>
-            
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-              {/* Microsoft */}
-              <div className="bg-white/5 backdrop-blur-sm p-6 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl border border-white/10 shadow-xl hover:bg-white/10 transition-all duration-300 group">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-500/20 rounded-xl md:rounded-2xl flex items-center justify-center mb-6 md:mb-8 border border-blue-500/30 group-hover:scale-110 transition-transform duration-300">
-                  <Building2 className="w-6 h-6 md:w-7 md:h-7 text-blue-400" />
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Microsoft Business Applications</h3>
-                <p className="text-sm md:text-base text-slate-400 mb-6 md:mb-8">We are experts in implementing and supporting:</p>
-                <ul className="space-y-4 md:space-y-5 mb-6 md:mb-8">
-                  <li className="flex items-start gap-3 md:gap-4">
-                    <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-brand-lime shrink-0 mt-0.5" />
-                    <span className="text-sm md:text-base text-slate-300 leading-relaxed"><strong>Microsoft Dynamics 365 Business Central</strong> – End-to-end ERP for small and mid-sized businesses</span>
-                  </li>
-                  <li className="flex items-start gap-3 md:gap-4">
-                    <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-brand-lime shrink-0 mt-0.5" />
-                    <span className="text-sm md:text-base text-slate-300 leading-relaxed"><strong>Microsoft Dynamics 365 Finance & Operations (F&O)</strong> – Enterprise-grade solution for finance, supply chain, and operations</span>
-                  </li>
-                </ul>
-                <div className="p-3 md:p-4 rounded-lg md:rounded-xl bg-white/5 border border-white/5">
-                  <p className="text-xs md:text-sm text-slate-400 italic leading-relaxed">
-                    Our services include implementation, customization, integration, migration, and ongoing support—ensuring maximum ROI from Microsoft technologies.
-                  </p>
+
+            {/* iLanding Profile & Telephone Quick Dial Card */}
+            <div className="p-5 rounded-2xl bg-[#f3f9ff] border border-blue-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <img 
+                  src="/assets/img/avatar-1.webp" 
+                  alt="Saky Technologies Leadership" 
+                  className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
+                />
+                <div>
+                  <h4 className="text-sm font-bold font-heading text-[#2d465e]">Executive Advisory</h4>
+                  <p className="text-xs text-slate-500">Enterprise Solutions & Architecture</p>
                 </div>
               </div>
-
-              {/* AI */}
-              <div className="bg-white/5 backdrop-blur-sm p-6 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl border border-white/10 shadow-xl hover:bg-white/10 transition-all duration-300 group">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-purple-500/20 rounded-xl md:rounded-2xl flex items-center justify-center mb-6 md:mb-8 border border-purple-500/30 group-hover:scale-110 transition-transform duration-300">
-                  <BrainCircuit className="w-6 h-6 md:w-7 md:h-7 text-purple-400" />
+              <div className="flex items-center gap-2.5 sm:border-l sm:border-blue-200 sm:pl-4">
+                <div className="w-9 h-9 rounded-xl bg-blue-100 text-[#0d83fd] flex items-center justify-center shrink-0">
+                  <PhoneCall className="w-4 h-4" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">AI-Powered SaaS Solutions</h3>
-                <p className="text-sm md:text-base text-slate-400 mb-6 md:mb-8 leading-relaxed">
-                  We design and develop AI-driven applications that enable businesses to automate processes, gain actionable insights, and enhance customer experiences.
+                <div>
+                  <p className="text-[10px] text-slate-500 uppercase font-semibold">Call us anytime</p>
+                  <a href="tel:+6567767822" className="text-xs font-bold text-[#2d465e] hover:text-[#0d83fd]">
+                    +65 6776 7822
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right Column: iLanding Overlapping Dual Images with 15+ Years Badge */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative mx-auto max-w-lg">
+              
+              {/* Main Image */}
+              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                <img 
+                  src="/assets/img/about-5.webp" 
+                  alt="Enterprise Architecture Session" 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+
+              {/* Secondary Overlapping Image */}
+              <div className="absolute -bottom-8 -right-4 sm:-right-8 w-1/2 rounded-2xl overflow-hidden shadow-2xl border-4 border-white hidden sm:block">
+                <img 
+                  src="/assets/img/about-2.webp" 
+                  alt="Software Engineering Team" 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+
+              {/* Floating 15+ Years Experience Badge */}
+              <div className="absolute -top-6 -left-4 sm:-left-6 bg-white p-4 sm:p-5 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.1)] border border-slate-100 animate-float">
+                <div className="text-2xl sm:text-3xl font-black font-heading text-[#0d83fd] leading-tight">
+                  15+ <span className="text-sm text-[#2d465e] font-bold">Years</span>
+                </div>
+                <p className="text-[11px] text-slate-500 font-medium">
+                  Combined Enterprise Experience
                 </p>
-                <p className="text-sm md:text-base text-slate-200 font-semibold mb-4 md:mb-6">Our AI capabilities include:</p>
-                <ul className="space-y-3 md:space-y-4">
-                  {['Intelligent automation', 'Predictive analytics', 'Data-driven decision systems', 'Natural Language Processing (NLP)', 'AI-powered business workflows'].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3 md:gap-4">
-                      <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand-lime shadow-[0_0_8px_rgba(217,249,157,0.8)]"></div>
-                      <span className="text-sm md:text-base text-slate-300">{item}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </div>
-          </div>
 
-          {/* What We Offer & Industry Focus */}
-          <div className="grid md:grid-cols-2 gap-6 md:gap-12 mb-16 md:mb-24">
-            <div className="bg-white/5 backdrop-blur-sm p-6 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl border border-white/10">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 flex items-center gap-3 md:gap-4">
-                <div className="p-2 md:p-3 bg-indigo-500/20 rounded-lg md:rounded-xl border border-indigo-500/30">
-                  <Globe className="w-5 h-5 md:w-6 md:h-6 text-indigo-400" />
-                </div>
-                What We Offer
-              </h2>
-              <ul className="space-y-3 md:space-y-4">
-                {[
-                  'Custom Application Development & Maintenance',
-                  'E-commerce Solutions',
-                  'Application Modernization & Re-engineering',
-                  'Data Analytics & Business Intelligence',
-                  'Database Development & Management',
-                  'Marketing Automation & Campaign Management'
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-3 md:gap-4 bg-white/5 p-3 md:p-4 rounded-lg md:rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
-                    <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-brand-lime shrink-0" />
-                    <span className="text-sm md:text-base text-slate-300 font-medium">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur-sm p-6 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl border border-white/10">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 flex items-center gap-3 md:gap-4">
-                <div className="p-2 md:p-3 bg-teal-500/20 rounded-lg md:rounded-xl border border-teal-500/30">
-                  <Target className="w-5 h-5 md:w-6 md:h-6 text-teal-400" />
-                </div>
-                Industry Focus
-              </h2>
-              <p className="text-sm md:text-base text-slate-400 mb-6 md:mb-8">We deliver tailored solutions across:</p>
-              <div className="flex flex-wrap gap-3 md:gap-4">
-                {['Banking & Financial Services', 'Healthcare', 'Logistics', 'Retail'].map((industry, idx) => (
-                  <div key={idx} className="bg-white/5 text-slate-200 px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl text-sm md:text-base font-medium border border-white/10 hover:border-brand-lime/50 hover:bg-brand-lime/10 transition-all cursor-default">
-                    {industry}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Vision */}
-          <div className="bg-gradient-to-br from-indigo-900/50 to-brand-darker p-8 md:p-12 rounded-2xl md:rounded-3xl border border-indigo-500/20 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-brand-lime opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 md:w-64 md:h-64 bg-indigo-500 opacity-10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4"></div>
-            
-            <div className="relative z-10 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 md:mb-8 tracking-tight">Our Vision</h2>
-              <p className="text-base md:text-lg lg:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto font-light">
-                Saky Technologies is committed to becoming a leading provider of Microsoft and AI-driven business solutions, delivering innovation, efficiency, and measurable value to our clients. In a short span, we have positioned ourselves as a competitive and reliable technology partner in the market.
-              </p>
             </div>
           </div>
 
         </div>
+
+        {/* Global Delivery Hubs */}
+        <div className="bg-[#f3f9ff] rounded-3xl p-8 md:p-14 border border-blue-100/80 mb-20">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold font-heading text-[#2d465e]">
+              Global Presence. Local Technical Accountability.
+            </h2>
+            <p className="text-sm text-slate-600 mt-2">
+              Strategically operating across Singapore, the GCC, and India to support round-the-clock enterprise deployments.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/70 shadow-sm">
+              <span className="text-xs font-bold text-[#0d83fd] uppercase tracking-wider block mb-1">Global Headquarters</span>
+              <h3 className="text-lg font-bold font-heading text-[#2d465e] mb-2">{officeLocations.singapore.title}</h3>
+              <p className="text-xs text-slate-600 leading-relaxed mb-4">{officeLocations.singapore.addressLines.join(', ')}</p>
+              <div className="text-xs text-slate-500 pt-3 border-t border-slate-100">Phone: {officeLocations.singapore.phone}</div>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/70 shadow-sm">
+              <span className="text-xs font-bold text-purple-600 uppercase tracking-wider block mb-1">Regional Branch</span>
+              <h3 className="text-lg font-bold font-heading text-[#2d465e] mb-2">{officeLocations.oman.title}</h3>
+              <p className="text-xs text-slate-600 leading-relaxed mb-4">{officeLocations.oman.addressLines.join(', ')}</p>
+              <div className="text-xs text-slate-500 pt-3 border-t border-slate-100">Phone: {officeLocations.oman.phone}</div>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/70 shadow-sm">
+              <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider block mb-1">R&D & Engineering Hub</span>
+              <h3 className="text-lg font-bold font-heading text-[#2d465e] mb-2">{officeLocations.india.title}</h3>
+              <p className="text-xs text-slate-600 leading-relaxed mb-4">{officeLocations.india.addressLines.join(', ')}</p>
+              <div className="text-xs text-slate-500 pt-3 border-t border-slate-100">Phone: {officeLocations.india.phone}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center">
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold text-white bg-[#0d83fd] hover:bg-[#0b66c2] rounded-full shadow-md shadow-blue-500/25 transition-all hover:-translate-y-0.5"
+          >
+            <span>Connect with Our Leadership Team</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
       </div>
     </main>
   );
