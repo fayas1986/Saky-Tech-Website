@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-11-01T06:15:30.519Z",
-  "baseUrl": "http://localhost:4173",
+  "timestamp": "2026-11-01T07:11:40.457Z",
+  "baseUrl": "https://sakytek.com",
   "routes": [
     {
       "route": "/",
@@ -446,7 +446,7 @@
   "robotsTxt": {
     "statusCode": 200,
     "passed": true,
-    "body": "User-agent: *\nAllow: /\nDisallow: /404\n\nSitemap: https://sakytek.com/sitemap.xml"
+    "body": "User-agent: *\nAllow: /\nDisallow: /404\nDisallow: /contact?*\n\nSitemap: https://sakytek.com/sitemap.xml"
   },
   "sitemapXml": {
     "statusCode": 200,

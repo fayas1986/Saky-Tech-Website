@@ -1,4 +1,5 @@
 import http from 'node:http';
+import https from 'node:https';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -26,7 +27,9 @@ const PRIORITY_ROUTES = [
 
 function fetchUrl(urlPath) {
   return new Promise((resolve, reject) => {
-    const req = http.get(`${BASE_URL}${urlPath}`, (res) => {
+    const fullUrl = `${BASE_URL}${urlPath}`;
+    const client = fullUrl.startsWith('https://') ? https : http;
+    const req = client.get(fullUrl, (res) => {
       let body = '';
       res.setEncoding('utf8');
       res.on('data', (chunk) => (body += chunk));
