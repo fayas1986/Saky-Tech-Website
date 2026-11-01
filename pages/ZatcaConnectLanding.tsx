@@ -126,52 +126,53 @@ const ZatcaConnectLanding: React.FC = () => {
 
             {/* Right Column Summary Card */}
             <div className="lg:col-span-5">
-              <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-7 border border-slate-800 shadow-xl">
-                <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-800">
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+              <div className="bg-gradient-to-br from-[#f3f9ff] to-blue-50/90 rounded-2xl p-6 sm:p-7 border border-blue-200/80 shadow-sm">
+                <div className="flex items-center justify-between pb-4 mb-5 border-b border-blue-200/60">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#0d83fd]">
                     ZATCA Phase 2 Technical Scope
                   </span>
-                  <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold">
+                  <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-white border border-blue-200 text-[#2d465e] font-bold shadow-sm">
                     UBL 2.1 XML
                   </span>
                 </div>
 
-                <ul className="space-y-3.5 text-xs sm:text-sm text-slate-200 mb-6">
+                <ul className="space-y-3.5 text-xs sm:text-sm text-slate-600 mb-6">
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#0d83fd] shrink-0 mt-0.5" />
                     <span>
-                      <strong>Standard Tax Invoices (0100000):</strong> Real-time synchronous B2B
-                      &amp; B2G clearance via FATOORA API.
+                      <strong className="text-[#2d465e]">Standard Tax Invoices (0100000):</strong>{' '}
+                      Real-time synchronous B2B &amp; B2G clearance via FATOORA API.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#0d83fd] shrink-0 mt-0.5" />
                     <span>
-                      <strong>Simplified Tax Invoices (0200000):</strong> Local ECDSA cryptographic
-                      stamping, 9-tag TLV QR &amp; 24-hour reporting.
+                      <strong className="text-[#2d465e]">Simplified Tax Invoices (0200000):</strong>{' '}
+                      Local ECDSA cryptographic stamping, 9-tag TLV QR &amp; 24-hour reporting.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#0d83fd] shrink-0 mt-0.5" />
                     <span>
-                      <strong>CSID Lifecycle Management:</strong> CSR generation, OTP compliance
-                      checks &amp; multi-branch Production CSIDs.
+                      <strong className="text-[#2d465e]">CSID Lifecycle Management:</strong> CSR
+                      generation, OTP compliance checks &amp; multi-branch Production CSIDs.
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#0d83fd] shrink-0 mt-0.5" />
                     <span>
-                      <strong>Pre-Flight Schematron Validation:</strong> Checks BR-KSA rules (VAT
-                      number, national address, credit note links) before transmission.
+                      <strong className="text-[#2d465e]">Pre-Flight Schematron Validation:</strong>{' '}
+                      Checks BR-KSA rules (VAT number, national address, credit note links) before
+                      transmission.
                     </span>
                   </li>
                 </ul>
 
-                <div className="p-3.5 rounded-xl bg-slate-800/90 border border-slate-700 text-[11px] text-slate-300 leading-relaxed">
-                  <strong>Regulatory Independence Note:</strong> Saky ZATCA Connect is engineered to
-                  align with ZATCA’s published Phase 2 XML and cryptographic specifications. Saky
-                  Technologies is an independent integration provider and does not claim official
-                  endorsement by ZATCA.
+                <div className="p-3.5 rounded-xl bg-white/90 border border-blue-100 text-[11px] text-slate-600 leading-relaxed">
+                  <strong className="text-[#2d465e]">Regulatory Independence Note:</strong> Saky
+                  ZATCA Connect is engineered to align with ZATCA’s published Phase 2 XML and
+                  cryptographic specifications. Saky Technologies is an independent integration
+                  provider and does not claim official endorsement by ZATCA.
                 </div>
               </div>
             </div>
@@ -317,22 +318,22 @@ const ZatcaConnectLanding: React.FC = () => {
             </div>
 
             {/* Stage 2: Saky ZATCA Middleware */}
-            <div className="bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white rounded-2xl p-6 flex flex-col justify-between shadow-lg border border-blue-500/30">
+            <div className="bg-gradient-to-br from-blue-50/90 to-indigo-50/90 rounded-2xl p-6 flex flex-col justify-between shadow-sm border-2 border-blue-200">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                  <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#0d83fd] text-white">
                     Stage 2: Saky ZATCA Middleware
                   </span>
-                  <Server className="w-5 h-5 text-emerald-400" />
+                  <Server className="w-5 h-5 text-[#0d83fd]" />
                 </div>
-                <h3 className="text-lg font-bold font-heading text-white mb-2">
+                <h3 className="text-lg font-bold font-heading text-[#2d465e] mb-2">
                   Saky ZATCA Connect Engine
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
                   Validates business rules, transforms payloads to UBL 2.1 XML, chains invoice
                   hashes, signs with the branch CSID, and manages API queues.
                 </p>
-                <ul className="space-y-2 text-xs text-slate-200">
+                <ul className="space-y-2 text-xs text-slate-700">
                   <li>• Pre-flight XSD &amp; BR-KSA Schematron validation</li>
                   <li>• UBL 2.1 XML generation &amp; UUID assignment</li>
                   <li>• Sequential ICV counter &amp; SHA-256 PIH chaining</li>
@@ -340,7 +341,7 @@ const ZatcaConnectLanding: React.FC = () => {
                   <li>• Persistent retry queue &amp; audit logging</li>
                 </ul>
               </div>
-              <div className="mt-5 pt-3 border-t border-slate-700 text-[11px] font-mono text-emerald-300">
+              <div className="mt-5 pt-3 border-t border-blue-200/70 text-[11px] font-mono text-[#0d83fd] font-semibold">
                 Signed UBL 2.1 XML + CSID BinarySecurityToken
               </div>
             </div>
@@ -702,40 +703,41 @@ const ZatcaConnectLanding: React.FC = () => {
         {/* 10. Customer Implementation Evidence / Production Case Study */}
         <section
           aria-labelledby="implementation-evidence-heading"
-          className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-3xl p-6 sm:p-8 md:p-10 mb-16 shadow-lg"
+          className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80 rounded-3xl p-6 sm:p-8 md:p-10 mb-16 shadow-sm"
         >
           <div className="grid lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-bold uppercase tracking-wider mb-3">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                 Production Implementation Evidence
               </span>
               <h2
                 id="implementation-evidence-heading"
-                className="text-2xl sm:text-3xl font-extrabold font-heading text-white mb-3"
+                className="text-2xl sm:text-3xl font-extrabold font-heading text-[#2d465e] mb-3"
               >
                 Multi-Branch Saudi Travel &amp; Commercial Services Enterprise Deployment
               </h2>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
                 A multi-branch commercial travel and corporate services organization operating across{' '}
-                <strong>Riyadh, Jeddah, Dammam, and Al Khobar</strong> needed to connect its
-                existing branch billing operations to ZATCA FATOORA Phase 2 without replacing its
-                back-office reservation and accounting software.
+                <strong className="text-[#2d465e]">Riyadh, Jeddah, Dammam, and Al Khobar</strong>{' '}
+                needed to connect its existing branch billing operations to ZATCA FATOORA Phase 2
+                without replacing its back-office reservation and accounting software.
               </p>
 
-              <div className="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-200">
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <h3 className="font-bold text-emerald-300 mb-1">Multi-Branch CSID Isolation</h3>
-                  <p className="text-slate-300 text-xs leading-relaxed">
+              <div className="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+                <div className="p-4 rounded-2xl bg-white border border-blue-100 shadow-sm">
+                  <h3 className="font-bold text-[#0d83fd] mb-1">Multi-Branch CSID Isolation</h3>
+                  <p className="text-slate-600 text-xs leading-relaxed">
                     Configured independent EGS units and Production CSID certificates for 4 KSA
                     branches, maintaining isolated sequential invoice counters (ICV) and SHA-256
                     hash chains per branch.
                   </p>
                 </div>
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <h3 className="font-bold text-emerald-300 mb-1">
+                <div className="p-4 rounded-2xl bg-white border border-blue-100 shadow-sm">
+                  <h3 className="font-bold text-[#0d83fd] mb-1">
                     Automated Queue &amp; Certificate Recovery
                   </h3>
-                  <p className="text-slate-300 text-xs leading-relaxed">
+                  <p className="text-slate-600 text-xs leading-relaxed">
                     Implemented pre-flight buyer VAT (`BR-KSA-81`) and address (`BR-10`) checks plus
                     automated retry queues so invoices queued during certificate renewal cleared
                     seamlessly once active CSIDs were provisioned.
@@ -744,26 +746,34 @@ const ZatcaConnectLanding: React.FC = () => {
               </div>
             </div>
 
-            <div className="lg:col-span-5 bg-white/5 border border-white/10 rounded-2xl p-6">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-300 mb-4">
+            <div className="lg:col-span-5 bg-white border border-blue-200/80 rounded-2xl p-6 shadow-sm">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[#0d83fd] mb-4">
                 Verified Production Architecture Highlights
               </h3>
               <dl className="space-y-3 text-xs sm:text-sm">
-                <div className="flex justify-between py-2 border-b border-white/10">
-                  <dt className="text-slate-400">Active KSA Branches</dt>
-                  <dd className="font-bold text-white">4 Branches (Riyadh, Jeddah, Dammam, Khobar)</dd>
+                <div className="flex justify-between gap-3 py-2 border-b border-slate-100">
+                  <dt className="text-slate-500">Active KSA Branches</dt>
+                  <dd className="font-bold text-[#2d465e] text-right">
+                    4 Branches (Riyadh, Jeddah, Dammam, Khobar)
+                  </dd>
                 </div>
-                <div className="flex justify-between py-2 border-b border-white/10">
-                  <dt className="text-slate-400">Invoice Flows</dt>
-                  <dd className="font-bold text-white">B2B Clearance &amp; B2C Reporting + Cr. Notes</dd>
+                <div className="flex justify-between gap-3 py-2 border-b border-slate-100">
+                  <dt className="text-slate-500">Invoice Flows</dt>
+                  <dd className="font-bold text-[#2d465e] text-right">
+                    B2B Clearance &amp; B2C Reporting + Cr. Notes
+                  </dd>
                 </div>
-                <div className="flex justify-between py-2 border-b border-white/10">
-                  <dt className="text-slate-400">Schema Standard</dt>
-                  <dd className="font-bold text-emerald-300">UBL 2.1 XML + 9-Tag TLV QR</dd>
+                <div className="flex justify-between gap-3 py-2 border-b border-slate-100">
+                  <dt className="text-slate-500">Schema Standard</dt>
+                  <dd className="font-bold text-emerald-700 text-right">
+                    UBL 2.1 XML + 9-Tag TLV QR
+                  </dd>
                 </div>
-                <div className="flex justify-between py-2">
-                  <dt className="text-slate-400">Audit Trail</dt>
-                  <dd className="font-bold text-white">Signed XML &amp; SHA-256 Integrity Verification</dd>
+                <div className="flex justify-between gap-3 py-2">
+                  <dt className="text-slate-500">Audit Trail</dt>
+                  <dd className="font-bold text-[#2d465e] text-right">
+                    Signed XML &amp; SHA-256 Integrity Verification
+                  </dd>
                 </div>
               </dl>
             </div>

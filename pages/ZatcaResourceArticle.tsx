@@ -222,15 +222,15 @@ const ZatcaResourceArticle: React.FC = () => {
 
           {/* Right Sidebar: Middleware CTA + ERP Connectors + Related Guides */}
           <aside className="lg:col-span-4 space-y-6">
-            <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-7 border border-slate-800 shadow-lg">
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2">
-                <ShieldCheck className="w-4 h-4" />
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-6 sm:p-7 border border-blue-200/80 shadow-sm">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0d83fd] mb-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 <span>Saky ZATCA Connect</span>
               </div>
-              <h2 className="text-xl font-extrabold font-heading text-white mb-2">
+              <h2 className="text-xl font-extrabold font-heading text-[#2d465e] mb-2">
                 Keep Your Existing ERP. Connect It to ZATCA Phase 2.
               </h2>
-              <p className="text-xs text-slate-300 leading-relaxed mb-5">
+              <p className="text-xs text-slate-600 leading-relaxed mb-5">
                 Automate UBL 2.1 XML transformation, CSID onboarding, TLV QR generation, and
                 real-time FATOORA clearance/reporting without replacing your accounting software.
               </p>
@@ -247,14 +247,14 @@ const ZatcaResourceArticle: React.FC = () => {
                       .getElementById('zatca-demo-form')
                       ?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="w-full py-3 px-4 bg-[#0d83fd] hover:bg-[#0b66c2] text-white font-bold text-xs rounded-full transition-all flex items-center justify-center gap-1.5"
+                  className="w-full py-3 px-4 bg-[#0d83fd] hover:bg-[#0b66c2] text-white font-bold text-xs rounded-full shadow-sm transition-all flex items-center justify-center gap-1.5"
                 >
                   <span>Request a Technical Demo</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
                 <Link
                   to="/products/zatca-connect"
-                  className="w-full py-2.5 px-4 bg-white/10 hover:bg-white/15 text-white font-semibold text-xs rounded-full transition-all flex items-center justify-center"
+                  className="w-full py-2.5 px-4 bg-white hover:bg-slate-50 text-[#2d465e] hover:text-[#0d83fd] border border-slate-200 font-semibold text-xs rounded-full transition-all flex items-center justify-center"
                 >
                   Explore ZATCA Connect Middleware
                 </Link>

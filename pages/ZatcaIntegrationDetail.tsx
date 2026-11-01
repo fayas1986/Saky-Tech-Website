@@ -153,12 +153,12 @@ const ZatcaIntegrationDetail: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-slate-900 text-white border border-slate-800">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-400 block mb-1">
+            <div className="p-5 rounded-2xl bg-gradient-to-br from-blue-50/90 to-indigo-50/90 border border-blue-200 shadow-sm">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#0d83fd] block mb-1">
                 03. Saky ZATCA Middleware
               </span>
-              <h3 className="text-sm font-bold text-white mb-2">XML &amp; Cryptographic Stamp</h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <h3 className="text-sm font-bold text-[#2d465e] mb-2">XML &amp; Cryptographic Stamp</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {integration.architectureFlow.middlewareAction}
               </p>
             </div>
