@@ -33,6 +33,17 @@ function buildSeoHeadHtml(seo) {
         .join('')
     : '';
 
+  const ga4Id = (process.env.VITE_GA4_MEASUREMENT_ID || '').trim();
+  const gtmId = (process.env.VITE_GTM_ID || '').trim();
+  const gaScriptHtml =
+    ga4Id && /^G-[A-Z0-9]+$/i.test(ga4Id)
+      ? `\n    <script async src="https://www.googletagmanager.com/gtag/js?id=${escapeHtml(ga4Id)}"></script>\n    <script>window.__SAKY_GA4_ID="${escapeHtml(ga4Id)}";window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${escapeHtml(ga4Id)}',{anonymize_ip:true});</script>`
+      : '';
+  const gtmScriptHtml =
+    gtmId && /^GTM-[A-Z0-9]+$/i.test(gtmId)
+      ? `\n    <script>window.__SAKY_GTM_ID="${escapeHtml(gtmId)}";(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${escapeHtml(gtmId)}');</script>`
+      : '';
+
   return `<!--seo-head-start-->
     <title>${title}</title>
     <meta name="description" content="${desc}" />
@@ -53,7 +64,7 @@ function buildSeoHeadHtml(seo) {
     <meta name="twitter:description" content="${desc}" />
     <meta name="twitter:image" content="${ogImage}" />
     <meta name="twitter:image:alt" content="${ogImageAlt}" />
-    <script id="seo-json-ld" type="application/ld+json">${jsonLdString}</script>
+    <script id="seo-json-ld" type="application/ld+json">${jsonLdString}</script>${gaScriptHtml}${gtmScriptHtml}
     <!--seo-head-end-->`;
 }
 

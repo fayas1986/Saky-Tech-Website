@@ -78,9 +78,9 @@ const Footer: React.FC = () => {
 
           {/* Column 3: Approved Products Directory */}
           <div>
-            <h4 className="font-bold font-heading text-[#2d465e] text-sm uppercase tracking-wider mb-4">
+            <h3 className="font-bold font-heading text-[#2d465e] text-sm uppercase tracking-wider mb-4">
               SaaS Suite
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               {products.map((p) => (
                 <li key={p.id}>
@@ -98,9 +98,9 @@ const Footer: React.FC = () => {
 
           {/* Column 4: Solutions & Practices */}
           <div>
-            <h4 className="font-bold font-heading text-[#2d465e] text-sm uppercase tracking-wider mb-4">
+            <h3 className="font-bold font-heading text-[#2d465e] text-sm uppercase tracking-wider mb-4">
               Practices
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               {solutions.map((s) => (
                 <li key={s.id}>
@@ -172,9 +172,9 @@ const Footer: React.FC = () => {
 
           {/* Column 5: Company & Quick Links */}
           <div>
-            <h4 className="font-bold font-heading text-[#2d465e] text-sm uppercase tracking-wider mb-4">
+            <h3 className="font-bold font-heading text-[#2d465e] text-sm uppercase tracking-wider mb-4">
               Company
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
                 <Link to="/about" className="text-slate-600 hover:text-[#0d83fd] transition-colors flex items-center gap-1 group">
@@ -211,7 +211,7 @@ const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} <strong className="text-[#2d465e]">{companyConfig.legalName}</strong>. All Rights Reserved.
           </p>
           <div className="flex items-center gap-6">
-            <span className="text-[11px] text-slate-400">Singapore &bull; Oman &bull; India</span>
+            <span className="text-[11px] text-slate-600">Singapore &bull; Oman &bull; India</span>
             <Link to="/contact" className="hover:text-[#0d83fd] transition-colors">Privacy & Security</Link>
             <Link to="/contact" className="hover:text-[#0d83fd] transition-colors">Terms of Service</Link>
           </div>

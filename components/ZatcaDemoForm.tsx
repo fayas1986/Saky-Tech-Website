@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Send,
   CheckCircle2,
@@ -6,6 +6,7 @@ import {
   ShieldCheck,
   Phone,
   Mail,
+  MessageCircle,
   Building2,
 } from 'lucide-react';
 import {
@@ -34,6 +35,14 @@ interface FormValues {
   honeypotWebsite: string;
 }
 
+interface DeliveryConfirmation {
+  enquiryId: string;
+  deliveryId: string;
+  provider: string;
+  recipient: string;
+  submittedAt: string;
+}
+
 const INITIAL_VALUES: FormValues = {
   companyName: '',
   contactName: '',
@@ -57,15 +66,16 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
     ...INITIAL_VALUES,
     erpSystem: defaultErpSystem,
   });
-  const [hasStarted, setHasStarted] = useState(false);
+  const hasStartedRef = useRef<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [deliveryMeta, setDeliveryMeta] = useState<DeliveryConfirmation | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
 
   const triggerFormStart = () => {
-    if (!hasStarted) {
-      setHasStarted(true);
+    if (!hasStartedRef.current) {
+      hasStartedRef.current = true;
       trackZatcaEvent('zatca_form_start', {
         form_location: sourcePage,
         default_erp: defaultErpSystem || 'unspecified',
@@ -103,13 +113,19 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
     if (!formData.contactName.trim() || formData.contactName.trim().length < 2) {
       errors.contactName = 'Please enter the contact person’s full name.';
     }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
       errors.email = 'Please enter a valid business email address.';
     }
-    const cleanedPhone = formData.phone.replace(/[\s\-()]/g, '');
-    if (!cleanedPhone || cleanedPhone.length < 8 || !/^\+?[0-9]{8,15}$/.test(cleanedPhone)) {
-      errors.phone = 'Please enter a valid Saudi (+966 5X XXX XXXX) or international business phone number.';
+    const cleanedPhone = formData.phone.replace(/[\s\-().]/g, '');
+    const saudiOrIntlRegex = /^(?:(?:\+?966|00966|0)?(?:5\d{8}|1[1-9]\d{7})|\+?[1-9]\d{7,14})$/;
+    if (
+      !cleanedPhone ||
+      !saudiOrIntlRegex.test(cleanedPhone) ||
+      /^(\d)\1+$/.test(cleanedPhone.replace(/^\+/, ''))
+    ) {
+      errors.phone =
+        'Please enter a valid Saudi (+966 5X XXX XXXX) or international business phone number.';
     }
     if (!formData.erpSystem) {
       errors.erpSystem = 'Please select your current ERP, POS, or accounting system.';
@@ -135,12 +151,7 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
-
-    // Honeypot check: silently reject automated bots filling the hidden field
-    if (formData.honeypotWebsite.trim() !== '') {
-      setIsSubmitted(true);
-      return;
-    }
+    setDeliveryMeta(null);
 
     if (!validateForm()) {
       setErrorMessage('Please review and complete the highlighted mandatory fields.');
@@ -150,47 +161,65 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
     setIsSubmitting(true);
     try {
       const utm = getCapturedUtmParameters();
+      const simulateFail =
+        typeof window !== 'undefined' &&
+        new URLSearchParams(window.location.search).get('simulate_delivery_failure') === '1';
 
+      const response = await fetch('/api/zatca-enquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(simulateFail ? { 'X-Simulate-Delivery-Failure': '1' } : {}),
+        },
+        body: JSON.stringify({
+          companyName: formData.companyName.trim(),
+          contactName: formData.contactName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          erpSystem: formData.erpSystem,
+          invoiceVolume: formData.invoiceVolume,
+          branchCount: formData.branchCount,
+          integrationRequirement: formData.integrationRequirement.trim(),
+          consent: formData.consent,
+          honeypotWebsite: formData.honeypotWebsite,
+          sourcePage,
+          utm,
+        }),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || !result || result.ok !== true || !result.deliveryId) {
+        if (result?.fieldErrors && typeof result.fieldErrors === 'object') {
+          setFieldErrors(result.fieldErrors);
+        }
+        setErrorMessage(
+          result?.message ||
+            `Enquiry delivery failed (HTTP ${response.status}). Please verify your details or email us directly at ${companyConfig.primaryEmail}.`
+        );
+        return;
+      }
+
+      // Only fire zatca_form_submit and display success state when server confirms actual delivery
       trackZatcaEvent('zatca_form_submit', {
         form_location: sourcePage,
         erp_system: formData.erpSystem,
         monthly_invoice_volume: formData.invoiceVolume,
         branch_count: formData.branchCount,
+        delivery_provider: result.provider || 'verified',
       });
 
-      const subject = encodeURIComponent(
-        `[ZATCA Connect Technical Demo] ${formData.companyName} (${formData.erpSystem})`
-      );
-      const body = encodeURIComponent(
-        `ZATCA Phase 2 Technical Demo & Integration Enquiry\n` +
-          `--------------------------------------------------\n` +
-          `Company Name: ${formData.companyName}\n` +
-          `Contact Person: ${formData.contactName}\n` +
-          `Business Email: ${formData.email}\n` +
-          `Saudi / Business Phone: ${formData.phone}\n` +
-          `Current ERP / Accounting System: ${formData.erpSystem}\n` +
-          `Approx. Monthly Invoice Volume: ${formData.invoiceVolume}\n` +
-          `Number of Branches / Entities: ${formData.branchCount}\n` +
-          `Source Page: ${sourcePage}\n` +
-          `UTM Source / Campaign: ${utm.utm_source || 'direct'} / ${utm.utm_campaign || 'none'}\n\n` +
-          `Integration Requirement:\n${formData.integrationRequirement}\n`
-      );
-
-      const mailtoLink = `mailto:${companyConfig.primaryEmail}?subject=${subject}&body=${body}`;
-
-      // Trigger mailto in non-headless interactive browsers while preserving clean UX state
-      if (typeof window !== 'undefined' && !navigator.webdriver) {
-        const mailWindow = window.open(mailtoLink, '_blank');
-        if (!mailWindow) {
-          window.location.href = mailtoLink;
-        }
-      }
-
-      await new Promise((resolve) => setTimeout(resolve, 350));
+      setDeliveryMeta({
+        enquiryId: result.enquiryId,
+        deliveryId: result.deliveryId,
+        provider: result.provider,
+        recipient: result.recipient || companyConfig.primaryEmail,
+        submittedAt: result.submittedAt,
+      });
       setIsSubmitted(true);
     } catch {
       setErrorMessage(
-        `We encountered an issue preparing your enquiry. Please email us directly at ${companyConfig.primaryEmail}.`
+        `Network error while transmitting your enquiry to ${companyConfig.primaryEmail}. Please check your connection or email us directly.`
       );
     } finally {
       setIsSubmitting(false);
@@ -217,7 +246,7 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
         <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{subheading}</p>
       </div>
 
-      {isSubmitted ? (
+      {isSubmitted && deliveryMeta ? (
         <div
           role="status"
           aria-live="polite"
@@ -228,19 +257,25 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
             <CheckCircle2 className="w-7 h-7" />
           </div>
           <h3 className="text-xl font-bold font-heading text-[#2d465e] mb-2">
-            Technical Demo Request Logged
+            Technical Demo Enquiry Delivered
           </h3>
-          <p className="text-sm text-slate-700 max-w-xl mx-auto mb-6 leading-relaxed">
-            Thank you, <strong>{formData.contactName}</strong>. Your ZATCA Phase 2 integration profile for{' '}
-            <strong>{formData.companyName}</strong> ({formData.erpSystem}) has been prepared for our solutions
-            engineering team at{' '}
+          <p className="text-sm text-slate-700 max-w-xl mx-auto mb-4 leading-relaxed">
+            Thank you, <strong>{formData.contactName}</strong>. Your ZATCA Phase 2 integration
+            enquiry for <strong>{formData.companyName}</strong> ({formData.erpSystem}) has been
+            delivered to our solutions engineering desk at{' '}
             <a
               href={companyConfig.primaryEmailLink}
               className="text-[#0d83fd] font-bold underline"
             >
-              {companyConfig.primaryEmail}
+              {deliveryMeta.recipient}
             </a>
             .
+          </p>
+          <p
+            data-testid="zatca-delivery-reference"
+            className="text-xs font-mono text-slate-500 mb-6"
+          >
+            Reference ID: {deliveryMeta.enquiryId} · Delivery Confirmation: {deliveryMeta.deliveryId}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
@@ -255,10 +290,26 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
               <Phone className="w-3.5 h-3.5 text-[#0d83fd]" />
               Call Engineering Desk: {companyConfig.primaryPhone}
             </a>
+            <a
+              href={companyConfig.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackZatcaEvent('zatca_whatsapp_click', {
+                  click_location: `${sourcePage}#form-success`,
+                })
+              }
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 text-white rounded-full text-xs font-bold hover:bg-emerald-700 transition-colors"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              WhatsApp KSA Integration Desk
+            </a>
             <button
               type="button"
               onClick={() => {
                 setIsSubmitted(false);
+                setDeliveryMeta(null);
+                hasStartedRef.current = false;
                 setFormData({ ...INITIAL_VALUES, erpSystem: defaultErpSystem });
               }}
               className="px-5 py-2.5 bg-[#0d83fd] text-white rounded-full text-xs font-bold hover:bg-[#0b66c2] transition-colors"
@@ -276,7 +327,9 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
               className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs sm:text-sm flex items-start gap-2.5"
             >
               <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-              <span>{errorMessage}</span>
+              <div>
+                <span>{errorMessage}</span>
+              </div>
             </div>
           )}
 
@@ -550,6 +603,7 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
             <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500">
               <a
                 href={companyConfig.primaryPhoneLink}
+                data-testid="zatca-form-phone-cta"
                 onClick={() =>
                   trackZatcaEvent('zatca_phone_click', {
                     click_location: `${sourcePage}#form-footer`,
@@ -561,13 +615,28 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
                 {companyConfig.primaryPhone}
               </a>
               <a
+                href={companyConfig.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="zatca-form-whatsapp-cta"
+                onClick={() =>
+                  trackZatcaEvent('zatca_whatsapp_click', {
+                    click_location: `${sourcePage}#form-footer`,
+                  })
+                }
+                className="inline-flex items-center gap-1.5 font-semibold text-emerald-700 hover:text-emerald-800 transition-colors"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                WhatsApp Integration Desk
+              </a>
+              <a
                 href={companyConfig.primaryEmailLink}
                 className="inline-flex items-center gap-1.5 font-semibold text-[#2d465e] hover:text-[#0d83fd] transition-colors"
               >
                 <Mail className="w-3.5 h-3.5 text-[#0d83fd]" />
                 {companyConfig.primaryEmail}
               </a>
-              <span className="inline-flex items-center gap-1 text-slate-400">
+              <span className="inline-flex items-center gap-1 text-slate-600">
                 <Building2 className="w-3.5 h-3.5" />
                 GCC &amp; KSA Integration Desk
               </span>
@@ -578,7 +647,7 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
               disabled={isSubmitting}
               className="px-8 py-3.5 bg-[#0d83fd] hover:bg-[#0b66c2] disabled:opacity-50 text-white font-bold text-sm rounded-full transition-all flex items-center justify-center gap-2 shadow-md shadow-blue-500/25"
             >
-              <span>{isSubmitting ? 'Preparing Technical Assessment...' : 'Request a Technical Demo'}</span>
+              <span>{isSubmitting ? 'Submitting to Engineering Desk...' : 'Request a Technical Demo'}</span>
               <Send className="w-4 h-4" />
             </button>
           </div>
@@ -589,4 +658,3 @@ const ZatcaDemoForm: React.FC<ZatcaDemoFormProps> = ({
 };
 
 export default ZatcaDemoForm;
-

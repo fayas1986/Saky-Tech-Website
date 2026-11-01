@@ -302,32 +302,82 @@
     "title": "ZATCA Phase 2 E-Invoicing Integration for Saudi ERP Systems | Saky",
     "h1": "ZATCA Phase 2 E-Invoicing Integration for Your Existing ERP"
   },
-  "zatcaConversionTrackingAndFormTest": {
+  "failureScenarioTest": {
+    "errorBannerVisible": true,
+    "errorBannerText": "Simulated upstream email gateway failure: enquiry could not be delivered to amd@sakytek.com.",
+    "successBannerShownOnFailure": false,
+    "formSubmitEventFiredOnFailure": false,
+    "eventsFired": [
+      "zatca_form_start"
+    ]
+  },
+  "zatcaAllFiveEventsAndUtmTest": {
     "validationErrorsOnEmptySubmit": 9,
     "formSuccessStateVisible": true,
+    "deliveryReferenceText": "Reference ID: e2e-verified-ksa-001 \u00b7 Delivery Confirmation: msg-ksa-zatca-001",
     "capturedAnalyticsEvents": [
       "zatca_demo_click",
+      "zatca_phone_click",
+      "zatca_whatsapp_click",
       "zatca_form_start",
       "zatca_form_submit"
     ],
-    "sampleEventPayload": {
-      "event": "zatca_form_submit",
-      "timestamp": "2026-11-01T08:53:21.749Z",
-      "params": {
-        "page_path": "/products/zatca-connect",
-        "page_location": "http://localhost:4173/products/zatca-connect?utm_source=google&utm_medium=organic&utm_campaign=ksa-zatca-phase-1",
+    "uniqueEventsCount": 5,
+    "totalEventsCount": 5,
+    "noDuplicateEvents": true,
+    "allFiveEventsPresent": true,
+    "capturedApiRequestPayload": {
+      "companyName": "Al-Riyadh Industrial Group",
+      "contactName": "Faisal Al-Harbi",
+      "email": "faisal@alriyadh-ind.sa",
+      "phone": "+966 50 123 4567",
+      "erpSystem": "Microsoft Dynamics 365 Finance & Operations",
+      "invoiceVolume": "10,000 - 50,000 invoices/month",
+      "branchCount": "6 - 20 Branches",
+      "integrationRequirement": "Integrating 12 Saudi branches on D365 F&O with ZATCA Phase 2 clearance and reporting APIs.",
+      "consent": true,
+      "honeypotWebsite": "",
+      "sourcePage": "/products/zatca-connect",
+      "utm": {
         "landing_page": "/products/zatca-connect",
         "referrer": "direct",
-        "captured_at": "2026-11-01T08:53:17.967Z",
+        "captured_at": "2026-11-01T10:04:17.216Z",
         "utm_source": "google",
-        "utm_medium": "organic",
+        "utm_medium": "cpc",
         "utm_campaign": "ksa-zatca-phase-1",
+        "utm_term": "zatca_phase_2_integration",
+        "utm_content": "hero_cta",
+        "gclid": "EAIaIQobChMI_KSA_TEST"
+      }
+    },
+    "sampleSubmitEventPayload": {
+      "event": "zatca_form_submit",
+      "timestamp": "2026-11-01T10:04:26.880Z",
+      "params": {
+        "page_path": "/products/zatca-connect",
+        "page_location": "http://localhost:4173/products/zatca-connect",
+        "landing_page": "/products/zatca-connect",
+        "referrer": "direct",
+        "captured_at": "2026-11-01T10:04:17.216Z",
+        "utm_source": "google",
+        "utm_medium": "cpc",
+        "utm_campaign": "ksa-zatca-phase-1",
+        "utm_term": "zatca_phase_2_integration",
+        "utm_content": "hero_cta",
+        "gclid": "EAIaIQobChMI_KSA_TEST",
         "form_location": "/products/zatca-connect",
         "erp_system": "Microsoft Dynamics 365 Finance & Operations",
         "monthly_invoice_volume": "10,000 - 50,000 invoices/month",
-        "branch_count": "6 - 20 Branches"
+        "branch_count": "6 - 20 Branches",
+        "delivery_provider": "e2e-intercept-verified",
+        "debug_mode": true
       }
     }
+  },
+  "piiLeakageCheck": {
+    "leakedInAnalyticsPayload": [],
+    "leakedInBrowserConsole": [],
+    "passed": true
   },
   "totalConsoleErrors": 0
 }

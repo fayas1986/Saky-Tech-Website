@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-01T08:52:38.626Z",
+  "timestamp": "2026-11-01T10:02:08.453Z",
   "baseUrl": "http://localhost:4173",
   "routes": [
     {
@@ -241,7 +241,7 @@
       "canonical": "https://sakytek.com/products/zatca-connect",
       "robots": "index, follow",
       "h1Text": "ZATCA Phase 2 E-Invoicing Integration for Your Existing ERP",
-      "rawTextWords": 2586,
+      "rawTextWords": 2654,
       "schemaTypes": [
         "Organization",
         "WebSite",
@@ -440,7 +440,7 @@
       "canonical": "https://sakytek.com/integrations/microsoft-dynamics-365-finance-zatca",
       "robots": "index, follow",
       "h1Text": "Microsoft Dynamics 365 Finance &amp; Operations (F&amp;O) ZATCA Phase 2 Integration",
-      "rawTextWords": 1231,
+      "rawTextWords": 1691,
       "schemaTypes": [
         "Organization",
         "WebSite",
@@ -470,11 +470,11 @@
       "route": "/integrations/dynamics-365-business-central-zatca",
       "statusCode": 200,
       "title": "Dynamics 365 Business Central ZATCA Phase 2 Integration | Saky",
-      "description": "Integrate Microsoft Dynamics 365 Business Central with ZATCA FATOORA Phase 2. AL extension &amp; middleware for UBL 2.1 XML, CSID stamping, QR codes, and API clearance.",
+      "description": "Integrate Microsoft Dynamics 365 Business Central with ZATCA FATOORA Phase 2 via Saky ZATCA Connect REST API middleware and tailored AL extension development.",
       "canonical": "https://sakytek.com/integrations/dynamics-365-business-central-zatca",
       "robots": "index, follow",
       "h1Text": "Microsoft Dynamics 365 Business Central ZATCA Phase 2 Integration",
-      "rawTextWords": 1183,
+      "rawTextWords": 1621,
       "schemaTypes": [
         "Organization",
         "WebSite",
@@ -508,7 +508,7 @@
       "canonical": "https://sakytek.com/integrations/custom-erp-zatca",
       "robots": "index, follow",
       "h1Text": "Custom ERP, POS &amp; Billing Software ZATCA Phase 2 API Integration",
-      "rawTextWords": 1264,
+      "rawTextWords": 1654,
       "schemaTypes": [
         "Organization",
         "WebSite",
@@ -542,7 +542,7 @@
       "canonical": "https://sakytek.com/resources/zatca-phase-2-guide",
       "robots": "index, follow",
       "h1Text": "Complete ZATCA Phase 2 (Integration Phase) Technical &amp; ERP Guide",
-      "rawTextWords": 1198,
+      "rawTextWords": 1201,
       "schemaTypes": [
         "Organization",
         "WebSite",
@@ -576,7 +576,7 @@
       "canonical": "https://sakytek.com/resources/zatca-wave-25-2027",
       "robots": "index, follow",
       "h1Text": "ZATCA Wave 25: Eligibility, Timeline Verification &amp; ERP Readiness Guide",
-      "rawTextWords": 1134,
+      "rawTextWords": 1137,
       "schemaTypes": [
         "Organization",
         "WebSite",
@@ -610,7 +610,7 @@
       "canonical": "https://sakytek.com/resources/zatca-csid-onboarding",
       "robots": "index, follow",
       "h1Text": "ZATCA CSID Onboarding, CSR Generation &amp; Certificate Lifecycle Guide",
-      "rawTextWords": 1052,
+      "rawTextWords": 1055,
       "schemaTypes": [
         "Organization",
         "WebSite",
@@ -644,7 +644,7 @@
       "canonical": "https://sakytek.com/resources/zatca-clearance-vs-reporting",
       "robots": "index, follow",
       "h1Text": "ZATCA Clearance vs. Reporting Explained: B2B Standard vs. B2C Simplified Invoices",
-      "rawTextWords": 1184,
+      "rawTextWords": 1187,
       "schemaTypes": [
         "Organization",
         "WebSite",
@@ -684,6 +684,81 @@
       "statusCode": 404,
       "robots": "noindex, nofollow",
       "h1Text": "Page Not Found",
+      "passed": true
+    }
+  ],
+  "unpublishedArabicRoutes": [
+    {
+      "route": "/ar/products/zatca-connect",
+      "statusCode": 404,
+      "robots": "noindex, nofollow",
+      "passed": true
+    },
+    {
+      "route": "/ar/integrations/microsoft-dynamics-365-finance-zatca",
+      "statusCode": 404,
+      "robots": "noindex, nofollow",
+      "passed": true
+    },
+    {
+      "route": "/ar/integrations/dynamics-365-business-central-zatca",
+      "statusCode": 404,
+      "robots": "noindex, nofollow",
+      "passed": true
+    },
+    {
+      "route": "/ar/integrations/custom-erp-zatca",
+      "statusCode": 404,
+      "robots": "noindex, nofollow",
+      "passed": true
+    },
+    {
+      "route": "/ar/resources/zatca-phase-2-guide",
+      "statusCode": 404,
+      "robots": "noindex, nofollow",
+      "passed": true
+    },
+    {
+      "route": "/ar/resources/zatca-csid-onboarding",
+      "statusCode": 404,
+      "robots": "noindex, nofollow",
+      "passed": true
+    }
+  ],
+  "internalLinkAudit": {
+    "totalUniqueInternalLinksChecked": 20,
+    "brokenLinksCount": 0,
+    "brokenLinks": [],
+    "passed": true
+  },
+  "apiValidationTests": [
+    {
+      "name": "GET method rejected with 405 Method Not Allowed",
+      "statusCode": 405,
+      "code": "METHOD_NOT_ALLOWED",
+      "passed": true
+    },
+    {
+      "name": "Honeypot spam field rejected with 400 SPAM_DETECTED",
+      "statusCode": 400,
+      "code": "SPAM_DETECTED",
+      "passed": true
+    },
+    {
+      "name": "Invalid phone, disposable email & missing consent rejected with 422 VALIDATION_ERROR",
+      "statusCode": 422,
+      "code": "VALIDATION_ERROR",
+      "fieldErrors": {
+        "email": "Disposable email addresses are not accepted. Please use your corporate email.",
+        "phone": "Please enter a valid Saudi (+966 5X XXX XXXX) or international business phone number.",
+        "consent": "Explicit consent is required so our engineering team can process and respond to your enquiry."
+      },
+      "passed": true
+    },
+    {
+      "name": "Simulated delivery gateway failure returns 502 DELIVERY_FAILED (never fake 200)",
+      "statusCode": 502,
+      "code": "DELIVERY_FAILED",
       "passed": true
     }
   ],
@@ -728,7 +803,7 @@
     "passed": true
   },
   "summary": {
-    "passed": 25,
+    "passed": 36,
     "failed": 0,
     "failures": []
   }

@@ -7,6 +7,7 @@ export const companyConfig = {
   description: 'Enterprise software and SaaS engineering company delivering specialized business applications, Microsoft Dynamics 365 ERP implementations, and custom software solutions.',
   primaryPhone: '+65 6776 7822',
   primaryPhoneLink: 'tel:+6567767822',
+  whatsappLink: 'https://wa.me/6567767822?text=Hello%20Saky%20Technologies%2C%20we%20would%20like%20to%20discuss%20ZATCA%20Phase%202%20ERP%20integration.',
   primaryEmail: 'amd@sakytek.com',
   primaryEmailLink: 'mailto:amd@sakytek.com',
   coreOfferings: [

@@ -16,6 +16,7 @@ import {
   ChevronDown,
   BookOpen,
   Phone,
+  MessageCircle,
   Clock,
 } from 'lucide-react';
 import ZatcaDemoForm from '../components/ZatcaDemoForm';
@@ -111,6 +112,7 @@ const ZatcaConnectLanding: React.FC = () => {
 
                 <a
                   href={companyConfig.primaryPhoneLink}
+                  data-testid="zatca-hero-phone-cta"
                   onClick={() =>
                     trackZatcaEvent('zatca_phone_click', {
                       click_location: 'zatca_hero',
@@ -120,6 +122,22 @@ const ZatcaConnectLanding: React.FC = () => {
                 >
                   <Phone className="w-3.5 h-3.5 text-[#0d83fd]" />
                   <span>{companyConfig.primaryPhone}</span>
+                </a>
+
+                <a
+                  href={companyConfig.whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="zatca-hero-whatsapp-cta"
+                  onClick={() =>
+                    trackZatcaEvent('zatca_whatsapp_click', {
+                      click_location: 'zatca_hero',
+                    })
+                  }
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 px-3 py-2"
+                >
+                  <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>WhatsApp KSA Desk</span>
                 </a>
               </div>
             </div>
@@ -248,9 +266,10 @@ const ZatcaConnectLanding: React.FC = () => {
                   Running SAP (S/4HANA / ECC) or Oracle (EBS / NetSuite) in Saudi Arabia?
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mt-1">
-                  We connect SAP and Oracle ERP environments to ZATCA FATOORA through our REST API,
-                  IDoc/OData, and database staging middleware. Contact our integration architects to
-                  review your invoice extraction schema.
+                  <strong>Scope Disclosure:</strong> We do not market pre-built native SAP ABAP or
+                  Oracle SuiteApp connectors. Instead, we integrate SAP and Oracle environments with
+                  ZATCA FATOORA through our pre-built REST JSON API middleware (`/api/v1/erp/invoices`)
+                  combined with customer-specific outbound IDoc/OData/staging adapter configuration.
                 </p>
               </div>
             </div>

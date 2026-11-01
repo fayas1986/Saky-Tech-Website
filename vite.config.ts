@@ -1,12 +1,67 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import type { IncomingMessage, ServerResponse } from 'node:http';
 import { defineConfig, loadEnv, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
+// @ts-ignore - Serverless JS handler
+import zatcaEnquiryHandler from './api/zatca-enquiry.js';
+
+function attachApiMiddleware(middlewares: {
+  use: (fn: (req: IncomingMessage, res: ServerResponse, next: () => void) => void) => void;
+}) {
+  middlewares.use((req, res, next) => {
+    if (!req.url) return next();
+    const urlObj = new URL(req.url, 'http://localhost');
+    if (urlObj.pathname !== '/api/zatca-enquiry') {
+      return next();
+    }
+
+    let rawBody = '';
+    req.on('data', (chunk) => {
+      rawBody += chunk.toString('utf8');
+    });
+    req.on('end', async () => {
+      const vercelLikeReq = Object.assign(req, {
+        body: rawBody ? rawBody : {},
+      });
+      const vercelLikeRes = Object.assign(res, {
+        status(code: number) {
+          res.statusCode = code;
+          return this;
+        },
+        json(payload: unknown) {
+          if (!res.headersSent) {
+            res.setHeader('Content-Type', 'application/json; charset=utf-8');
+          }
+          res.end(JSON.stringify(payload));
+          return this;
+        },
+      });
+      try {
+        await zatcaEnquiryHandler(vercelLikeReq, vercelLikeRes);
+      } catch (err) {
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        res.end(
+          JSON.stringify({
+            ok: false,
+            code: 'INTERNAL_ERROR',
+            message: err instanceof Error ? err.message : 'Internal server error',
+          })
+        );
+      }
+    });
+  });
+}
 
 function vercelCleanUrlsPreviewPlugin(): Plugin {
   return {
     name: 'vercel-clean-urls-preview',
+    configureServer(server) {
+      attachApiMiddleware(server.middlewares);
+    },
     configurePreviewServer(server) {
+      attachApiMiddleware(server.middlewares);
       const distDir = path.resolve(__dirname, 'dist');
       server.middlewares.use((req, res, next) => {
         if (!req.url || (req.method !== 'GET' && req.method !== 'HEAD')) {
@@ -15,6 +70,9 @@ function vercelCleanUrlsPreviewPlugin(): Plugin {
 
         const urlObj = new URL(req.url, 'http://localhost');
         const pathname = decodeURIComponent(urlObj.pathname);
+        if (pathname.startsWith('/api/')) {
+          return next();
+        }
 
         // Enforce trailingSlash: false (redirect /path/ -> /path)
         if (pathname.length > 1 && pathname.endsWith('/')) {

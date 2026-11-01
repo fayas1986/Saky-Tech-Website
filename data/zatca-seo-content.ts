@@ -3,6 +3,11 @@ export interface FAQEntry {
   answer: string;
 }
 
+export type CapabilityDeliveryModel =
+  | 'Pre-Built in Saky Middleware'
+  | 'API-Based Integration'
+  | 'Customer-Specific ERP Development';
+
 export interface ZatcaIntegrationPageData {
   slug: string;
   path: string;
@@ -12,7 +17,10 @@ export interface ZatcaIntegrationPageData {
   badge: string;
   erpName: string;
   shortName: string;
-  verificationStatus: 'Verified Integration' | 'API Middleware Architecture';
+  verificationStatus:
+    | 'Pre-Built OData Connector + Custom X++ Write-Back'
+    | 'API-Based Integration + Custom AL Extension'
+    | 'Pre-Built REST API & Webhook Middleware';
   heroSummary: string;
   positioningStatement: string;
   architectureFlow: {
@@ -28,7 +36,14 @@ export interface ZatcaIntegrationPageData {
   technicalCapabilities: Array<{
     title: string;
     description: string;
+    deliveryModel: CapabilityDeliveryModel;
+    verificationEvidence: string;
   }>;
+  deliveryScopeBreakdown: {
+    preBuiltMiddleware: string[];
+    apiBasedIntegration: string[];
+    customImplementationRequired: string[];
+  };
   supportedDocumentTypes: string[];
   implementationSteps: Array<{
     step: string;
@@ -126,19 +141,19 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
     metaDescription:
       'Connect Microsoft Dynamics 365 Finance & Operations (F&O) to ZATCA FATOORA Phase 2. Automate UBL 2.1 XML generation, CSID stamping, B2B clearance and B2C reporting.',
     h1: 'Microsoft Dynamics 365 Finance & Operations (F&O) ZATCA Phase 2 Integration',
-    badge: 'Dynamics 365 F&O Connector',
+    badge: 'Pre-Built OData Service + Custom X++ Write-Back',
     erpName: 'Microsoft Dynamics 365 Finance & Operations',
     shortName: 'Dynamics 365 Finance',
-    verificationStatus: 'Verified Integration',
+    verificationStatus: 'Pre-Built OData Connector + Custom X++ Write-Back',
     heroSummary:
-      'Bridge Microsoft Dynamics 365 Finance & Operations (F&O) with Saudi Arabia’s ZATCA FATOORA Phase 2 platform without disrupting your core X++ financial postings, multi-entity ledgers, or custom invoice print layouts.',
+      'Bridge Microsoft Dynamics 365 Finance & Operations (F&O) with Saudi Arabia’s ZATCA FATOORA Phase 2 platform through Saky ZATCA Connect’s pre-built Azure AD OData v4 connector and REST API middleware, combined with tailored X++ write-back and SSRS print layout integration.',
     positioningStatement:
       'Keep your existing Dynamics 365 Finance & Operations environment. Connect it to ZATCA FATOORA Phase 2 through Saky ZATCA Connect.',
     architectureFlow: {
-      source: 'Dynamics 365 F&O (CustInvoiceJour /ProjInvoiceJour / Retail POS)',
-      extractionMethod: 'OData REST Entities, Custom X++ Business Events & Service Endpoints',
-      middlewareAction: 'UBL 2.1 XML Transformation, SHA-256 Chaining (PIH), ECDSA Signing & Schematron Check',
-      writebackMethod: 'Write-back of ZATCA UUID, Cryptographic Stamp, Cleared XML & Phase 2 TLV QR Code to F&O',
+      source: 'Dynamics 365 F&O (SalesInvoiceHeaders / SalesInvoiceHeadersV2 / Custom X++ Entities)',
+      extractionMethod: 'Pre-Built OData v4 Polling (Azure AD OAuth 2.0) or API-Based Push (/api/v1/erp/invoices)',
+      middlewareAction: 'Pre-Built UBL 2.1 XML Builder, SHA-256 Chaining (PIH), ECDSA Signing & Schematron Check',
+      writebackMethod: 'OData Action (UpdateZatcaStatus / ZatcaIntegrationStatuses) + Custom SSRS QR Layout',
     },
     painPoints: [
       {
@@ -159,46 +174,76 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
     ],
     technicalCapabilities: [
       {
-        title: 'Event-Driven X++ & OData Integration',
+        title: 'Azure AD OAuth 2.0 & OData v4 Invoice Polling',
         description:
-          'Triggers automatically upon F&O invoice posting or pro-forma validation via Dynamics 365 Business Events and OData APIs, keeping ERP response times fast.',
+          'Authenticates with Microsoft Entra ID (`client_credentials`) and polls `SalesInvoiceHeaders` and `SalesInvoiceHeadersV2` (`cross-company=true`) on an automated 2-minute sync schedule, or accepts real-time REST API pushes.',
+        deliveryModel: 'Pre-Built in Saky Middleware',
+        verificationEvidence:
+          'Implemented in D365Service (d365Service.ts: getAccessToken, testConnection, fetchPendingInvoices) and SyncService (syncService.ts: 2-minute cron scheduler).',
       },
       {
-        title: 'Multi-Legal Entity & Branch EGS Routing',
+        title: 'Multi-Legal Entity (`dataAreaId`) & Branch EGS Routing',
         description:
-          'Maps each Dynamics 365 legal entity, site, or warehouse to its corresponding ZATCA cryptographic stamp (CSID) and maintains independent hash chains.',
+          'Maps each Dynamics 365 legal entity (`dataAreaId`) or branch identifier to its dedicated ZATCA cryptographic stamp (CSID) and maintains isolated sequential Invoice Counter Values (ICV) and SHA-256 Previous Invoice Hashes (PIH).',
+        deliveryModel: 'Pre-Built in Saky Middleware',
+        verificationEvidence:
+          'Implemented in IntegrationService (integrationService.ts) and D365Service company filter (`dataAreaId eq companyId`).',
       },
       {
-        title: 'Pre-Posting & Post-Posting Validation Modes',
+        title: 'Pre-Flight VAT (`BR-KSA-81`) & Address (`BR-10`) Validation',
         description:
-          'Validates mandatory ZATCA Phase 2 buyer master fields (15-digit VAT number, building number, street, district, city, 5-digit postal code) before calling the FATOORA Clearance API.',
+          'Validates mandatory ZATCA Phase 2 buyer master fields (15-digit Saudi VAT number, building number, street, district, city, 5-digit postal code) and normalizes VAT category codes (`S`, `Z`, `E`, `O`) before calling FATOORA APIs.',
+        deliveryModel: 'Pre-Built in Saky Middleware',
+        verificationEvidence:
+          'Implemented in IntegrationService (address & building-number parser lines 283–334, tax category normalizer lines 338–365) and XmlService / SdkService.',
       },
       {
-        title: 'SSRS & Custom Print Report QR Injection',
+        title: 'X++ OData Write-Back Entity & SSRS Report QR Rendering',
         description:
-          'Returns the ZATCA-cleared XML, cryptographic UUID, and 9-tag Phase 2 TLV QR code directly to Dynamics 365 F&O so your existing SSRS invoice PDF includes the compliant QR code.',
+          'Writes the cleared ZATCA status, UUID, XML hash, and 9-tag Base64 TLV QR code back to F&O via OData (`UpdateZatcaStatus` or `ZatcaIntegrationStatuses`). Customer-specific X++ entity publication and SSRS/ER print layout updates are completed during onboarding.',
+        deliveryModel: 'Customer-Specific ERP Development',
+        verificationEvidence:
+          'Middleware OData write-back caller is pre-built in D365Service.updateInvoiceStatus (d365Service.ts lines 173–232); X++ target action/entity and SSRS report design are deployed in the client F&O environment.',
       },
     ],
+    deliveryScopeBreakdown: {
+      preBuiltMiddleware: [
+        'Microsoft Entra ID (Azure AD) OAuth 2.0 client_credentials token management & caching (D365Service.getAccessToken)',
+        'OData v4 connection verification (/data/Companies & /data/$metadata) and automated 2-minute polling of SalesInvoiceHeaders & SalesInvoiceHeadersV2',
+        'Pre-flight Saudi VAT number (BR-KSA-81), national address (BR-10), and tax category (S/Z/E/O) validation',
+        'UBL 2.1 XML generation, sequential ICV counter, SHA-256 PIH hash chaining, ECDSA secp256k1 signing, and 9-tag TLV QR encoding',
+        'ZATCA FATOORA Clearance & Reporting API submission + OData write-back caller (UpdateZatcaStatus & ZatcaIntegrationStatuses)',
+      ],
+      apiBasedIntegration: [
+        'Optional real-time push from D365 F&O Business Events / X++ HTTP client to POST /api/v1/erp/invoices or POST /api/v2/invoices/submit',
+        'HMAC-SHA256 payload signature verification (X-Signature, X-Timestamp, X-Nonce) and idempotency key protection',
+      ],
+      customImplementationRequired: [
+        'Publishing the UpdateZatcaStatus X++ OData action or ZatcaIntegrationStatuses custom data entity in the customer’s D365 F&O environment',
+        'Mapping custom X++ invoice tables (such as customized ProjInvoiceJour or vertical sub-ledgers) if non-standard OData entities are used',
+        'Adding the returned Base64 TLV QR code and ZATCA UUID fields to the customer’s SSRS or Electronic Reporting (ER) invoice PDF layouts',
+      ],
+    },
     supportedDocumentTypes: [
-      'Free Text Invoices (CustInvoiceTable / CustInvoiceJour)',
-      'Sales Order Tax Invoices & Credit Notes',
-      'Project Invoices & Milestone Billing (PMA)',
-      'Advance Payment / Prepayment Tax Invoices',
-      'Retail & Commerce Simplified Tax Invoices (B2C)',
-      'Debit Notes & Financial Adjustment Memos',
+      'Sales Order Tax Invoices (SalesInvoiceHeaders / SalesInvoiceHeadersV2 — Pre-Built OData)',
+      'Standard B2B Invoices & Simplified B2C Invoices (0100000 / 0200000)',
+      'Sales Credit Notes (381) & Debit Notes (383) via REST API / OData Mapping',
+      'Free Text Invoices & Project Invoices (Requires Custom OData Entity / API Mapping)',
+      'Advance Payment / Prepayment Tax Invoices (386 — via API Payload Mapping)',
+      'Multi-Entity (`dataAreaId`) & Multi-Branch EGS Configurations',
     ],
     implementationSteps: [
       {
         step: '01',
         title: 'F&O Data Model & Tax Code Mapping',
         description:
-          'Review your Dynamics 365 Finance legal entities, sales tax codes, customer address fields, and invoice types against ZATCA UBL 2.1 mandatory tags.',
+          'Review your Dynamics 365 Finance legal entities, sales tax codes, customer address fields, and OData entities against ZATCA UBL 2.1 mandatory tags.',
       },
       {
         step: '02',
-        title: 'Middleware & Business Event Deployment',
+        title: 'Azure AD Connector & X++ Write-Back Setup',
         description:
-          'Configure the Saky ZATCA Connect service connector in your UAT environment and connect F&O invoice posting events.',
+          'Configure the pre-built Saky D365 OData connector in UAT and deploy the UpdateZatcaStatus / ZatcaIntegrationStatuses write-back entity in F&O.',
       },
       {
         step: '03',
@@ -208,26 +253,26 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
       },
       {
         step: '04',
-        title: 'Production CSID Cutover & Hypercare',
+        title: 'SSRS Print Verification & Production Cutover',
         description:
           'Switch to production CSIDs, verify SSRS PDF QR rendering, and monitor live clearance/reporting queues with your finance team.',
       },
     ],
     faqs: [
       {
-        question: 'Does Saky ZATCA Connect work with customized Dynamics 365 F&O invoice workflows?',
+        question: 'What part of the Dynamics 365 F&O integration is pre-built versus custom-developed?',
         answer:
-          'Yes. Because ZATCA Connect ingests structured JSON/OData payloads from F&O, we map your custom X++ fields and project or sales invoice extensions without forcing you to rewrite your existing ERP business logic.',
+          'Saky ZATCA Connect includes a pre-built D365 F&O OData v4 connector (Azure AD OAuth 2.0 authentication, automated polling of SalesInvoiceHeaders and SalesInvoiceHeadersV2, UBL 2.1 XML generation, ECDSA signing, ZATCA API submission, and OData status write-back). Customer-specific implementation is required inside your F&O environment to expose the UpdateZatcaStatus / ZatcaIntegrationStatuses write-back entity, map any custom X++ sub-ledger fields, and place the returned QR code onto your SSRS invoice print layout.',
       },
       {
         question: 'How are SSRS invoice printouts updated with the ZATCA Phase 2 QR code?',
         answer:
-          'Once ZATCA clears a Standard B2B invoice (or signs a Simplified B2C invoice), the middleware writes the Base64 TLV QR string, ZATCA UUID, and clearance status back to Dynamics 365 so your SSRS report renders the exact QR code.',
+          'Once ZATCA clears a Standard B2B invoice (or signs a Simplified B2C invoice), the middleware calls the OData write-back endpoint with the Base64 TLV QR string, ZATCA UUID, and clearance status so your F&O SSRS report renders the compliant QR code.',
       },
       {
         question: 'Can we manage multiple Saudi branches or VAT group entities from one F&O instance?',
         answer:
-          'Yes. ZATCA Connect supports multi-entity VAT groups and multi-branch EGS units, maintaining separate CSID certificates, Invoice Counter Values (ICV), and Previous Invoice Hashes (PIH) for each branch.',
+          'Yes. ZATCA Connect filters by Dynamics 365 `dataAreaId` and branch identifiers, maintaining separate CSID certificates, Invoice Counter Values (ICV), and Previous Invoice Hashes (PIH) for each branch.',
       },
     ],
     relatedResources: [
@@ -253,21 +298,21 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
     path: '/integrations/dynamics-365-business-central-zatca',
     title: 'Dynamics 365 Business Central ZATCA Phase 2 Integration | Saky',
     metaDescription:
-      'Integrate Microsoft Dynamics 365 Business Central with ZATCA FATOORA Phase 2. AL extension & middleware for UBL 2.1 XML, CSID stamping, QR codes, and API clearance.',
+      'Integrate Microsoft Dynamics 365 Business Central with ZATCA FATOORA Phase 2 via Saky ZATCA Connect REST API middleware and tailored AL extension development.',
     h1: 'Microsoft Dynamics 365 Business Central ZATCA Phase 2 Integration',
-    badge: 'Business Central Connector',
+    badge: 'API Middleware + Tailored AL Implementation',
     erpName: 'Microsoft Dynamics 365 Business Central',
     shortName: 'Business Central',
-    verificationStatus: 'Verified Integration',
+    verificationStatus: 'API-Based Integration + Custom AL Extension',
     heroSummary:
-      'Connect Microsoft Dynamics 365 Business Central (Cloud or On-Premises) to ZATCA FATOORA Phase 2 through lightweight AL extension hooks and Saky ZATCA Connect middleware.',
+      'Connect Microsoft Dynamics 365 Business Central (Cloud SaaS or On-Premises) to ZATCA FATOORA Phase 2 by combining Saky ZATCA Connect’s pre-built REST API & cryptographic middleware with customer-specific Business Central AL extension hooks and RDLC/Word report layout updates.',
     positioningStatement:
-      'Keep your Dynamics 365 Business Central ledger. Automate ZATCA Phase 2 clearance and reporting with Saky ZATCA Connect.',
+      'Keep your Dynamics 365 Business Central ledger. Automate ZATCA Phase 2 clearance and reporting with Saky ZATCA Connect API middleware.',
     architectureFlow: {
-      source: 'Dynamics 365 Business Central (Posted Sales Invoices & Cr. Memos)',
-      extractionMethod: 'AL Extension Codeunit Webhooks & Business Central API Pages (v2.0)',
-      middlewareAction: 'Schematron Pre-Validation, UBL 2.1 XML Generation, Cryptographic Stamp & FATOORA API',
-      writebackMethod: 'Synchronous Status, Cleared XML Attachment & TLV QR Code Write-Back to BC',
+      source: 'Dynamics 365 Business Central (Posted Sales Invoices & Sales Cr. Memos)',
+      extractionMethod: 'API-Based REST JSON Push (POST /api/v1/erp/invoices) via Customer-Specific AL Codeunit',
+      middlewareAction: 'Pre-Built Schematron Validation, UBL 2.1 XML, ECDSA Cryptographic Stamp & FATOORA API',
+      writebackMethod: 'Synchronous JSON Response / Webhook Callback Stored in BC Fields for RDLC/Word QR Print',
     },
     painPoints: [
       {
@@ -288,32 +333,62 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
     ],
     technicalCapabilities: [
       {
-        title: 'Lightweight AL Extension for Business Central',
+        title: 'Pre-Built REST JSON Ingestion & HMAC-SHA256 Security',
         description:
-          'Adds required Saudi National Address fields, ZATCA status badges, and one-click or automated post-and-clear actions directly inside Business Central.',
+          'Provides production-ready REST endpoints (`/api/v1/erp/invoices` and `/api/v2/invoices/submit`) with API Key and HMAC-SHA256 request verification, idempotency protection, and synchronous/webhook status responses.',
+        deliveryModel: 'Pre-Built in Saky Middleware',
+        verificationEvidence:
+          'Implemented in routes/api_v1.ts, routes/api_v2.ts, middleware/hmacMiddleware.ts, and verified by verify_v1_api.ts.',
       },
       {
-        title: 'Automated B2B Clearance & B2C Reporting',
+        title: 'Automated UBL 2.1 XML, B2B Clearance & B2C Reporting Engine',
         description:
-          'Routes B2B Posted Sales Invoices to ZATCA’s Clearance API and B2C retail/POS invoices to the Reporting API with full status tracking.',
+          'Transforms Business Central JSON invoice payloads into canonical UBL 2.1 XML, manages per-branch ICV counters and SHA-256 PIH chains, signs with the branch ECDSA key, and submits to ZATCA Clearance or Reporting APIs.',
+        deliveryModel: 'Pre-Built in Saky Middleware',
+        verificationEvidence:
+          'Implemented in IntegrationService (integrationService.ts), XmlService (xmlService.ts), SdkService (sdkService.ts), and ZatcaService (zatcaService.ts).',
       },
       {
-        title: 'Pre-Flight Customer & VAT Validation',
+        title: 'Pre-Flight Customer VAT & National Address Validation',
         description:
-          'Checks 15-digit Saudi VAT registration numbers (starting and ending with 3) and buyer address completeness before posting or transmitting to ZATCA.',
+          'Validates 15-digit Saudi VAT registration numbers (`BR-KSA-81`), buyer national address fields (`BR-10`), and Credit Memo billing references (`BR-KSA-56`) before transmitting to ZATCA.',
+        deliveryModel: 'API-Based Integration',
+        verificationEvidence:
+          'Implemented in IntegrationService.processInvoiceRecord (integrationService.ts lines 260–460) with structured validation error responses.',
       },
       {
-        title: 'RDLC & Word Layout QR Code Support',
+        title: 'Customer-Specific AL Extension & RDLC/Word QR Layout',
         description:
-          'Stores the generated Phase 2 QR code image and cleared XML against the Posted Sales Invoice record for seamless inclusion on RDLC or Word invoice layouts.',
+          'During implementation, our Dynamics engineering team develops and deploys a tailored AL extension for your BC tenant to add Saudi National Address fields, subscribe to `OnAfterPostSalesDoc` events, and render the returned QR code on your RDLC or Word invoice layouts.',
+        deliveryModel: 'Customer-Specific ERP Development',
+        verificationEvidence:
+          'Delivered as customer-specific AL codeunit/table/report extension tailored to each client’s Business Central version and custom invoice layouts (not marketed as a pre-packaged AppSource plug-and-play app).',
       },
     ],
+    deliveryScopeBreakdown: {
+      preBuiltMiddleware: [
+        'Saky ZATCA Connect REST API endpoints (POST /api/v1/erp/invoices, POST /api/v2/invoices/submit, GET /api/v1/erp/invoices/:id)',
+        'HMAC-SHA256 payload authentication, replay-protection nonces, and idempotency keys',
+        'Pre-flight Saudi VAT number (BR-KSA-81), buyer address (BR-10), and tax category (S/Z/E/O) validation',
+        'UBL 2.1 XML construction, sequential ICV & SHA-256 PIH chaining, ECDSA cryptographic stamping, and 9-tag Base64 TLV QR generation',
+        'CSID onboarding dashboard (CSR generation, FATOORA OTP exchange, compliance check runner, and Production CSID rotation)',
+      ],
+      apiBasedIntegration: [
+        'HTTPS JSON payload transmission from Business Central (via AL HttpClient or OData v4 webhook bridge) to Saky ZATCA Connect',
+        'Synchronous HTTP response and asynchronous HMAC-signed webhook callback (IntegrationService.reflectStatusToERP) returning ZATCA status, UUID, XML hash, and Base64 QR code',
+      ],
+      customImplementationRequired: [
+        'Customer-specific Business Central AL table & page extensions for Saudi National Address fields and ZATCA status tracking',
+        'Customer-specific AL codeunit event subscribers (OnAfterPostSalesDoc / OnAfterPostSalesCrMemo) mapped to your VAT Posting Setup and dimensions',
+        'Custom RDLC or Word Sales Invoice and Credit Memo report layout updates to print the returned Phase 2 QR code',
+      ],
+    },
     supportedDocumentTypes: [
-      'Posted Sales Invoices (Standard B2B & Simplified B2C)',
-      'Posted Sales Credit Memos (Linked to Original Invoice Reference)',
-      'Sales Debit Notes & Price Adjustments',
-      'Prepayment Invoices & Prepayment Credit Memos',
-      'Service Module Invoices & Contract Billing',
+      'Posted Sales Invoices (Standard B2B 0100000 & Simplified B2C 0200000)',
+      'Posted Sales Credit Memos (381 — Linked to Original Invoice Reference)',
+      'Sales Debit Notes & Price Adjustments (383)',
+      'Prepayment Invoices & Prepayment Credit Memos (386)',
+      'Service Module Invoices & Contract Billing (via Custom AL Mapping)',
       'Multi-Currency Export & Zero-Rated Tax Invoices',
     ],
     implementationSteps: [
@@ -321,13 +396,13 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
         step: '01',
         title: 'Business Central Environment & VAT Setup Audit',
         description:
-          'Assess your Business Central version (SaaS or On-Premises), VAT Posting Setup, and custom invoice report layouts.',
+          'Assess your Business Central version (SaaS or On-Premises), VAT Posting Setup, customer address fields, and custom invoice report layouts.',
       },
       {
         step: '02',
-        title: 'AL Extension & Middleware Connection',
+        title: 'Tailored AL Extension & API Middleware Connection',
         description:
-          'Deploy the ZATCA fields extension in your Business Central sandbox and connect it to Saky ZATCA Connect.',
+          'Develop and deploy the AL table/codeunit extension in your Business Central sandbox and connect it to Saky ZATCA Connect REST APIs.',
       },
       {
         step: '03',
@@ -337,26 +412,26 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
       },
       {
         step: '04',
-        title: 'Production Activation & User Training',
+        title: 'RDLC/Word Print Verification & Production Cutover',
         description:
-          'Enable production CSID credentials, train finance users on status monitoring, and provide post-go-live support.',
+          'Verify QR code rendering on your invoice layouts, enable production CSID credentials, and train finance users on status monitoring.',
       },
     ],
     faqs: [
       {
+        question: 'Is the Business Central integration a pre-packaged AppSource plugin or an API-based custom AL implementation?',
+        answer:
+          'We believe in transparent engineering communication: Saky ZATCA Connect provides the pre-built ZATCA Phase 2 middleware engine and REST APIs (`/api/v1/erp/invoices`, `/api/v2/invoices/submit`), while the Business Central side is delivered as a tailored AL extension and report layout update adapted to your specific BC tenant, VAT Posting Setup, and custom fields.',
+      },
+      {
         question: 'Does this integration support both Business Central Cloud (SaaS) and On-Premises?',
         answer:
-          'Yes. Saky ZATCA Connect communicates over HTTPS REST APIs and OData v4, supporting both Microsoft-hosted Business Central SaaS tenants and on-premises Dynamics NAV / Business Central deployments.',
+          'Yes. Because Saky ZATCA Connect communicates over standard HTTPS REST JSON APIs with HMAC-SHA256 authentication, it supports both Microsoft-hosted Business Central SaaS tenants and on-premises Business Central / Dynamics NAV deployments.',
       },
       {
-        question: 'Can we validate customer VAT numbers and addresses before posting an invoice in Business Central?',
+        question: 'Can we validate customer VAT numbers and addresses before submitting an invoice to ZATCA?',
         answer:
-          'Yes. Our integration validates mandatory ZATCA Phase 2 buyer fields (15-digit VAT number, street, building number, district, city, postal code, and country code) prior to submission so rejected postings are avoided.',
-      },
-      {
-        question: 'How long does a typical Business Central ZATCA Phase 2 integration take?',
-        answer:
-          'For standard Business Central sales and credit memo workflows, sandbox connection and CSID onboarding typically complete within 1 to 3 weeks depending on custom report layouts and number of branches.',
+          'Yes. Saky ZATCA Connect performs pre-flight validation on mandatory ZATCA Phase 2 buyer fields (15-digit VAT number, street, building number, district, city, postal code, and country code) and returns structured validation errors before calling ZATCA.',
       },
     ],
     relatedResources: [
@@ -384,19 +459,19 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
     metaDescription:
       'Connect custom ERP, POS, billing, and legacy software to ZATCA FATOORA Phase 2 via Saky ZATCA Connect REST API. Automate UBL 2.1 XML, CSID signing, and clearance.',
     h1: 'Custom ERP, POS & Billing Software ZATCA Phase 2 API Integration',
-    badge: 'REST API & Webhook Middleware',
+    badge: 'Pre-Built REST API & Webhook Middleware',
     erpName: 'Custom ERP, POS & In-House Billing Systems',
     shortName: 'Custom ERP & POS',
-    verificationStatus: 'Verified Integration',
+    verificationStatus: 'Pre-Built REST API & Webhook Middleware',
     heroSummary:
-      'Avoid building complex cryptographic signing, UBL 2.1 XML canonicalization, and SHA-256 hash chaining from scratch. Send simple JSON invoice payloads from your custom ERP or POS to Saky ZATCA Connect, and let our middleware handle ZATCA FATOORA Phase 2.',
+      'Avoid building complex cryptographic signing, UBL 2.1 XML canonicalization, and SHA-256 hash chaining from scratch. Send standard JSON invoice payloads from your custom ERP or POS to Saky ZATCA Connect’s pre-built REST API, and let our middleware handle ZATCA FATOORA Phase 2.',
     positioningStatement:
       'Your engineering team sends clean JSON. Saky ZATCA Connect handles UBL 2.1 XML, CSID cryptography, QR codes, and ZATCA FATOORA APIs.',
     architectureFlow: {
       source: 'Custom ERP / Retail POS / Hospital HIMS / Travel & Logistics Billing',
-      extractionMethod: 'RESTful JSON API (POST /api/v1/invoices) or Database/Queue Connector',
-      middlewareAction: 'JSON-to-UBL 2.1 XML Mapping, XSD/Schematron Check, ECDSA Signing & FATOORA Submission',
-      writebackMethod: 'JSON Webhook / API Response with Cleared XML, UUID, Hash & Base64 TLV QR Code',
+      extractionMethod: 'Pre-Built REST JSON API (POST /api/v1/erp/invoices, /api/v2/invoices/submit) or Scheduled Pull Sync',
+      middlewareAction: 'Pre-Built JSON-to-UBL 2.1 XML Mapping, Schematron Check, ECDSA Signing & FATOORA Submission',
+      writebackMethod: 'Pre-Built JSON API Response + HMAC Webhook Callback with Cleared XML, UUID & Base64 TLV QR',
     },
     painPoints: [
       {
@@ -417,26 +492,56 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
     ],
     technicalCapabilities: [
       {
-        title: 'Developer-Friendly JSON-to-UBL 2.1 API',
+        title: 'Pre-Built JSON-to-UBL 2.1 REST API (`v1` & `v2`)',
         description:
-          'Submit standard JSON invoice objects over HTTPS. ZATCA Connect constructs the complete UBL 2.1 XML document with all required `cac:` and `cbc:` namespaces.',
+          'Submit standard JSON invoice objects over HTTPS (`POST /api/v1/erp/invoices` or `POST /api/v2/invoices/submit`) authenticated via `X-API-Key` and `HMAC-SHA256`. ZATCA Connect constructs the complete UBL 2.1 XML document.',
+        deliveryModel: 'Pre-Built in Saky Middleware',
+        verificationEvidence:
+          'Implemented in routes/api_v1.ts, routes/api_v2.ts, middleware/hmacMiddleware.ts, and services/xmlService.ts; verified in verify_v1_api.ts.',
       },
       {
-        title: 'Serialized Hash Chain & Counter Management',
+        title: 'Serialized Hash Chain (PIH), ICV Counter & Saudi Address Parser',
         description:
-          'Automatically manages the Invoice Counter Value (ICV) and Previous Invoice Hash (PIH) per branch or EGS device, preventing concurrency collisions across multi-branch deployments.',
+          'Automatically manages the Invoice Counter Value (ICV) and Previous Invoice Hash (PIH) per branch, parses Saudi building numbers/addresses, and normalizes VAT category codes (`S`, `Z`, `E`, `O`).',
+        deliveryModel: 'Pre-Built in Saky Middleware',
+        verificationEvidence:
+          'Implemented in IntegrationService.processInvoiceRecord (integrationService.ts lines 283–452) and deployed across 4 KSA branches.',
       },
       {
-        title: 'Built-In CSID Portal & Certificate Vault',
+        title: 'Built-In CSID Portal, Scheduled Pull Sync & Webhook Callbacks',
         description:
-          'Includes an administrative dashboard for CSR generation, OTP compliance onboarding, XML validator testing, and multi-branch certificate status monitoring.',
+          'Includes an administrative portal for CSR generation and OTP onboarding, a 2-minute scheduled pull engine (supporting Bearer, Basic, API Key, and `/gettoken` exchange), and HMAC-signed webhook callbacks (`reflectStatusToERP`).',
+        deliveryModel: 'API-Based Integration',
+        verificationEvidence:
+          'Implemented in IntegrationService.fetchAndProcessInvoices (lines 102–233), IntegrationService.reflectStatusToERP (lines 638–765), and SyncService.',
       },
       {
-        title: 'Resilient Queue & Webhook Callbacks',
+        title: 'Customer ERP Payload Mapping & Invoice PDF QR Rendering',
         description:
-          'Handles retry scheduling if upstream connectivity is interrupted or if a branch certificate needs rotation, notifying your application via webhook once cleared.',
+          'Your development team maps your application’s outbound invoice JSON to our documented schema (or exposes an invoice feed endpoint) and embeds the returned Base64 TLV QR image onto your customer PDF or thermal receipt.',
+        deliveryModel: 'Customer-Specific ERP Development',
+        verificationEvidence:
+          'Documented in INTEGRATION.md and ApiDocs.tsx with complete JSON request/response examples and webhook verification guides.',
       },
     ],
+    deliveryScopeBreakdown: {
+      preBuiltMiddleware: [
+        'REST JSON ingestion endpoints (POST /api/v1/erp/invoices, POST /api/v2/invoices/submit, GET /api/v1/erp/invoices/:id)',
+        'API Key + HMAC-SHA256 signature verification (X-Signature, X-Timestamp, X-Nonce) and idempotency handling',
+        'Automated 2-minute pull sync scheduler (SyncService) with Bearer, Basic, API Key, and token-exchange (/gettoken) support',
+        'Saudi address & 4-digit building number parser, VAT category normalizer (S/Z/E/O), UBL 2.1 XML generator, and secp256k1 ECDSA signer',
+        'Multi-branch CSID onboarding portal, PII-redacted audit logs (sanitizePayload), and HMAC webhook status callbacks (reflectStatusToERP)',
+      ],
+      apiBasedIntegration: [
+        'HTTPS REST JSON push from any custom ERP, POS, HIMS, or travel/logistics billing platform (.NET, Java, PHP, Python, Node.js, Go)',
+        'API middleware integration pathway for SAP (S/4HANA / ECC) and Oracle (EBS / NetSuite) via outbound REST/OData/IDoc staging feeds (no native SAP/Oracle plug-in claimed)',
+      ],
+      customImplementationRequired: [
+        'Mapping your custom ERP or POS invoice database fields to the Saky ZATCA Connect JSON payload contract',
+        'Persisting the returned zatcaUuid, xmlHash, and Base64 TLV qrCode in your application database',
+        'Rendering the returned Phase 2 QR code image on your customer-facing PDF invoice or thermal POS receipt template',
+      ],
+    },
     supportedDocumentTypes: [
       'Standard Tax Invoices (0100000 — B2B / B2G Clearance)',
       'Simplified Tax Invoices (0200000 — B2C POS Reporting)',
@@ -475,7 +580,7 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
       {
         question: 'What programming languages or databases can integrate with Saky ZATCA Connect?',
         answer:
-          'Any system capable of making HTTPS REST requests (.NET, Java, PHP, Python, Node.js, Go, Ruby) or exposing a SQL/webhook feed can integrate. We also support SAP and Oracle landscapes via API middleware.',
+          'Any system capable of making HTTPS REST requests (.NET, Java, PHP, Python, Node.js, Go, Ruby) or exposing a REST/webhook feed can integrate. We also support SAP and Oracle landscapes via API middleware and custom adapter implementation (not marketed as native pre-built SAP/Oracle connectors).',
       },
       {
         question: 'Does our engineering team need to generate UBL 2.1 XML or cryptographic signatures?',
@@ -485,7 +590,7 @@ export const ZATCA_INTEGRATION_PAGES: ZatcaIntegrationPageData[] = [
       {
         question: 'How does ZATCA Connect handle multi-branch Saudi businesses?',
         answer:
-          'Each branch (such as Riyadh, Jeddah, Dammam, or Al Khobar) is configured with its own EGS profile and CSID certificate. You simply pass the `branchId` in your API request and the middleware routes signing and clearance through the correct certificate.',
+          'Each branch (such as Riyadh, Jeddah, Dammam, or Al Khobar) is configured with its own EGS profile and CSID certificate. You simply pass the branch or company identifier in your API request and the middleware routes signing and clearance through the correct certificate.',
       },
     ],
     relatedResources: [

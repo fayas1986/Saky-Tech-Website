@@ -1,0 +1,236 @@
+{
+  "generatedAt": "2026-11-01T10:04:10.135Z",
+  "baseUrl": "http://localhost:4173",
+  "audits": [
+    {
+      "page": "homepage",
+      "route": "/",
+      "formFactor": "mobile",
+      "scores": {
+        "performance": 82,
+        "accessibility": 94,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 1890,
+        "FCP_display": "1.9 s",
+        "LCP_ms": 4185,
+        "LCP_display": "4.2 s",
+        "TBT_ms": 162,
+        "TBT_display": "160 ms",
+        "CLS": 0.0001,
+        "CLS_display": "0",
+        "SI_ms": 2873,
+        "SI_display": "2.9 s"
+      }
+    },
+    {
+      "page": "homepage",
+      "route": "/",
+      "formFactor": "desktop",
+      "scores": {
+        "performance": 97,
+        "accessibility": 94,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 727,
+        "FCP_display": "0.7 s",
+        "LCP_ms": 1158,
+        "LCP_display": "1.2 s",
+        "TBT_ms": 0,
+        "TBT_display": "0 ms",
+        "CLS": 0.0003,
+        "CLS_display": "0",
+        "SI_ms": 901,
+        "SI_display": "0.9 s"
+      }
+    },
+    {
+      "page": "zatca-connect",
+      "route": "/products/zatca-connect",
+      "formFactor": "mobile",
+      "scores": {
+        "performance": 89,
+        "accessibility": 95,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 2517,
+        "FCP_display": "2.5 s",
+        "LCP_ms": 2517,
+        "LCP_display": "2.5 s",
+        "TBT_ms": 231,
+        "TBT_display": "230 ms",
+        "CLS": 0,
+        "CLS_display": "0",
+        "SI_ms": 3082,
+        "SI_display": "3.1 s"
+      }
+    },
+    {
+      "page": "zatca-connect",
+      "route": "/products/zatca-connect",
+      "formFactor": "desktop",
+      "scores": {
+        "performance": 97,
+        "accessibility": 95,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 880,
+        "FCP_display": "0.9 s",
+        "LCP_ms": 880,
+        "LCP_display": "0.9 s",
+        "TBT_ms": 0,
+        "TBT_display": "0 ms",
+        "CLS": 0.0796,
+        "CLS_display": "0.08",
+        "SI_ms": 987,
+        "SI_display": "1.0 s"
+      }
+    },
+    {
+      "page": "dynamics-365-fo-zatca",
+      "route": "/integrations/microsoft-dynamics-365-finance-zatca",
+      "formFactor": "mobile",
+      "scores": {
+        "performance": 83,
+        "accessibility": 94,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 2487,
+        "FCP_display": "2.5 s",
+        "LCP_ms": 2487,
+        "LCP_display": "2.5 s",
+        "TBT_ms": 456,
+        "TBT_display": "460 ms",
+        "CLS": 0.0196,
+        "CLS_display": "0.02",
+        "SI_ms": 2487,
+        "SI_display": "2.5 s"
+      }
+    },
+    {
+      "page": "dynamics-365-fo-zatca",
+      "route": "/integrations/microsoft-dynamics-365-finance-zatca",
+      "formFactor": "desktop",
+      "scores": {
+        "performance": 100,
+        "accessibility": 94,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 608,
+        "FCP_display": "0.6 s",
+        "LCP_ms": 608,
+        "LCP_display": "0.6 s",
+        "TBT_ms": 0,
+        "TBT_display": "0 ms",
+        "CLS": 0.007,
+        "CLS_display": "0.007",
+        "SI_ms": 656,
+        "SI_display": "0.7 s"
+      }
+    },
+    {
+      "page": "custom-erp-zatca",
+      "route": "/integrations/custom-erp-zatca",
+      "formFactor": "mobile",
+      "scores": {
+        "performance": 91,
+        "accessibility": 94,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 2397,
+        "FCP_display": "2.4 s",
+        "LCP_ms": 2397,
+        "LCP_display": "2.4 s",
+        "TBT_ms": 188,
+        "TBT_display": "190 ms",
+        "CLS": 0,
+        "CLS_display": "0",
+        "SI_ms": 3089,
+        "SI_display": "3.1 s"
+      }
+    },
+    {
+      "page": "custom-erp-zatca",
+      "route": "/integrations/custom-erp-zatca",
+      "formFactor": "desktop",
+      "scores": {
+        "performance": 99,
+        "accessibility": 94,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 638,
+        "FCP_display": "0.6 s",
+        "LCP_ms": 638,
+        "LCP_display": "0.6 s",
+        "TBT_ms": 0,
+        "TBT_display": "0 ms",
+        "CLS": 0.044,
+        "CLS_display": "0.044",
+        "SI_ms": 685,
+        "SI_display": "0.7 s"
+      }
+    },
+    {
+      "page": "zatca-phase-2-guide",
+      "route": "/resources/zatca-phase-2-guide",
+      "formFactor": "mobile",
+      "scores": {
+        "performance": 81,
+        "accessibility": 94,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 2549,
+        "FCP_display": "2.5 s",
+        "LCP_ms": 2549,
+        "LCP_display": "2.5 s",
+        "TBT_ms": 463,
+        "TBT_display": "460 ms",
+        "CLS": 0,
+        "CLS_display": "0",
+        "SI_ms": 3030,
+        "SI_display": "3.0 s"
+      }
+    },
+    {
+      "page": "zatca-phase-2-guide",
+      "route": "/resources/zatca-phase-2-guide",
+      "formFactor": "desktop",
+      "scores": {
+        "performance": 100,
+        "accessibility": 94,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "FCP_ms": 632,
+        "FCP_display": "0.6 s",
+        "LCP_ms": 632,
+        "LCP_display": "0.6 s",
+        "TBT_ms": 0,
+        "TBT_display": "0 ms",
+        "CLS": 0.0029,
+        "CLS_display": "0.003",
+        "SI_ms": 653,
+        "SI_display": "0.7 s"
+      }
+    }
+  ]
+}

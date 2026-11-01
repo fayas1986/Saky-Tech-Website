@@ -263,7 +263,7 @@ const ZatcaResourceArticle: React.FC = () => {
 
             {/* Verified ERP Integration Pages */}
             <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-600 mb-4">
                 Verified ERP Integrations
               </h2>
               <div className="space-y-3">
@@ -276,7 +276,7 @@ const ZatcaResourceArticle: React.FC = () => {
                     <h3 className="text-xs sm:text-sm font-bold text-[#2d465e] hover:text-[#0d83fd]">
                       {integration.erpName}
                     </h3>
-                    <span className="text-[11px] text-[#0d83fd] font-semibold">
+                    <span className="text-[11px] text-[#0b66c2] font-semibold">
                       View connector architecture →
                     </span>
                   </Link>
@@ -286,7 +286,7 @@ const ZatcaResourceArticle: React.FC = () => {
 
             {/* Related Resource Guides */}
             <div className="bg-white border border-slate-200/90 rounded-3xl p-6 shadow-sm">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-600 mb-4">
                 More ZATCA Technical Guides
               </h2>
               <div className="space-y-3">

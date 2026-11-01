@@ -220,12 +220,29 @@ const ZatcaIntegrationDetail: React.FC = () => {
               {integration.technicalCapabilities.map((cap, idx) => (
                 <div
                   key={idx}
-                  className="p-4 rounded-2xl bg-[#f8fafc] border border-slate-200/80"
+                  className="p-4 rounded-2xl bg-[#f8fafc] border border-slate-200/80 flex flex-col justify-between"
                 >
-                  <h3 className="text-sm font-bold font-heading text-[#2d465e] mb-1.5">
-                    {cap.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{cap.description}</p>
+                  <div>
+                    <span
+                      className={`inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full mb-2 ${
+                        cap.deliveryModel === 'Pre-Built in Saky Middleware'
+                          ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                          : cap.deliveryModel === 'API-Based Integration'
+                          ? 'bg-blue-50 text-[#0d83fd] border border-blue-200'
+                          : 'bg-amber-50 text-amber-800 border border-amber-200'
+                      }`}
+                    >
+                      {cap.deliveryModel}
+                    </span>
+                    <h3 className="text-sm font-bold font-heading text-[#2d465e] mb-1.5">
+                      {cap.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mb-3">{cap.description}</p>
+                  </div>
+                  <div className="pt-2.5 border-t border-slate-200/70 text-[11px] text-slate-500 leading-relaxed">
+                    <strong className="text-[#2d465e]">Implementation Evidence:</strong>{' '}
+                    {cap.verificationEvidence}
+                  </div>
                 </div>
               ))}
             </div>
@@ -250,6 +267,86 @@ const ZatcaIntegrationDetail: React.FC = () => {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        {/* Capability & Delivery Scope Breakdown Matrix */}
+        <section
+          aria-labelledby="delivery-classification-heading"
+          className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 md:p-10 mb-16 shadow-sm"
+        >
+          <div className="max-w-3xl mb-8">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0d83fd] block mb-2">
+              Transparent Engineering Scope
+            </span>
+            <h2
+              id="delivery-classification-heading"
+              className="text-2xl sm:text-3xl font-extrabold font-heading text-[#2d465e] mb-2"
+            >
+              {integration.shortName} Capability Classification: Pre-Built vs. API-Based vs. Custom Scope
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              We clearly distinguish what is pre-built inside Saky ZATCA Connect, what operates via
+              standard APIs, and what requires customer-specific configuration in your ERP. SAP and
+              Oracle are supported via API middleware only and are not marketed as native pre-built
+              connectors.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-6">
+            {/* Column 1: Pre-Built in Saky Middleware */}
+            <div className="p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200/90">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-900 mb-3">
+                1. Pre-Built in Saky Middleware
+              </span>
+              <h3 className="text-base font-bold font-heading text-[#2d465e] mb-3">
+                Production-Ready Out of the Box
+              </h3>
+              <ul className="space-y-2.5 text-xs text-slate-700 leading-relaxed">
+                {integration.deliveryScopeBreakdown.preBuiltMiddleware.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 2: API-Based Integration */}
+            <div className="p-6 rounded-2xl bg-[#f3f9ff] border border-blue-200/90">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-100 text-blue-900 mb-3">
+                2. API-Based Integration
+              </span>
+              <h3 className="text-base font-bold font-heading text-[#2d465e] mb-3">
+                Standardized REST / OData Contract
+              </h3>
+              <ul className="space-y-2.5 text-xs text-slate-700 leading-relaxed">
+                {integration.deliveryScopeBreakdown.apiBasedIntegration.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-[#0d83fd] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3: Customer-Specific Implementation Required */}
+            <div className="p-6 rounded-2xl bg-amber-50/50 border border-amber-200/90">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 mb-3">
+                3. Customer-Specific ERP Scope
+              </span>
+              <h3 className="text-base font-bold font-heading text-[#2d465e] mb-3">
+                Tailored During Client Onboarding
+              </h3>
+              <ul className="space-y-2.5 text-xs text-slate-700 leading-relaxed">
+                {integration.deliveryScopeBreakdown.customImplementationRequired.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
