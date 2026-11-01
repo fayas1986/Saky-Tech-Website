@@ -21,7 +21,7 @@ export const faqData: FAQItem[] = [
   },
   {
     question: "What Microsoft Dynamics 365 services do your consultants provide?",
-    answer: "Our certified practice covers complete lifecycle implementations, AL extension development for Business Central, X++ development for Finance & Operations (F&O), custom API integrations, legacy ERP data migration, and Power BI executive analytics."
+    answer: "Our Microsoft Dynamics practice covers complete lifecycle implementations, AL extension development for Business Central, X++ development for Finance & Operations (F&O), custom API integrations, legacy ERP data migration, and Power BI executive analytics."
   },
   {
     question: "How long does a typical implementation or migration take?",

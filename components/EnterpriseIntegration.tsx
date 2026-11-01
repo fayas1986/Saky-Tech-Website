@@ -36,7 +36,7 @@ const EnterpriseIntegration: React.FC = () => {
             <p className="text-xs text-slate-600 leading-relaxed mb-4">
               Complete ERP lifecycle setup, AL extension development, Chart of Accounts structuring, and statutory tax localization for mid-market businesses.
             </p>
-            <ul className="space-y-2 text-xs text-slate-700">
+            <ul className="space-y-2 text-xs text-slate-700 mb-4">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#0d83fd] shrink-0" /> 
                 <span>AL Extension Engineering</span>
@@ -46,6 +46,13 @@ const EnterpriseIntegration: React.FC = () => {
                 <span>Legacy Data Migration</span>
               </li>
             </ul>
+            <Link
+              to="/integrations/dynamics-365-business-central-zatca"
+              className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0d83fd] hover:underline"
+            >
+              <span>Dynamics 365 Business Central ZATCA integration</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
 
           <div className="bg-[#f3f9ff]/70 border border-slate-200/80 rounded-3xl p-6 md:p-7 hover:bg-white hover:border-blue-200 hover:shadow-[0_10px_30px_rgba(13,131,253,0.1)] transition-all group hover:-translate-y-1">
@@ -58,7 +65,7 @@ const EnterpriseIntegration: React.FC = () => {
             <p className="text-xs text-slate-600 leading-relaxed mb-4">
               Multi-entity consolidation, complex supply chain workflows, custom X++ modules, and global financial operations for large enterprises.
             </p>
-            <ul className="space-y-2 text-xs text-slate-700">
+            <ul className="space-y-2 text-xs text-slate-700 mb-4">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-indigo-600 shrink-0" /> 
                 <span>Enterprise Solution Blueprint</span>
@@ -68,6 +75,13 @@ const EnterpriseIntegration: React.FC = () => {
                 <span>Global Multi-Currency Setup</span>
               </li>
             </ul>
+            <Link
+              to="/integrations/microsoft-dynamics-365-finance-zatca"
+              className="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-600 hover:underline"
+            >
+              <span>ZATCA Phase 2 integration for Microsoft Dynamics</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
 
           <div className="bg-[#f3f9ff]/70 border border-slate-200/80 rounded-3xl p-6 md:p-7 hover:bg-white hover:border-blue-200 hover:shadow-[0_10px_30px_rgba(13,131,253,0.1)] transition-all group hover:-translate-y-1">
@@ -80,7 +94,7 @@ const EnterpriseIntegration: React.FC = () => {
             <p className="text-xs text-slate-600 leading-relaxed mb-4">
               Custom RESTful and OData middleware linking your core ERP with e-commerce storefronts, point-of-sale systems, and warehouse RFID hardware.
             </p>
-            <ul className="space-y-2 text-xs text-slate-700">
+            <ul className="space-y-2 text-xs text-slate-700 mb-4">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-purple-600 shrink-0" /> 
                 <span>Real-Time Webhook Pipelines</span>
@@ -90,6 +104,13 @@ const EnterpriseIntegration: React.FC = () => {
                 <span>Automated Retry Queue Buffers</span>
               </li>
             </ul>
+            <Link
+              to="/integrations/custom-erp-zatca"
+              className="inline-flex items-center gap-1 text-[11px] font-bold text-purple-600 hover:underline"
+            >
+              <span>Custom ERP ZATCA FATOORA integration</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
 
           <div className="bg-[#f3f9ff]/70 border border-slate-200/80 rounded-3xl p-6 md:p-7 hover:bg-white hover:border-blue-200 hover:shadow-[0_10px_30px_rgba(13,131,253,0.1)] transition-all group hover:-translate-y-1">

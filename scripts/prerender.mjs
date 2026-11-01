@@ -24,12 +24,20 @@ function buildSeoHeadHtml(seo) {
   const ogImage = escapeHtml(seo.ogImage);
   const ogImageAlt = escapeHtml(seo.ogImageAlt);
   const jsonLdString = JSON.stringify(seo.jsonLd);
+  const alternatesHtml = Array.isArray(seo.alternates)
+    ? seo.alternates
+        .map(
+          (alt) =>
+            `\n    <link rel="alternate" hreflang="${escapeHtml(alt.hreflang)}" href="${escapeHtml(alt.href)}" />`
+        )
+        .join('')
+    : '';
 
   return `<!--seo-head-start-->
     <title>${title}</title>
     <meta name="description" content="${desc}" />
     <meta name="robots" content="${robots}" />
-    <link rel="canonical" href="${canonical}" />
+    <link rel="canonical" href="${canonical}" />${alternatesHtml}
     <meta property="og:type" content="${ogType}" />
     <meta property="og:site_name" content="Saky Technologies" />
     <meta property="og:locale" content="en_US" />

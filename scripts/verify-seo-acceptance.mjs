@@ -23,6 +23,13 @@ const PRIORITY_ROUTES = [
   '/products/procure-ai',
   '/products/logisud',
   '/products/nova-crm',
+  '/integrations/microsoft-dynamics-365-finance-zatca',
+  '/integrations/dynamics-365-business-central-zatca',
+  '/integrations/custom-erp-zatca',
+  '/resources/zatca-phase-2-guide',
+  '/resources/zatca-wave-25-2027',
+  '/resources/zatca-csid-onboarding',
+  '/resources/zatca-clearance-vs-reporting',
 ];
 
 function fetchUrl(urlPath) {
@@ -112,6 +119,8 @@ async function runVerification() {
 
     const expectedCanonical = route === '/' ? 'https://sakytek.com/' : `https://sakytek.com${route}`;
     const hasTailwindCdn = res.body.includes('cdn.tailwindcss.com');
+    const hreflangEnSa = extractTag(res.body, /<link\s+rel="alternate"\s+hreflang="en-SA"\s+href="([^"]*)"/i);
+    const hreflangDefault = extractTag(res.body, /<link\s+rel="alternate"\s+hreflang="x-default"\s+href="([^"]*)"/i);
 
     const checks = {
       status200: res.statusCode === 200,
@@ -121,6 +130,7 @@ async function runVerification() {
       uniqueDescription: !descriptions.has(description),
       canonicalMatches: canonical === expectedCanonical,
       uniqueCanonical: !canonicals.has(canonical),
+      hasHreflang: hreflangEnSa === expectedCanonical && hreflangDefault === expectedCanonical,
       robotsIndexFollow: robots === 'index, follow',
       hasH1: Boolean(h1Text && h1Text.length > 3),
       hasSubstantiveRawHtml: rawTextWords > 120,

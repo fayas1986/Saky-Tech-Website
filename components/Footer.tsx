@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
             </Link>
 
             <p className="text-slate-600 text-sm max-w-sm leading-relaxed">
-              {companyConfig.tagline} Empowering enterprises across Singapore, the GCC, and India with specialized SaaS platforms and certified Microsoft Dynamics 365 ERP implementations.
+              {companyConfig.tagline} Empowering enterprises across Singapore, the GCC, and India with specialized SaaS platforms and Microsoft Dynamics 365 ERP implementations.
             </p>
 
             {/* Approved Global Office Locations */}
@@ -130,6 +130,42 @@ const Footer: React.FC = () => {
                   <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-[#0d83fd] transition-colors" />
                   <span>Security & SLA</span>
                 </a>
+              </li>
+              <li>
+                <Link
+                  to="/integrations/dynamics-365-business-central-zatca"
+                  className="text-slate-600 hover:text-[#0d83fd] transition-colors flex items-center gap-1 group"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-[#0d83fd] transition-colors" />
+                  <span>Dynamics 365 BC ZATCA</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/integrations/microsoft-dynamics-365-finance-zatca"
+                  className="text-slate-600 hover:text-[#0d83fd] transition-colors flex items-center gap-1 group"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-[#0d83fd] transition-colors" />
+                  <span>Dynamics 365 F&amp;O ZATCA</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/integrations/custom-erp-zatca"
+                  className="text-slate-600 hover:text-[#0d83fd] transition-colors flex items-center gap-1 group"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-[#0d83fd] transition-colors" />
+                  <span>Custom ERP ZATCA API</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/resources/zatca-phase-2-guide"
+                  className="text-slate-600 hover:text-[#0d83fd] transition-colors flex items-center gap-1 group"
+                >
+                  <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-[#0d83fd] transition-colors" />
+                  <span>ZATCA Phase 2 Guide</span>
+                </Link>
               </li>
             </ul>
           </div>

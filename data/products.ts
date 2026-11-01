@@ -79,68 +79,68 @@ export const products: Product[] = [
     name: 'ZATCA Connect',
     badge: 'Saudi Phase 2 (FATOORA) Middleware',
     category: 'Regional E-Invoicing & Clearance',
-    tagline: 'Enterprise Integration Middleware for Saudi Phase 2 E-Invoicing',
-    summary: 'High-throughput compliance middleware engineered specifically for the Kingdom of Saudi Arabia. Seamlessly handles CSID cryptographic stamping, UBL 2.1 XML transformation, QR codes, and real-time clearance with the ZATCA portal.',
+    tagline: 'ZATCA Phase 2 E-Invoicing Integration for Your Existing ERP',
+    summary: 'Keep your existing ERP and connect it to ZATCA FATOORA Phase 2 through Saky ZATCA Connect. Handles CSID cryptographic onboarding, UBL 2.1 XML generation and validation, QR codes, and clearance/reporting API connectivity for Saudi businesses.',
     targetAudience: [
       'Enterprises Operating in Saudi Arabia',
       'GCC IT Directors & CIOs',
       'ERP Project Managers',
       'Finance & Regulatory Compliance Teams in KSA'
     ],
-    businessProblem: 'Saudi Arabia’s ZATCA Phase 2 mandate requires cryptographic stamping (CSID), cryptographic invoice hashing, ECDSA digital signatures, and real-time API clearance for Standard B2B invoices and 24-hour reporting for Simplified B2C invoices—capabilities most global ERP systems cannot natively execute.',
-    operationalSolution: 'ZATCA Connect acts as an intelligent intermediary. It ingests standard billing outputs from your existing ERP (SAP, Microsoft Dynamics, Oracle, or POS), transforms them into ZATCA-compliant UBL 2.1 XML, signs them with cryptographic certificates, and manages bilateral clearance with the ZATCA portal.',
+    businessProblem: 'Saudi Arabia’s ZATCA Phase 2 mandate requires cryptographic stamping (CSID), cryptographic invoice hashing, ECDSA digital signatures, and real-time API clearance for Standard B2B invoices and 24-hour reporting for Simplified B2C invoices—capabilities many existing ERP, POS, and billing systems do not natively execute.',
+    operationalSolution: 'ZATCA Connect operates as dedicated integration middleware between your existing ERP or billing software and ZATCA FATOORA. It ingests invoice payloads from Microsoft Dynamics 365, custom ERPs, or POS systems, transforms them into validated UBL 2.1 XML, applies cryptographic stamps and QR codes, and manages clearance and reporting API workflows.',
     regulatoryScope: {
       jurisdiction: 'Kingdom of Saudi Arabia (KSA)',
       framework: 'Zakat, Tax and Customs Authority (ZATCA) Phase 2 (Integration Phase)',
       complianceStatus: 'verified',
-      details: 'Strictly aligned with ZATCA Phase 2 technical specifications, CSID onboarding, and UBL 2.1 invoice schemas.'
+      details: 'Engineered to align with ZATCA Phase 2 technical specifications, CSID onboarding workflows, and UBL 2.1 XML invoice schemas. Saky Technologies is an independent software and integration provider and does not claim official endorsement by ZATCA.'
     },
     implementedCapabilities: [
       {
-        title: 'Automated CSID Lifecycle Management',
-        description: 'Handles CSR generation, OTP-based compliance onboarding, production CSID issuance, and scheduled cryptographic key renewal.',
+        title: 'CSID Onboarding & Certificate Lifecycle Management',
+        description: 'Supports CSR generation, OTP-based compliance CSID onboarding, compliance invoice checks, production CSID issuance, and certificate renewal workflows.',
         status: 'verified'
       },
       {
-        title: 'UBL 2.1 XML Generator & Schematron Validator',
-        description: 'Transforms invoice payloads into compliant XML, computes SHA-256 digests, and validates against ZATCA Schematron rules prior to transmission.',
+        title: 'UBL 2.1 XML Generation & Pre-Transmission Validation',
+        description: 'Transforms ERP invoice data into ZATCA UBL 2.1 XML, computes SHA-256 invoice hashes, embeds TLV QR codes, and validates against ZATCA business rules before API submission.',
         status: 'verified'
       },
       {
-        title: 'Real-Time Clearance & Reporting API Engine',
-        description: 'Asynchronous and synchronous queuing for instant B2B clearance and sub-24h B2C reporting to ZATCA endpoints.',
+        title: 'Clearance & Reporting API Integration',
+        description: 'Manages synchronous B2B Standard Tax Invoice clearance and asynchronous B2C Simplified Tax Invoice reporting, including credit and debit notes.',
         status: 'verified'
       },
       {
-        title: 'Resilient Queue & Offline Failover Buffer',
-        description: 'Stores and guarantees transaction delivery without invoice drops during upstream authority maintenance or internet latency.',
+        title: 'Retry Queue & Transaction Audit Logging',
+        description: 'Queues transactions with configurable retry processing during transient network issues and maintains a detailed audit log of XML payloads, statuses, and ZATCA API responses.',
         status: 'verified'
       }
     ],
     integrations: [
-      { name: 'Microsoft Dynamics 365 F&O / Business Central', type: 'ERP Integration', status: 'verified' },
-      { name: 'SAP S/4HANA & ECC 6.0', type: 'ERP Integration', status: 'verified' },
-      { name: 'Oracle NetSuite & EBS', type: 'ERP Integration', status: 'verified' },
-      { name: 'Custom Point-of-Sale (POS) & Billing APIs', type: 'RESTful API', status: 'verified' }
+      { name: 'Microsoft Dynamics 365 Finance & Operations (F&O)', type: 'ERP Integration', status: 'verified' },
+      { name: 'Microsoft Dynamics 365 Business Central', type: 'ERP Integration', status: 'verified' },
+      { name: 'Custom ERP, POS & In-House Billing Systems', type: 'REST API & Webhooks', status: 'verified' },
+      { name: 'SAP & Oracle ERP Environments (via API Middleware)', type: 'Middleware Connectivity', status: 'limited' }
     ],
     deploymentOptions: [
       {
         model: 'Dedicated Enterprise Cloud',
-        description: 'Tenant-isolated virtual private cloud deployment tailored for Middle East enterprise operations.',
+        description: 'Tenant-isolated virtual private cloud deployment tailored for Saudi and GCC enterprise operations.',
         isPopular: true
       },
       {
-        model: 'On-Premises Security Appliance',
-        description: 'Deployed inside client infrastructure with dedicated Hardware Security Module (HSM) or encrypted keystore support.'
+        model: 'On-Premises / Private Network Deployment',
+        description: 'Deployed within client-controlled infrastructure with encrypted keystore management for internal ERP security policies.'
       }
     ],
     iconName: 'ShieldCheck',
     featured: true,
     accentColor: '#059669',
     metrics: [
-      { label: 'Clearance Latency', value: '< 1.2s', description: 'Average response time for standard B2B invoice' },
-      { label: 'Validation Pass Rate', value: '99.98%', description: 'Pre-flight Schematron conformance' },
-      { label: 'Standard Schema', value: 'UBL 2.1', description: 'Strict ZATCA Phase 2 XML compliance' }
+      { label: 'Invoice Standard', value: 'UBL 2.1', description: 'ZATCA Phase 2 XML & TLV QR structure' },
+      { label: 'Pre-Flight Check', value: 'Schematron', description: 'BR-KSA rule validation before transmission' },
+      { label: 'API Workflows', value: 'B2B & B2C', description: 'Clearance, reporting & credit/debit notes' }
     ]
   },
   {

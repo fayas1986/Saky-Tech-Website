@@ -30,6 +30,18 @@ const SEOHead: React.FC = () => {
     }
     canonicalEl.setAttribute('href', seo.canonical);
 
+    // Sync hreflang alternate links
+    document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove());
+    if (seo.alternates && seo.alternates.length > 0) {
+      seo.alternates.forEach((alt) => {
+        const altEl = document.createElement('link');
+        altEl.setAttribute('rel', 'alternate');
+        altEl.setAttribute('hreflang', alt.hreflang);
+        altEl.setAttribute('href', alt.href);
+        document.head.appendChild(altEl);
+      });
+    }
+
     setMetaTag('meta[property="og:type"]', 'property', 'og:type', seo.ogType);
     setMetaTag('meta[property="og:site_name"]', 'property', 'og:site_name', 'Saky Technologies');
     setMetaTag('meta[property="og:title"]', 'property', 'og:title', seo.title);

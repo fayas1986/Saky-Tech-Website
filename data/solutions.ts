@@ -5,7 +5,7 @@ export const solutions: Solution[] = [
     id: 'erp-integration',
     title: 'Microsoft Dynamics 365 & ERP Integration',
     badge: 'Enterprise ERP Practice',
-    subtitle: 'Certified Microsoft Dynamics Implementation, Customization & Enterprise Middleware',
+    subtitle: 'Enterprise Microsoft Dynamics Implementation, Customization & API Middleware',
     overview: 'Saky Technologies bridges the gap between core enterprise resource planning platforms and specialized operational applications. We specialize in end-to-end implementation, custom business logic, and API middleware for Microsoft Dynamics 365 Business Central, Finance & Operations (F&O), and enterprise ERPs.',
     coreOfferings: [
       {

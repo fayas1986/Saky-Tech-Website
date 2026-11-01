@@ -29,7 +29,7 @@ const OfferingsPillars: React.FC = () => {
             Three Specialized Practices. One Strategic Partner.
           </h2>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-            We solve operational complexity through focused B2B SaaS products, certified Microsoft ERP implementations, and precision custom software engineering.
+            We solve operational complexity through focused B2B SaaS products, specialized Microsoft ERP implementations, and precision custom software engineering.
           </p>
         </div>
 
@@ -135,10 +135,10 @@ const OfferingsPillars: React.FC = () => {
                   Microsoft Dynamics 365 Practice
                 </span>
                 <h3 className="text-2xl md:text-3xl font-extrabold font-heading text-[#2d465e] mb-4">
-                  Certified Microsoft ERP Implementation & Middleware
+                  Enterprise Microsoft ERP Implementation & Middleware
                 </h3>
                 <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
-                  Certified consultants and solution architects delivering full-lifecycle Microsoft Dynamics 365 Business Central and Finance & Operations (F&O) implementations across the GCC, Singapore, and India.
+                  Experienced functional consultants and solution architects delivering full-lifecycle Microsoft Dynamics 365 Business Central and Finance & Operations (F&O) implementations across the GCC, Singapore, and India.
                 </p>
                 <ul className="space-y-3 mb-8 text-sm text-slate-700">
                   <li className="flex items-start gap-3">
@@ -259,7 +259,7 @@ const OfferingsPillars: React.FC = () => {
                 Statutory Precision
               </h4>
               <p className="text-xs text-slate-500 leading-relaxed">
-                Dedicated e-invoicing and tax engines with zero penalty exposure, verified against Indian GST and Saudi ZATCA standards.
+                Dedicated e-invoicing and tax engines engineered to align with Indian GST and Saudi ZATCA Phase 2 technical specifications.
               </p>
             </div>
 
@@ -269,10 +269,10 @@ const OfferingsPillars: React.FC = () => {
                 <Building2 className="w-6 h-6" />
               </div>
               <h4 className="text-lg font-bold font-heading text-[#2d465e] mb-2">
-                ERP Certification
+                ERP Practice Depth
               </h4>
               <p className="text-xs text-slate-500 leading-relaxed">
-                Specialized Microsoft Dynamics 365 Business Central and F&O implementations engineered by accredited ERP specialists.
+                Specialized Microsoft Dynamics 365 Business Central and F&O implementations engineered by experienced ERP architects.
               </p>
             </div>
 

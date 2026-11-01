@@ -16,7 +16,7 @@ export const companyConfig = {
     },
     {
       title: 'Enterprise ERP Integration',
-      description: 'Certified implementation and API middleware for Microsoft Dynamics 365 Business Central, F&O, and legacy enterprise ERPs.'
+      description: 'Specialized implementation and API middleware for Microsoft Dynamics 365 Business Central, F&O, and enterprise ERPs.'
     },
     {
       title: 'Custom Software & BI',

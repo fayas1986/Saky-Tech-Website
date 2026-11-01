@@ -96,6 +96,47 @@ const Solutions: React.FC = () => {
           </div>
         </div>
 
+        {/* KSA ZATCA Integration Highlights */}
+        <div className="bg-white border border-blue-200/80 rounded-3xl p-6 md:p-10 mb-16 shadow-sm">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#0d83fd] bg-blue-50 px-3 py-1 rounded-full">
+                Saudi Arabia E-Invoicing Middleware
+              </span>
+              <h3 className="text-xl md:text-2xl font-bold font-heading text-[#2d465e] mt-2">
+                ZATCA FATOORA Phase 2 ERP Integration Connectors
+              </h3>
+            </div>
+            <Link
+              to="/products/zatca-connect"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0d83fd] hover:text-[#0b66c2]"
+            >
+              <span>View Saky ZATCA Connect Platform</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4 text-xs">
+            <Link
+              to="/integrations/microsoft-dynamics-365-finance-zatca"
+              className="p-4 rounded-2xl bg-[#f3f9ff] border border-blue-100 hover:border-[#0d83fd] transition-all font-semibold text-[#2d465e] hover:text-[#0d83fd]"
+            >
+              ZATCA Phase 2 integration for Microsoft Dynamics 365 Finance &rarr;
+            </Link>
+            <Link
+              to="/integrations/dynamics-365-business-central-zatca"
+              className="p-4 rounded-2xl bg-[#f3f9ff] border border-blue-100 hover:border-[#0d83fd] transition-all font-semibold text-[#2d465e] hover:text-[#0d83fd]"
+            >
+              Dynamics 365 Business Central ZATCA integration &rarr;
+            </Link>
+            <Link
+              to="/integrations/custom-erp-zatca"
+              className="p-4 rounded-2xl bg-[#f3f9ff] border border-blue-100 hover:border-[#0d83fd] transition-all font-semibold text-[#2d465e] hover:text-[#0d83fd]"
+            >
+              Custom ERP ZATCA FATOORA integration &rarr;
+            </Link>
+          </div>
+        </div>
+
         {/* Bottom CTA */}
         <div className="text-center bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80 rounded-3xl p-8 md:p-12 shadow-sm">
           <h2 className="text-2xl md:text-3xl font-bold font-heading text-[#2d465e] mb-3">

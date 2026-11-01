@@ -139,13 +139,94 @@ const SolutionERP: React.FC = () => {
           </div>
         </div>
 
+        {/* Saudi ZATCA Phase 2 ERP Integration Cluster */}
+        <div className="bg-white border border-blue-200/90 rounded-3xl p-6 sm:p-8 md:p-10 mb-16 shadow-sm">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-slate-100">
+            <div className="max-w-2xl">
+              <span className="inline-block text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 text-[#0d83fd] mb-3">
+                Saudi Arabia E-Invoicing (FATOORA Phase 2)
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold font-heading text-[#2d465e] mb-2">
+                Keep Your Existing ERP. Connect It to ZATCA Phase 2.
+              </h2>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Operating entities in Saudi Arabia? Connect Microsoft Dynamics 365, custom ERPs, and POS systems directly to ZATCA FATOORA Phase 2 without replacing your core financial software.
+              </p>
+            </div>
+            <Link
+              to="/products/zatca-connect"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#0d83fd] hover:bg-[#0b66c2] text-white font-bold text-xs sm:text-sm rounded-full shadow-md transition-all shrink-0"
+            >
+              <span>Explore Saky ZATCA Connect</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5 mb-6">
+            <Link
+              to="/integrations/microsoft-dynamics-365-finance-zatca"
+              className="bg-[#f3f9ff]/80 hover:bg-blue-50/80 border border-blue-100 rounded-2xl p-5 transition-all group"
+            >
+              <h3 className="text-sm font-bold font-heading text-[#2d465e] group-hover:text-[#0d83fd] mb-1.5 flex items-center justify-between gap-2">
+                <span>ZATCA Phase 2 integration for Microsoft Dynamics 365 Finance</span>
+                <ArrowRight className="w-4 h-4 text-[#0d83fd] shrink-0" />
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                OData / Data Management &amp; custom service endpoints for multi-entity Saudi VAT groups.
+              </p>
+            </Link>
+
+            <Link
+              to="/integrations/dynamics-365-business-central-zatca"
+              className="bg-[#f3f9ff]/80 hover:bg-blue-50/80 border border-blue-100 rounded-2xl p-5 transition-all group"
+            >
+              <h3 className="text-sm font-bold font-heading text-[#2d465e] group-hover:text-[#0d83fd] mb-1.5 flex items-center justify-between gap-2">
+                <span>Dynamics 365 Business Central ZATCA integration</span>
+                <ArrowRight className="w-4 h-4 text-[#0d83fd] shrink-0" />
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                AL extension event hooks for Posted Sales Invoices and Credit Memos in Business Central.
+              </p>
+            </Link>
+
+            <Link
+              to="/integrations/custom-erp-zatca"
+              className="bg-[#f3f9ff]/80 hover:bg-blue-50/80 border border-blue-100 rounded-2xl p-5 transition-all group"
+            >
+              <h3 className="text-sm font-bold font-heading text-[#2d465e] group-hover:text-[#0d83fd] mb-1.5 flex items-center justify-between gap-2">
+                <span>Custom ERP ZATCA FATOORA integration</span>
+                <ArrowRight className="w-4 h-4 text-[#0d83fd] shrink-0" />
+              </h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                REST JSON API &amp; webhook middleware for proprietary ERPs, POS networks, and SQL billing platforms.
+              </p>
+            </Link>
+          </div>
+
+          <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
+            <span className="font-bold text-slate-400 uppercase tracking-wider">Technical Guides:</span>
+            <Link to="/resources/zatca-phase-2-guide" className="font-semibold text-[#0d83fd] hover:underline">
+              ZATCA Phase 2 technical architecture guide
+            </Link>
+            <Link to="/resources/zatca-csid-onboarding" className="font-semibold text-[#0d83fd] hover:underline">
+              ZATCA CSID onboarding guide
+            </Link>
+            <Link to="/resources/zatca-clearance-vs-reporting" className="font-semibold text-[#0d83fd] hover:underline">
+              ZATCA clearance vs reporting
+            </Link>
+            <Link to="/resources/zatca-wave-25-2027" className="font-semibold text-[#0d83fd] hover:underline">
+              ZATCA Wave 25 e-invoicing readiness
+            </Link>
+          </div>
+        </div>
+
         {/* CTA */}
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/80 rounded-3xl p-8 md:p-12 text-center shadow-sm">
           <h2 className="text-2xl md:text-3xl font-bold font-heading text-[#2d465e] mb-3">
             Plan Your Microsoft Dynamics 365 Project
           </h2>
           <p className="text-slate-600 text-sm max-w-xl mx-auto mb-6">
-            Speak directly with our Microsoft-certified functional and technical leads to evaluate your system architecture, licensing, and customization scope.
+            Speak directly with our Microsoft Dynamics functional and technical leads to evaluate your system architecture, licensing, and customization scope.
           </p>
           <Link
             to="/contact?interest=erp-integration"

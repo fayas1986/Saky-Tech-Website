@@ -10,10 +10,17 @@ import ProductDetail from './pages/ProductDetail';
 import Solutions from './pages/Solutions';
 import SolutionERP from './pages/SolutionERP';
 import SolutionCustom from './pages/SolutionCustom';
+import ZatcaIntegrationDetail from './pages/ZatcaIntegrationDetail';
+import ZatcaResourceArticle from './pages/ZatcaResourceArticle';
 import NotFound from './pages/NotFound';
+import { captureUtmParameters } from './utils/analytics';
 
 const ScrollToTop: React.FC = () => {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, search } = useLocation();
+
+  useEffect(() => {
+    captureUtmParameters();
+  }, [pathname, search]);
 
   useEffect(() => {
     if (!hash) {
@@ -45,6 +52,8 @@ export const AppRoutes: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products/:id" element={<ProductDetail />} />
+            <Route path="/integrations/:slug" element={<ZatcaIntegrationDetail />} />
+            <Route path="/resources/:slug" element={<ZatcaResourceArticle />} />
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/solutions/erp-integration" element={<SolutionERP />} />
             <Route path="/solutions/custom-development" element={<SolutionCustom />} />

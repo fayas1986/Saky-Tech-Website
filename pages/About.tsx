@@ -20,7 +20,7 @@ const About: React.FC = () => {
               Enterprise software engineered around <span className="text-[#0d83fd]">your operations</span>
             </h1>
             <p className="text-base text-slate-600 leading-relaxed mb-6">
-              Saky Technologies is an enterprise software engineering company delivering proprietary B2B SaaS platforms and certified Microsoft Dynamics 365 ERP implementations. We bridge the gap between core financial ledgers and modern operational agility.
+              Saky Technologies is an enterprise software engineering company delivering proprietary B2B SaaS platforms and specialized Microsoft Dynamics 365 ERP implementations. We bridge the gap between core financial ledgers and modern operational agility.
             </p>
 
             {/* 2-Column Feature List */}
@@ -31,7 +31,7 @@ const About: React.FC = () => {
               </div>
               <div className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-5 h-5 text-[#0d83fd] shrink-0 mt-0.5" />
-                <span className="text-xs sm:text-sm text-slate-700 font-medium">Dynamics 365 BC & F&O Certified</span>
+                <span className="text-xs sm:text-sm text-slate-700 font-medium">Dynamics 365 BC & F&O Practice</span>
               </div>
               <div className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-5 h-5 text-[#0d83fd] shrink-0 mt-0.5" />

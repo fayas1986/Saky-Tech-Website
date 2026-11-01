@@ -1,9 +1,24 @@
 import { companyConfig, officeLocations } from './company';
 import { products, getProductById } from './products';
 import { solutions, getSolutionById } from './solutions';
+import {
+  ZATCA_CONNECT_FAQS,
+  ZATCA_INTEGRATION_PAGES,
+  ZATCA_RESOURCE_ARTICLES,
+  ARABIC_SEO_PREPARATION_REGISTRY,
+  getZatcaIntegrationBySlug,
+  getZatcaResourceBySlug,
+  FAQEntry,
+} from './zatca-seo-content';
 
 export const SITE_ORIGIN = 'https://sakytek.com';
 export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/assets/img/og-preview.png`;
+export const ZATCA_OG_IMAGE = `${SITE_ORIGIN}/assets/img/og-zatca-connect.png`;
+
+export interface HreflangAlternate {
+  hreflang: string;
+  href: string;
+}
 
 export interface RouteSEO {
   path: string;
@@ -14,6 +29,7 @@ export interface RouteSEO {
   ogType: 'website' | 'article';
   ogImage: string;
   ogImageAlt: string;
+  alternates?: HreflangAlternate[];
   jsonLd: Record<string, unknown>;
 }
 
@@ -25,7 +41,42 @@ export const ALL_PUBLIC_ROUTES: string[] = [
   '/solutions/erp-integration',
   '/solutions/custom-development',
   ...products.map((p) => `/products/${p.id}`),
+  ...ZATCA_INTEGRATION_PAGES.map((p) => p.path),
+  ...ZATCA_RESOURCE_ARTICLES.map((a) => a.path),
 ];
+
+export function buildHreflangAlternates(canonicalPath: string): HreflangAlternate[] {
+  const canonicalUrl = canonicalPath === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${canonicalPath}`;
+  const alternates: HreflangAlternate[] = [
+    { hreflang: 'en-SA', href: canonicalUrl },
+    { hreflang: 'x-default', href: canonicalUrl },
+  ];
+
+  const arEntry = ARABIC_SEO_PREPARATION_REGISTRY.find((r) => r.enPath === canonicalPath);
+  if (arEntry && arEntry.published) {
+    alternates.push({
+      hreflang: 'ar-SA',
+      href: `${SITE_ORIGIN}${arEntry.arPath}`,
+    });
+  }
+
+  return alternates;
+}
+
+export function buildFaqPageSchema(canonicalUrl: string, faqs: FAQEntry[]) {
+  return {
+    '@type': 'FAQPage',
+    '@id': `${canonicalUrl}#faq`,
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
 
 export function buildOrganizationSchema() {
   return {
@@ -93,7 +144,7 @@ export function buildOrganizationSchema() {
         telephone: companyConfig.primaryPhone,
         email: companyConfig.primaryEmail,
         contactType: 'sales',
-        areaServed: ['SG', 'OM', 'SA', 'AE', 'IN'],
+        areaServed: ['SA', 'SG', 'OM', 'AE', 'IN'],
         availableLanguage: ['en'],
       },
     ],
@@ -138,7 +189,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
   if (normalizedPath === '/') {
     const title = 'Saky Technologies | Enterprise B2B SaaS & Microsoft Dynamics 365 ERP Practice';
     const description =
-      'Saky Technologies delivers proprietary B2B SaaS platforms (TaxFlow GST, ZATCA Connect, TalentSense HRMS, MedNext HIMS, Procure AI, LogiSud, Nova CRM), certified Microsoft Dynamics 365 ERP implementations, and custom software engineering.';
+      'Saky Technologies delivers proprietary B2B SaaS platforms (TaxFlow GST, ZATCA Connect, TalentSense HRMS, MedNext HIMS, Procure AI, LogiSud, Nova CRM), Microsoft Dynamics 365 ERP implementations, and custom software engineering.';
     return {
       path: '/',
       title,
@@ -148,6 +199,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
       ogType: 'website',
       ogImage: DEFAULT_OG_IMAGE,
       ogImageAlt: 'Saky Technologies — Enterprise Software & Microsoft Dynamics 365 ERP Practice',
+      alternates: buildHreflangAlternates('/'),
       jsonLd: {
         '@context': 'https://schema.org',
         '@graph': [
@@ -182,6 +234,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
       ogType: 'website',
       ogImage: DEFAULT_OG_IMAGE,
       ogImageAlt: 'About Saky Technologies — Singapore, Oman & India Delivery Hubs',
+      alternates: buildHreflangAlternates('/about'),
       jsonLd: {
         '@context': 'https://schema.org',
         '@graph': [
@@ -220,6 +273,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
       ogType: 'website',
       ogImage: DEFAULT_OG_IMAGE,
       ogImageAlt: 'Contact Saky Technologies — Singapore, Oman & India Offices',
+      alternates: buildHreflangAlternates('/contact'),
       jsonLd: {
         '@context': 'https://schema.org',
         '@graph': [
@@ -247,7 +301,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
   if (normalizedPath === '/solutions') {
     const title = 'Enterprise ERP Integration & Custom Software Solutions | Saky Technologies';
     const description =
-      'Explore Saky Technologies enterprise practices: certified Microsoft Dynamics 365 Business Central & F&O implementation, API middleware, and custom software engineering.';
+      'Explore Saky Technologies enterprise practices: Microsoft Dynamics 365 Business Central & F&O implementation, ZATCA Phase 2 API middleware, and custom software engineering.';
     const canonical = `${SITE_ORIGIN}/solutions`;
     return {
       path: '/solutions',
@@ -258,6 +312,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
       ogType: 'website',
       ogImage: DEFAULT_OG_IMAGE,
       ogImageAlt: 'Saky Technologies — Enterprise Integration & Engineering Practices',
+      alternates: buildHreflangAlternates('/solutions'),
       jsonLd: {
         '@context': 'https://schema.org',
         '@graph': [
@@ -271,7 +326,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
             serviceType: sol.badge,
             url: `${SITE_ORIGIN}/solutions/${sol.id}`,
             provider: { '@id': `${SITE_ORIGIN}/#organization` },
-            areaServed: ['SG', 'OM', 'SA', 'AE', 'IN'],
+            areaServed: ['SA', 'SG', 'OM', 'AE', 'IN'],
           })),
           buildBreadcrumbSchema([
             { name: 'Home', path: '/' },
@@ -298,6 +353,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
         ogType: 'website',
         ogImage: DEFAULT_OG_IMAGE,
         ogImageAlt: `${solution.title} — Saky Technologies`,
+        alternates: buildHreflangAlternates(`/solutions/${solution.id}`),
         jsonLd: {
           '@context': 'https://schema.org',
           '@graph': [
@@ -311,7 +367,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
               serviceType: solution.badge,
               url: canonical,
               provider: { '@id': `${SITE_ORIGIN}/#organization` },
-              areaServed: ['SG', 'OM', 'SA', 'AE', 'IN'],
+              areaServed: ['SA', 'SG', 'OM', 'AE', 'IN'],
               hasOfferCatalog: {
                 '@type': 'OfferCatalog',
                 name: `${solution.title} Offerings`,
@@ -336,6 +392,58 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
     }
   }
 
+  // Dedicated SEO Configuration for /products/zatca-connect (Phase 1 KSA Campaign)
+  if (normalizedPath === '/products/zatca-connect') {
+    const product = getProductById('zatca-connect')!;
+    const title = 'ZATCA Phase 2 E-Invoicing Integration for Saudi ERP Systems | Saky';
+    const description =
+      'Connect Microsoft Dynamics, SAP, Oracle and custom ERP systems to ZATCA FATOORA with Saky ZATCA Connect. Explore Phase 2 integration, onboarding and technical support.';
+    const canonical = `${SITE_ORIGIN}/products/zatca-connect`;
+
+    return {
+      path: '/products/zatca-connect',
+      title,
+      description,
+      canonical,
+      robots: 'index, follow',
+      ogType: 'website',
+      ogImage: ZATCA_OG_IMAGE,
+      ogImageAlt: 'Saky ZATCA Connect — ZATCA Phase 2 E-Invoicing Integration for Saudi ERP Systems',
+      alternates: buildHreflangAlternates('/products/zatca-connect'),
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          orgSchema,
+          webSiteSchema,
+          {
+            '@type': 'SoftwareApplication',
+            '@id': `${canonical}#software`,
+            name: 'Saky ZATCA Connect',
+            headline: 'ZATCA Phase 2 E-Invoicing Integration for Your Existing ERP',
+            description,
+            applicationCategory: 'BusinessApplication',
+            applicationSubCategory: 'ZATCA Phase 2 E-Invoicing Integration Middleware',
+            operatingSystem: 'Web, Cloud VPC, On-Premises',
+            url: canonical,
+            publisher: { '@id': `${SITE_ORIGIN}/#organization` },
+            author: { '@id': `${SITE_ORIGIN}/#organization` },
+            areaServed: {
+              '@type': 'Country',
+              name: 'Saudi Arabia',
+            },
+            featureList: product.implementedCapabilities.map((cap) => cap.title),
+          },
+          buildBreadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Products', path: '/#products' },
+            { name: 'ZATCA Connect', path: '/products/zatca-connect' },
+          ]),
+          buildFaqPageSchema(canonical, ZATCA_CONNECT_FAQS),
+        ],
+      },
+    };
+  }
+
   if (normalizedPath.startsWith('/products/')) {
     const prodId = normalizedPath.replace('/products/', '');
     const product = getProductById(prodId);
@@ -352,6 +460,7 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
         ogType: 'website',
         ogImage: DEFAULT_OG_IMAGE,
         ogImageAlt: `${product.name}: ${product.tagline} — Saky Technologies`,
+        alternates: buildHreflangAlternates(`/products/${product.id}`),
         jsonLd: {
           '@context': 'https://schema.org',
           '@graph': [
@@ -384,12 +493,109 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
     }
   }
 
+  // P1: Dedicated ERP Integration Landing Pages (/integrations/:slug)
+  if (normalizedPath.startsWith('/integrations/')) {
+    const slug = normalizedPath.replace('/integrations/', '');
+    const integration = getZatcaIntegrationBySlug(slug);
+    if (integration) {
+      const canonical = `${SITE_ORIGIN}${integration.path}`;
+      return {
+        path: integration.path,
+        title: integration.title,
+        description: integration.metaDescription,
+        canonical,
+        robots: 'index, follow',
+        ogType: 'website',
+        ogImage: ZATCA_OG_IMAGE,
+        ogImageAlt: `${integration.h1} — Saky ZATCA Connect`,
+        alternates: buildHreflangAlternates(integration.path),
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@graph': [
+            orgSchema,
+            webSiteSchema,
+            {
+              '@type': 'Service',
+              '@id': `${canonical}#service`,
+              name: integration.h1,
+              description: integration.metaDescription,
+              serviceType: 'ZATCA Phase 2 ERP Integration Service',
+              url: canonical,
+              provider: { '@id': `${SITE_ORIGIN}/#organization` },
+              areaServed: {
+                '@type': 'Country',
+                name: 'Saudi Arabia',
+              },
+            },
+            buildBreadcrumbSchema([
+              { name: 'Home', path: '/' },
+              { name: 'ZATCA Connect', path: '/products/zatca-connect' },
+              { name: `${integration.shortName} Integration`, path: integration.path },
+            ]),
+            buildFaqPageSchema(canonical, integration.faqs),
+          ],
+        },
+      };
+    }
+  }
+
+  // P2: Dedicated ZATCA Technical Resource Articles (/resources/:slug)
+  if (normalizedPath.startsWith('/resources/')) {
+    const slug = normalizedPath.replace('/resources/', '');
+    const article = getZatcaResourceBySlug(slug);
+    if (article) {
+      const canonical = `${SITE_ORIGIN}${article.path}`;
+      return {
+        path: article.path,
+        title: article.title,
+        description: article.metaDescription,
+        canonical,
+        robots: 'index, follow',
+        ogType: 'article',
+        ogImage: ZATCA_OG_IMAGE,
+        ogImageAlt: `${article.h1} — Saky Technologies`,
+        alternates: buildHreflangAlternates(article.path),
+        jsonLd: {
+          '@context': 'https://schema.org',
+          '@graph': [
+            orgSchema,
+            webSiteSchema,
+            {
+              '@type': 'TechArticle',
+              '@id': `${canonical}#article`,
+              headline: article.h1,
+              name: article.title,
+              description: article.metaDescription,
+              datePublished: '2026-11-01',
+              dateModified: '2026-11-01',
+              inLanguage: 'en',
+              url: canonical,
+              mainEntityOfPage: canonical,
+              author: { '@id': `${SITE_ORIGIN}/#organization` },
+              publisher: { '@id': `${SITE_ORIGIN}/#organization` },
+              about: {
+                '@type': 'Thing',
+                name: 'ZATCA Phase 2 E-Invoicing (FATOORA)',
+              },
+            },
+            buildBreadcrumbSchema([
+              { name: 'Home', path: '/' },
+              { name: 'ZATCA Connect', path: '/products/zatca-connect' },
+              { name: article.badge, path: article.path },
+            ]),
+            buildFaqPageSchema(canonical, article.faqs),
+          ],
+        },
+      };
+    }
+  }
+
   // Fallback for 404 / Unknown routes
   return {
     path: normalizedPath,
     title: 'Page Not Found (404) | Saky Technologies',
     description:
-      'The requested page could not be found on Saky Technologies. Explore our verified enterprise B2B SaaS products and Microsoft Dynamics 365 ERP solutions.',
+      'The requested page could not be found on Saky Technologies. Explore our enterprise B2B SaaS products and Microsoft Dynamics 365 ERP solutions.',
     canonical: `${SITE_ORIGIN}/404`,
     robots: 'noindex, nofollow',
     ogType: 'website',
@@ -401,4 +607,3 @@ export function getRouteSEO(rawPathname: string): RouteSEO {
     },
   };
 }
-

@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
 
             {/* Positioning Description */}
             <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
-              Saky Technologies delivers proprietary B2B SaaS applications, certified Microsoft Dynamics 365 ERP implementations, and custom software engineering designed to eliminate operational friction and accelerate growth.
+              Saky Technologies delivers proprietary B2B SaaS applications, specialized Microsoft Dynamics 365 ERP implementations, and custom software engineering designed to eliminate operational friction and accelerate growth.
             </p>
 
             {/* Quick 3 Pillar Badges */}
@@ -132,10 +132,10 @@ const Hero: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-2xl font-black font-heading text-[#2d465e] leading-none mb-1">
-                  100%
+                  Phase 2
                 </h4>
                 <p className="text-xs text-slate-500 font-medium">
-                  ZATCA & GST Statutory Compliance
+                  ZATCA FATOORA &amp; GST Engines
                 </p>
               </div>
             </div>
@@ -150,7 +150,7 @@ const Hero: React.FC = () => {
                   3 Offices
                 </h4>
                 <p className="text-xs text-slate-500 font-medium">
-                  Singapore (HQ), Oman & India
+                  Singapore (HQ), Oman &amp; India
                 </p>
               </div>
             </div>
@@ -162,10 +162,10 @@ const Hero: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-2xl font-black font-heading text-[#2d465e] leading-none mb-1">
-                  99.9%
+                  UBL 2.1
                 </h4>
                 <p className="text-xs text-slate-500 font-medium">
-                  Production SLA Guarantee
+                  ERP &amp; API Middleware Practice
                 </p>
               </div>
             </div>

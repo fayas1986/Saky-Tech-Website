@@ -13,9 +13,15 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { getProductById } from '../data/products';
+import ZatcaConnectLanding from './ZatcaConnectLanding';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+
+  if (id === 'zatca-connect') {
+    return <ZatcaConnectLanding />;
+  }
+
   const product = id ? getProductById(id) : undefined;
 
   if (!product) {
