@@ -1,0 +1,476 @@
+{
+  "timestamp": "2026-11-01T06:15:30.519Z",
+  "baseUrl": "http://localhost:4173",
+  "routes": [
+    {
+      "route": "/",
+      "statusCode": 200,
+      "title": "Saky Technologies | Enterprise B2B SaaS &amp; Microsoft Dynamics 365 ERP Practice",
+      "description": "Saky Technologies delivers proprietary B2B SaaS platforms (TaxFlow GST, ZATCA Connect, TalentSense HRMS, MedNext HIMS, Procure AI, LogiSud, Nova CRM), certified Microsoft Dynamics 365 ERP implementations, and custom software engineering.",
+      "canonical": "https://sakytek.com/",
+      "robots": "index, follow",
+      "h1Text": "Business software built around the way you work.",
+      "rawTextWords": 2382,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/about",
+      "statusCode": 200,
+      "title": "About Saky Technologies | Enterprise Software Engineering &amp; Global Delivery",
+      "description": "Learn how Saky Technologies bridges core enterprise ERP ledgers and operational agility across Singapore HQ, Muscat Oman, and Chennai India engineering hubs.",
+      "canonical": "https://sakytek.com/about",
+      "robots": "index, follow",
+      "h1Text": "Enterprise software engineered around your operations",
+      "rawTextWords": 323,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "AboutPage",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/contact",
+      "statusCode": 200,
+      "title": "Contact Saky Technologies | Enterprise Enquiries &amp; Architecture Consultation",
+      "description": "Connect with Saky Technologies in Singapore, Muscat (Oman), and Chennai (India) for B2B SaaS walkthroughs, Microsoft Dynamics 365 ERP implementation, and custom software consultations.",
+      "canonical": "https://sakytek.com/contact",
+      "robots": "index, follow",
+      "h1Text": "Enterprise Enquiries &amp; Consultation",
+      "rawTextWords": 357,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "ContactPage",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/solutions",
+      "statusCode": 200,
+      "title": "Enterprise ERP Integration &amp; Custom Software Solutions | Saky Technologies",
+      "description": "Explore Saky Technologies enterprise practices: certified Microsoft Dynamics 365 Business Central &amp; F&amp;O implementation, API middleware, and custom software engineering.",
+      "canonical": "https://sakytek.com/solutions",
+      "robots": "index, follow",
+      "h1Text": "Enterprise Integration &amp; Engineering Practices",
+      "rawTextWords": 565,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "Service",
+        "Service",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/solutions/erp-integration",
+      "statusCode": 200,
+      "title": "Microsoft Dynamics 365 &amp; ERP Integration | Saky Technologies",
+      "description": "Certified Microsoft Dynamics Implementation, Customization &amp; Enterprise Middleware. Saky Technologies bridges the gap between core enterprise resource planning platforms and specialized operational applications. We specialize in end-to-end implementation, custom business logic, and API middleware for Microsoft Dynamics 365 Business Central, Finance &amp; Operations (F&amp;O), and enterprise ERPs.",
+      "canonical": "https://sakytek.com/solutions/erp-integration",
+      "robots": "index, follow",
+      "h1Text": "Microsoft Dynamics 365 &amp; ERP Integration",
+      "rawTextWords": 550,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "Service",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/solutions/custom-development",
+      "statusCode": 200,
+      "title": "Custom Software Development &amp; Business Intelligence | Saky Technologies",
+      "description": "Tailored Enterprise Web Applications, System Modernization &amp; Data Engineering. When off-the-shelf software fails to match your proprietary operational workflows, Saky Technologies designs, builds, and maintains custom software applications tailored exactly around the way your teams execute.",
+      "canonical": "https://sakytek.com/solutions/custom-development",
+      "robots": "index, follow",
+      "h1Text": "Custom Software Development &amp; Business Intelligence",
+      "rawTextWords": 561,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "Service",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/products/taxflow",
+      "statusCode": 200,
+      "title": "TaxFlow — Automated GST Reconciliation &amp; Corporate Tax Filing Engine | Saky Technologies",
+      "description": "Purpose-built for Indian statutory tax frameworks, TaxFlow automates multi-tier GST reconciliation, detects input tax credit leakages in real time, and streamlines monthly filing reconciliation. Built for India (Domestic).",
+      "canonical": "https://sakytek.com/products/taxflow",
+      "robots": "index, follow",
+      "h1Text": "TaxFlow : Automated GST Reconciliation &amp; Corporate Tax Filing Engine",
+      "rawTextWords": 591,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "SoftwareApplication",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/products/zatca-connect",
+      "statusCode": 200,
+      "title": "ZATCA Connect — Enterprise Integration Middleware for Saudi Phase 2 E-Invoicing | Saky Technologies",
+      "description": "High-throughput compliance middleware engineered specifically for the Kingdom of Saudi Arabia. Seamlessly handles CSID cryptographic stamping, UBL 2.1 XML transformation, QR codes, and real-time clearance with the ZATCA portal. Built for Kingdom of Saudi Arabia (KSA).",
+      "canonical": "https://sakytek.com/products/zatca-connect",
+      "robots": "index, follow",
+      "h1Text": "ZATCA Connect : Enterprise Integration Middleware for Saudi Phase 2 E-Invoicing",
+      "rawTextWords": 619,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "SoftwareApplication",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/products/talentsense-hrms",
+      "statusCode": 200,
+      "title": "TalentSense HRMS — Consolidated Workforce Operations, Biometric Attendance &amp; Payroll Engine | Saky Technologies",
+      "description": "An all-in-one HRMS engineered to eliminate disconnected employee data. Delivers automated multi-shift scheduling, biometric attendance sync, configurable compensation structures, statutory compliance, and a modern employee portal. Built for Regional / Configurable (India, GCC, Singapore).",
+      "canonical": "https://sakytek.com/products/talentsense-hrms",
+      "robots": "index, follow",
+      "h1Text": "TalentSense HRMS : Consolidated Workforce Operations, Biometric Attendance &amp; Payroll Engine",
+      "rawTextWords": 551,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "SoftwareApplication",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/products/mednext-hims",
+      "statusCode": 200,
+      "title": "MedNext HIMS — Unified Clinical Workflows, Electronic Medical Records &amp; Hospital Operations | Saky Technologies",
+      "description": "A robust hospital information management system designed for multi-specialty hospitals, surgical clinics, and diagnostic chains. Integrates outpatient workflows, in-patient bed management, electronic medical records, pharmacy, and diagnostic labs. Built for Healthcare Regional Regulators.",
+      "canonical": "https://sakytek.com/products/mednext-hims",
+      "robots": "index, follow",
+      "h1Text": "MedNext HIMS : Unified Clinical Workflows, Electronic Medical Records &amp; Hospital Operations",
+      "rawTextWords": 567,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "SoftwareApplication",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/products/procure-ai",
+      "statusCode": 200,
+      "title": "Procure AI — Strategic Requisition Workflows, 3-Way Matching &amp; Vendor Intelligence | Saky Technologies",
+      "description": "A disciplined procurement platform that replaces ad-hoc email purchase requests with governed approval matrixes, automated 3-way invoice reconciliation (PO vs. GRN vs. Invoice), and supplier performance analytics. Built for Global Commercial Standards.",
+      "canonical": "https://sakytek.com/products/procure-ai",
+      "robots": "index, follow",
+      "h1Text": "Procure AI : Strategic Requisition Workflows, 3-Way Matching &amp; Vendor Intelligence",
+      "rawTextWords": 543,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "SoftwareApplication",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/products/logisud",
+      "statusCode": 200,
+      "title": "LogiSud — Consignment Dispatching, Fleet Manifests &amp; Electronic Proof of Delivery | Saky Technologies",
+      "description": "A transport execution platform built for freight carriers, third-party logistics (3PL) providers, and internal distributor delivery networks. Streamlines manifest planning, driver assignment, real-time trip status, and mobile digital POD capture. Built for Commercial Transportation Standards.",
+      "canonical": "https://sakytek.com/products/logisud",
+      "robots": "index, follow",
+      "h1Text": "LogiSud : Consignment Dispatching, Fleet Manifests &amp; Electronic Proof of Delivery",
+      "rawTextWords": 546,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "SoftwareApplication",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    },
+    {
+      "route": "/products/nova-crm",
+      "statusCode": 200,
+      "title": "Nova CRM — B2B Opportunity Management, Proposal Workflows &amp; Pipeline Clarity | Saky Technologies",
+      "description": "A clean, focused CRM engineered specifically for B2B enterprises dealing with multi-stakeholder purchasing committees and complex proposal cycles. Replaces clunky legacy systems with clear stage tracking and deal acceleration. Built for Corporate Data Privacy Standards.",
+      "canonical": "https://sakytek.com/products/nova-crm",
+      "robots": "index, follow",
+      "h1Text": "Nova CRM : B2B Opportunity Management, Proposal Workflows &amp; Pipeline Clarity",
+      "rawTextWords": 563,
+      "schemaTypes": [
+        "Organization",
+        "WebSite",
+        "SoftwareApplication",
+        "BreadcrumbList"
+      ],
+      "checks": {
+        "status200": true,
+        "hasTitle": true,
+        "uniqueTitle": true,
+        "hasDescription": true,
+        "uniqueDescription": true,
+        "canonicalMatches": true,
+        "uniqueCanonical": true,
+        "robotsIndexFollow": true,
+        "hasH1": true,
+        "hasSubstantiveRawHtml": true,
+        "hasOpenGraph": true,
+        "hasTwitterCard": true,
+        "hasValidJsonLd": true,
+        "noTailwindCdn": true
+      }
+    }
+  ],
+  "unknownRoutes": [
+    {
+      "route": "/non-existent-page",
+      "statusCode": 404,
+      "robots": "noindex, nofollow",
+      "h1Text": "Page Not Found",
+      "passed": true
+    },
+    {
+      "route": "/products/unknown-platform",
+      "statusCode": 404,
+      "robots": "noindex, nofollow",
+      "h1Text": "Page Not Found",
+      "passed": true
+    }
+  ],
+  "redirects": [
+    {
+      "from": "/about/",
+      "statusCode": 308,
+      "location": "/about",
+      "passed": true
+    }
+  ],
+  "robotsTxt": {
+    "statusCode": 200,
+    "passed": true,
+    "body": "User-agent: *\nAllow: /\nDisallow: /404\n\nSitemap: https://sakytek.com/sitemap.xml"
+  },
+  "sitemapXml": {
+    "statusCode": 200,
+    "urlCount": 13,
+    "urls": [
+      "https://sakytek.com/",
+      "https://sakytek.com/about",
+      "https://sakytek.com/contact",
+      "https://sakytek.com/solutions",
+      "https://sakytek.com/solutions/erp-integration",
+      "https://sakytek.com/solutions/custom-development",
+      "https://sakytek.com/products/taxflow",
+      "https://sakytek.com/products/zatca-connect",
+      "https://sakytek.com/products/talentsense-hrms",
+      "https://sakytek.com/products/mednext-hims",
+      "https://sakytek.com/products/procure-ai",
+      "https://sakytek.com/products/logisud",
+      "https://sakytek.com/products/nova-crm"
+    ],
+    "passed": true
+  },
+  "summary": {
+    "passed": 18,
+    "failed": 0,
+    "failures": []
+  }
+}

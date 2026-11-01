@@ -3,118 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Saky Technologies - Enterprise Software & ERP Practice</title>
+    <!--seo-head-start-->
+    <title>Saky Technologies | Enterprise B2B SaaS &amp; Microsoft Dynamics 365 ERP Practice</title>
+    <meta name="description" content="Saky Technologies delivers proprietary B2B SaaS platforms (TaxFlow GST, ZATCA Connect, TalentSense HRMS, MedNext HIMS, Procure AI, LogiSud, Nova CRM), certified Microsoft Dynamics 365 ERP implementations, and custom software engineering." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://sakytek.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Saky Technologies" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Saky Technologies | Enterprise B2B SaaS &amp; Microsoft Dynamics 365 ERP Practice" />
+    <meta property="og:description" content="Saky Technologies delivers proprietary B2B SaaS platforms (TaxFlow GST, ZATCA Connect, TalentSense HRMS, MedNext HIMS, Procure AI, LogiSud, Nova CRM), certified Microsoft Dynamics 365 ERP implementations, and custom software engineering." />
+    <meta property="og:url" content="https://sakytek.com/" />
+    <meta property="og:image" content="https://sakytek.com/assets/img/og-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Saky Technologies — Enterprise Software &amp; Microsoft Dynamics 365 ERP Practice" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Saky Technologies | Enterprise B2B SaaS &amp; Microsoft Dynamics 365 ERP Practice" />
+    <meta name="twitter:description" content="Saky Technologies delivers proprietary B2B SaaS platforms (TaxFlow GST, ZATCA Connect, TalentSense HRMS, MedNext HIMS, Procure AI, LogiSud, Nova CRM), certified Microsoft Dynamics 365 ERP implementations, and custom software engineering." />
+    <meta name="twitter:image" content="https://sakytek.com/assets/img/og-preview.png" />
+    <meta name="twitter:image:alt" content="Saky Technologies — Enterprise Software &amp; Microsoft Dynamics 365 ERP Practice" />
+    <!--seo-head-end-->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'Roboto', 'sans-serif'],
-              heading: ['Nunito', 'sans-serif'],
-            },
-            colors: {
-              brand: {
-                primary: '#0d83fd',
-                primaryDark: '#0b66c2',
-                heading: '#2d465e',
-                body: '#212529',
-                light: '#f3f9ff',
-                surface: '#ffffff',
-                dark: '#2d465e',
-                navy: '#1e293b',
-                lime: '#10b981',
-              },
-              ilanding: {
-                blue: '#0d83fd',
-                blueHover: '#0b66c2',
-                navy: '#2d465e',
-                lightBg: '#f3f9ff',
-                text: '#212529',
-                muted: '#6c757d',
-                border: '#e2e8f0',
-              }
-            },
-            boxShadow: {
-              'card': '0 5px 25px rgba(0, 0, 0, 0.05)',
-              'card-hover': '0 10px 30px rgba(13, 131, 253, 0.12)',
-              'cta': '0 15px 35px rgba(13, 131, 253, 0.2)',
-            },
-            animation: {
-              'fade-in-up': 'fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-              'float': 'float 5s ease-in-out infinite',
-              'pulse-subtle': 'pulseSubtle 3s ease-in-out infinite',
-            },
-            keyframes: {
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(16px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              },
-              pulseSubtle: {
-                '0%, 100%': { opacity: '1' },
-                '50%': { opacity: '0.85' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      body {
-        font-family: 'Inter', 'Roboto', sans-serif;
-        -webkit-font-smoothing: antialiased;
-        color: #212529;
-        background-color: #ffffff;
-      }
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Nunito', sans-serif;
-        color: #2d465e;
-      }
-      /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #f1f5f9; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8; 
-      }
-      
-      .delay-100 { animation-delay: 100ms; }
-      .delay-200 { animation-delay: 200ms; }
-      .delay-300 { animation-delay: 300ms; }
-      .delay-500 { animation-delay: 500ms; }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "recharts": "https://esm.sh/recharts@^3.7.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/index.css" />
+  </head>
   <body class="bg-white text-slate-800 overflow-x-hidden">
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>

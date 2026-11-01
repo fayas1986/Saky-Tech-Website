@@ -1,11 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Saky Technologies - iLanding Design System Utilities */
 
 @layer base {
+  body {
+    font-family: 'Inter', 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #212529;
+    background-color: #ffffff;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', sans-serif;
+    color: #2d465e;
+  }
+
   :focus-visible {
     outline: 2px solid #0d83fd;
     outline-offset: 2px;
   }
 }
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
 
 /* Reduced motion preference compliance */
 @media (prefers-reduced-motion: reduce) {

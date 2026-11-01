@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /404
+Disallow: /contact?*
+
+Sitemap: https://sakytek.com/sitemap.xml

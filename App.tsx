@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import SEOHead from './components/SEOHead';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -28,9 +29,10 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
-const App: React.FC = () => {
+export const AppRoutes: React.FC = () => {
   return (
-    <Router>
+    <>
+      <SEOHead />
       <ScrollToTop />
       {/* Skip to Content for Accessibility */}
       <a href="#main-content" className="skip-link">
@@ -53,6 +55,14 @@ const App: React.FC = () => {
         </div>
         <Footer />
       </div>
+    </>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <AppRoutes />
     </Router>
   );
 };

@@ -1,0 +1,29 @@
+{
+  "requestedUrl": "http://localhost:4173/",
+  "fetchTime": "2026-11-01T06:19:03.250Z",
+  "scores": {
+    "performance": 92,
+    "accessibility": 94,
+    "best-practices": 100,
+    "seo": 100
+  },
+  "metrics": {
+    "firstContentfulPaint": "2.3 s",
+    "largestContentfulPaint": "2.3 s",
+    "totalBlockingTime": "140 ms",
+    "cumulativeLayoutShift": "0",
+    "speedIndex": "4.6 s"
+  },
+  "seoAuditsPassed": [
+    "is-crawlable",
+    "document-title",
+    "meta-description",
+    "http-status-code",
+    "link-text",
+    "crawlable-anchors",
+    "robots-txt",
+    "image-alt",
+    "hreflang",
+    "canonical"
+  ]
+}
